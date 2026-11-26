@@ -1,0 +1,1026 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Riesgo San Gabriel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: portada blanca con la imagen en un círculo grande y el título debajo → al presionar, el mapa contada como relato, con un mapa que abre la ubicación real → resultados de la simulación, donde se elige el escenario y la moneda. */
+:root{
+  --bg:#ffffff; --ink:#15181e; --muted:#6c7380; --line:#e6e8ec; --soft:#f5f6f8; --gold:#24406b; --gold-soft:#e6ecf5;
+  --blue:#2463b8; --blue-soft:#e8f0fb; --red:#c0392b; --red-soft:#fbe7e4; --green:#23825a;
+  --display:'Outfit',system-ui,sans-serif; --read:'Source Serif 4',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace; --serif:'Cormorant Garamond','Source Serif 4',Georgia,serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);margin:0}
+#app{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr)}
+#app>.cover{height:100%}
+#app>.mapstage{height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:12px}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@keyframes rise{from{opacity:.001;transform:translateY(16px)}}
+@keyframes zoomin{from{opacity:.001;transform:scale(.9)}}
+
+/* ---------- portada (una sola pantalla) ---------- */
+.cover{position:relative;height:100%;min-height:560px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:clamp(20px,4vw,64px);padding-block:clamp(20px,4vh,40px);padding-left:max(clamp(16px,5vw,72px),env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.cover::before{content:"";position:absolute;left:-12vmin;top:50%;width:min(86vh,58vw);aspect-ratio:1;transform:translateY(-50%);border-radius:50%;border:1px solid var(--line);pointer-events:none}
+.circle-wrap{position:relative;justify-self:center;display:grid;justify-items:center;gap:16px}
+.circle{position:relative;display:block;width:min(68vh,40vw);aspect-ratio:1;border-radius:50%;overflow:hidden;animation:zoomin 1.1s cubic-bezier(.2,.7,.2,1) both;box-shadow:0 30px 60px -34px rgba(20,24,30,.6)}
+.circle img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.circle:hover img{transform:scale(1.06)}
+.circle::before{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 7px rgba(255,255,255,.92);z-index:1;pointer-events:none}
+.cue{display:inline-flex;align-items:center;gap:10px;font-size:.86rem;color:var(--muted);animation:rise .9s cubic-bezier(.2,.7,.2,1) .5s both}
+.cue i{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-style:normal;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(36,64,107,.12)}}
+.ttl{display:grid;gap:clamp(10px,2vh,18px);align-content:center;min-width:0}
+.ttl>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.ttl>*:nth-child(2){animation-delay:.1s}.ttl>*:nth-child(3){animation-delay:.2s}.ttl>*:nth-child(4){animation-delay:.3s}.ttl>*:nth-child(5){animation-delay:.4s}
+.t-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,5.2vh,3.1rem);line-height:1.12;letter-spacing:-.01em;color:var(--ink);margin:0;max-width:22ch;text-wrap:balance}
+.t-title em{font-style:normal}
+.t-en{font-family:var(--serif);font-style:italic;font-size:clamp(.92rem,2vh,1.12rem);line-height:1.45;color:var(--muted);margin:0;max-width:44ch;padding-top:clamp(8px,1.6vh,14px);border-top:1px solid var(--line)}
+.author{position:absolute;top:max(18px,env(safe-area-inset-top,0px));right:max(22px,env(safe-area-inset-right,0px));font-family:var(--serif);font-size:.95rem;font-weight:500;letter-spacing:.04em;color:var(--muted);animation:rise 1s cubic-bezier(.2,.7,.2,1) .5s both}
+@media (max-width:860px){
+ .cover{height:auto;min-height:100%;grid-template-columns:1fr;justify-items:center;text-align:left;gap:18px;padding-block:52px 28px}
+ .cover::before{display:none}
+ .circle{width:min(62vw,36vh)}
+ .ttl{justify-items:start;width:100%}
+ .t-title{font-size:clamp(1.7rem,7.4vw,2.2rem)}
+}
+
+/* ---------- mapa ---------- */
+.mapstage{position:relative;height:100%;min-height:520px;overflow:hidden;background:#c9dded;display:grid;grid-template-columns:minmax(0,1fr) 0px;grid-template-rows:minmax(0,1fr);transition:grid-template-columns .9s cubic-bezier(.2,.7,.2,1)}
+.mapstage.zoomed{grid-template-columns:minmax(0,1fr) min(480px,44vw)}
+#mapsvg{width:100%;height:100%;min-height:0;display:block;cursor:zoom-in;outline:none}
+.mapstage.zoomed #mapsvg{cursor:default}
+.grat{stroke:#ffffff;stroke-opacity:.45;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.nbf{fill:#eef0ec}
+.nb{fill:#eef0ec;stroke:#eef0ec;stroke-width:7;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.pe{fill:#f4efe2}
+.pe-line{fill:none;stroke:#6f6a5e;stroke-width:1.4;vector-effect:non-scaling-stroke}
+.lake{fill:#a9c9e2;stroke:#8fb2cf;stroke-width:1;vector-effect:non-scaling-stroke}
+.country{font-family:var(--display);font-size:30px;letter-spacing:.3em;fill:#8a8f88;font-weight:600}
+.ocean{font-family:var(--serif);font-style:italic;font-size:44px;fill:#6f8ea8;letter-spacing:.05em}
+.peru-lab{font-family:var(--serif);font-size:84px;letter-spacing:.35em;fill:#5d584c;opacity:.55}
+.cdot{fill:#3a3f47}
+.clab{font-family:var(--display);font-size:9px;fill:#2e333a}
+.flc .clab{font-size:30px}.flc .cdot{r:9px}
+.zcountry{font-family:var(--display);font-size:10px;letter-spacing:.3em;fill:#7d8279;font-weight:600}
+.zlake{font-family:var(--serif);font-style:italic;font-size:10px;fill:#4f7596}
+.scale{stroke:#2e333a;stroke-width:1.4;vector-effect:non-scaling-stroke}.scalet{font-family:var(--display);font-size:8px;fill:#2e333a}
+.fl,.zl-all,.mglow{transition:opacity .7s}
+.zl-all{opacity:0}.zoomed .zl-all{opacity:1}.zoomed .fl{opacity:0}
+.mglow{opacity:.9}
+.pdot{fill:#24406b;stroke:#fff;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.ping{fill:none;stroke:#24406b;stroke-width:2;vector-effect:non-scaling-stroke;animation:ping2 2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ping2{from{transform:scale(.4);opacity:1}to{transform:scale(2.4);opacity:0}}
+.pin{transform-box:fill-box}
+.mlab{font-family:var(--serif);font-size:14px;font-weight:600;fill:#14181f}.msub{font-family:var(--display);font-size:7.5px;fill:#3a3f47}
+.mapback{position:absolute;top:max(14px,env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px));z-index:3;width:48px;height:48px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px #fff,0 8px 18px -8px rgba(0,0,0,.5)}
+.mapback img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.maphint{position:absolute;left:50%;bottom:max(22px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3;background:rgba(255,255,255,.92);padding:10px 18px;border-radius:999px;font-size:.92rem;box-shadow:0 8px 22px -12px rgba(0,0,0,.45);white-space:nowrap;animation:breathe 2.4s ease-in-out infinite}
+.maphint:empty{display:none}
+@keyframes breathe{50%{opacity:.6}}
+.mapcard{background:#fff;overflow:auto;padding:26px 28px;display:grid;gap:12px;align-content:safe center;grid-auto-rows:max-content;opacity:0;transform:translateX(30px);transition:opacity .6s .5s,transform .6s .5s;min-width:0}
+.zoomed .mapcard{opacity:1;transform:none}
+.mapcard dl{margin:0;display:grid}
+.mapcard dl div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.mapcard dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.mapcard dd{margin:0;font-size:.95rem}
+.mcbtns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ghost{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;cursor:pointer;font-size:.9rem}
+@media (max-width:760px){.mapstage{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 0}.mapstage.zoomed{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}.mapcard{padding:18px 16px;max-height:58vh}}
+
+.satbox{position:relative;aspect-ratio:16/10;flex:none;border-radius:14px;overflow:hidden;background:#3b3a33}
+.sv{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.sv.on{opacity:1}
+.sv img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);transition:transform 9s ease-out}
+.sv.on img{transform:scale(1)}
+.satmark{position:absolute;transform:translate(-50%,-50%);pointer-events:none}
+.satmark i{display:block;width:16px;height:16px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.3);animation:satp 2s ease-out infinite}
+@keyframes satp{0%{box-shadow:0 0 0 0 rgba(255,255,255,.85)}100%{box-shadow:0 0 0 16px rgba(255,255,255,0)}}
+.satscale{position:absolute;right:12px;bottom:12px;display:grid;justify-items:center;gap:3px;font-family:var(--display);font-size:.7rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.satscale i{display:block;height:5px;width:100%;border:2px solid #fff;border-top:0}
+.attr{position:absolute;left:10px;bottom:8px;font-size:.6rem;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.views{display:flex;gap:2px;background:var(--soft);border-radius:10px;padding:3px}
+.views button{flex:1;border:0;background:transparent;padding:8px 6px;border-radius:8px;font-size:.84rem;color:var(--ink);opacity:.6;cursor:pointer}
+.views button[aria-pressed="true"]{background:#fff;opacity:1;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.facts2{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px;font-family:var(--serif);font-size:1.12rem;color:var(--ink)}
+.facts2 li{padding-bottom:8px;border-bottom:1px solid var(--line)}
+.mc-kick{font-family:var(--display);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.mapcard h2{font-family:var(--serif);font-weight:500;font-size:2.4rem;line-height:1;margin:-4px 0 0}
+.mc-sub{margin:-6px 0 4px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--gold)}
+.mc-dl{margin:2px 0 0;display:grid}
+.mc-dl div{display:grid;grid-template-columns:132px minmax(0,1fr);gap:12px;padding:7px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.mc-dl div:first-child{border-top:1px solid var(--line)}
+.mc-dl dt{font-family:var(--display);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.mc-dl dd{margin:0;font-family:var(--serif);font-size:1.05rem;color:var(--ink);line-height:1.3}
+/* ---------- barra ---------- */
+.top{display:flex;align-items:center;gap:14px;padding-block:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mini{width:46px;height:46px;border-radius:50%;overflow:hidden;flex:none}
+.mini img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;display:block}
+.crumbs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.crumbs a{font-size:.82rem;color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:8px;white-space:nowrap}
+.crumbs a:hover{background:var(--soft);color:var(--ink)}
+.crumbs a.on{background:var(--ink);color:var(--bg)}
+
+/* ---------- relato ---------- */
+.story{max-width:760px;margin:0 auto;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.story-head{padding-block:44px 20px;display:grid;gap:10px}
+.kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.story-head h1{font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.lede{font-family:var(--read);font-size:clamp(1.1rem,1.8vw,1.3rem);line-height:1.6;color:var(--muted);margin:0}
+.chapter{position:relative;padding-block:22px;border-top:1px solid var(--line)}
+.chapter .when{font-family:var(--mono);font-size:.76rem;color:var(--gold);letter-spacing:.08em;display:block;margin-bottom:6px}
+.chapter h2{font-weight:600;font-size:clamp(1.2rem,2.2vw,1.5rem);margin:0 0 10px;letter-spacing:-.01em}
+.chapter p{font-family:var(--read);font-size:1.1rem;line-height:1.75;margin:0 0 14px}
+.chapter p:last-child{margin-bottom:0}
+.chapter strong{font-weight:600;background:linear-gradient(transparent 62%,var(--gold-soft) 62%)}
+@media (min-width:1040px){.chapter .when{position:absolute;left:-150px;top:28px;width:130px;text-align:right}}
+.pull{font-family:var(--read);font-style:italic;font-size:clamp(1.2rem,2.3vw,1.5rem);line-height:1.45;margin:8px 0 22px;padding-left:20px;border-left:3px solid var(--gold)}
+
+/* mapa */
+.mapfig{margin:6px 0 4px;display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:center}
+.maplink{display:block;text-decoration:none;color:inherit;border-radius:18px;background:var(--soft);padding:14px;transition:background .2s}
+.maplink:hover{background:var(--blue-soft)}
+.maplink svg{width:100%;height:auto;display:block}
+.peru{fill:#fff;stroke:#c5cbd4;stroke-width:1.2}
+.mine-dot{fill:var(--gold)}
+.mine-pulse{fill:none;stroke:var(--gold);stroke-width:2;transform-origin:var(--o);animation:ping 2s ease-out infinite}
+@keyframes ping{from{transform:scale(.3);opacity:1}to{transform:scale(2.2);opacity:0}}
+.city{fill:var(--muted)}
+.maptext{display:grid;gap:10px}
+.maptext p{font-family:var(--read);font-size:1.02rem;line-height:1.65;margin:0}
+.go{justify-self:start;display:inline-flex;gap:10px;align-items:center;text-decoration:none;background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:999px;font-weight:600;font-size:.95rem}
+.go span{transition:transform .2s}.go:hover span{transform:translateX(4px)}
+.small{font-size:.8rem;color:var(--muted)}
+
+.next{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px;margin-top:20px}
+.next a.fw{display:inline-flex;gap:10px;align-items:center;text-decoration:none;color:var(--bg);background:var(--ink);padding:12px 20px;border-radius:999px;font-weight:600}
+.next .back{color:var(--muted);text-decoration:none}
+.sources{font-size:.78rem;color:var(--muted);display:grid;gap:4px;margin-top:28px;padding-bottom:64px}
+.sources a{color:var(--muted)}
+
+/* ---------- resultados ---------- */
+.res{display:grid;gap:34px;padding-bottom:70px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.res-head{padding-top:44px;display:grid;gap:10px;max-width:760px}
+.res-head h1{font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);line-height:1.08;letter-spacing:-.02em;margin:0}
+.block{display:grid;gap:14px}
+.block h2{font-weight:600;font-size:clamp(1.2rem,2.2vw,1.55rem);margin:0}
+.block .why{font-family:var(--read);font-size:1.04rem;line-height:1.65;color:var(--ink);margin:0;max-width:72ch}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;background:var(--soft);border-radius:12px;padding:4px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:9px 14px;border-radius:9px;cursor:pointer;font-size:.9rem;color:var(--muted);text-align:left;line-height:1.25}
+.seg button small{display:block;font-size:.72rem;opacity:.8}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.seg button:disabled{opacity:.35;cursor:not-allowed}
+.headline{font-family:var(--read);font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.55;margin:0;max-width:66ch}
+.headline b{font-family:var(--display);font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{flex:1 1 140px;padding:14px 16px 14px 0;display:grid;gap:2px}
+.stat .l{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-weight:600;font-size:clamp(1.15rem,2.2vw,1.5rem);font-variant-numeric:tabular-nums}
+.stat .v.neg{color:var(--red)}
+.chart{min-width:0;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.how{font-size:.88rem;line-height:1.55;background:var(--soft);border-radius:12px;padding:12px 14px;color:var(--ink);max-width:80ch}
+.how b{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-right:8px}
+.slider{display:grid;gap:8px;max-width:680px}
+.slider input{width:100%;accent-color:var(--gold)}
+.slider output{font-weight:600}
+.tornado{display:grid;gap:10px;max-width:780px}
+.trow{display:grid;grid-template-columns:150px minmax(0,1fr) 80px;gap:12px;align-items:center;font-size:.92rem}
+.track{position:relative;height:22px;background:var(--soft);border-radius:6px}
+.track .mid{position:absolute;left:50%;top:-4px;bottom:-4px;border-left:1.5px solid #9aa2ae}
+.track .bar{position:absolute;top:0;bottom:0;border-radius:6px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.trow .n{font-family:var(--mono);font-size:.85rem;text-align:right}
+.facts{display:grid;gap:0;max-width:760px}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.98rem}
+.facts div span:last-child{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.facts small{color:var(--muted);font-size:.78rem}
+.hyp{display:grid;gap:0;max-width:860px}
+.hyp div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);align-items:start}
+.hyp p{margin:0;font-family:var(--read);font-size:1rem;line-height:1.5}
+.hyp small{display:block;font-family:var(--display);color:var(--muted);font-size:.8rem;margin-top:3px}
+.pill{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:#e3f3ea;color:var(--green)}.pill.no{background:var(--red-soft);color:var(--red)}
+
+@media (max-width:720px){.mapfig{grid-template-columns:1fr}.maplink{max-width:320px}.trow{grid-template-columns:110px minmax(0,1fr) 64px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- resultados: tablero ---------- */
+.db{background:#f4f6f9;min-height:calc(100vh - 80px);padding-bottom:40px}
+.db-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;padding:26px 0 18px}
+.db-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.1;margin:6px 0 0}
+.db-ctl{display:flex;gap:10px;flex-wrap:wrap}.db-ctl .seg{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}.db-ctl .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.kpis{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:14px}
+.kpi{background:#fff;border-radius:16px;padding:16px 18px;display:grid;gap:4px;box-shadow:0 1px 2px rgba(21,30,50,.05),0 8px 24px -18px rgba(21,30,50,.3);border:1px solid #e9ecf1}
+.kpi .kl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi .kv{white-space:nowrap;font-size:clamp(1.25rem,2vw,1.65rem);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi .kv small{font-size:.55em;font-weight:600;color:var(--muted)}.kpi .kv.neg{color:var(--red)}
+.kpi .ks{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.kpi.main{background:var(--gold);border-color:var(--gold)}.kpi.main .kl,.kpi.main .ks,.kpi.main .kv small{color:rgba(255,255,255,.75)}.kpi.main .kv{color:#fff;font-size:clamp(1.6rem,3vw,2.3rem)}
+.kpi.risk .ks i{width:9px;height:9px;border-radius:50%;background:currentColor}
+.kpi.risk.ok .ks{color:var(--green)}.kpi.risk.mid .ks{color:#b7791f}.kpi.risk.bad .ks{color:var(--red)}.kpi.risk.bad .kv{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin-top:14px}
+.card{background:#fff;border-radius:18px;padding:18px 20px;border:1px solid #e9ecf1;box-shadow:0 1px 2px rgba(21,30,50,.05),0 10px 30px -22px rgba(21,30,50,.35);display:grid;gap:12px;align-content:start;min-width:0}
+.c8{grid-column:span 8}.c4{grid-column:span 4}.c6{grid-column:span 6}
+.ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ch h2{font-size:1.05rem;font-weight:600;margin:0}
+.ctag{font-size:.74rem;color:var(--muted);background:var(--soft);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.ctag.score{background:#e3f3ea;color:var(--green);font-weight:600}
+.card .chart svg{min-width:460px}
+.card .slider{max-width:none;gap:6px}.card .slider label{font-size:.88rem}.card .slider .big{font-weight:700;color:var(--gold)}
+.tip{font-size:.82rem;color:var(--muted);line-height:1.5}.tip summary{cursor:pointer;color:var(--gold);font-weight:600;font-size:.8rem}
+.empty-n{font-size:.92rem;color:var(--muted);margin:0}
+.tor{display:grid;gap:14px;padding-top:4px}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) 58px;grid-template-areas:"n v" "t t";gap:4px 8px;align-items:center}
+.tn{grid-area:n;font-size:.88rem}.tv{grid-area:v;font-family:var(--mono);font-size:.84rem;text-align:right;font-weight:600}.tv.neg{color:var(--red)}
+.tt{grid-area:t;position:relative;height:16px;background:var(--soft);border-radius:5px}
+.tt .mid{position:absolute;left:50%;top:-3px;bottom:-3px;border-left:1.5px solid #9aa2ae}.tt .bar{position:absolute;top:0;bottom:0;border-radius:5px}
+.r2{display:grid;grid-template-columns:auto auto 1fr;gap:4px 8px;align-items:baseline;background:var(--soft);border-radius:12px;padding:10px 12px}
+.r2 span{font-size:.75rem;font-weight:600;color:var(--muted)}.r2 b{font-size:1.2rem}.r2 small{grid-column:1/-1;font-size:.8rem;color:var(--muted)}
+.gauge{padding:8px 0 44px}
+.gtrack{position:relative;height:14px;border-radius:999px;background:#e3f3ea}
+.gfill{position:absolute;left:0;top:0;bottom:0;border-radius:999px 0 0 999px;background:#f6d6d1}
+.gmk{position:absolute;top:-4px;height:22px;border-left:2px solid var(--ink);font-size:.74rem;color:var(--muted);white-space:nowrap;padding:24px 0 0 0}
+.gmk b{display:block;font-size:.88rem;color:var(--ink)}.gmk.be{transform:translateX(-1px)}.gmk.be b{color:var(--red)}
+.gmk.mk{right:0;border-left:0;border-right:2px solid var(--ink);text-align:right;padding-right:0}.gmk.mk b{color:var(--green)}
+.gtext{margin:0;font-size:.95rem}.gtext b{color:var(--green);font-size:1.1rem}
+.facts2g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.facts2g div{background:var(--soft);border-radius:10px;padding:9px 11px;display:grid;gap:2px}
+.facts2g span{font-size:.74rem;color:var(--muted)}.facts2g b{font-size:.98rem;font-variant-numeric:tabular-nums}
+.note2{margin:0;font-size:.78rem;color:var(--muted)}
+.hl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.hl li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--soft)}
+.hl .hi{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:700;color:#fff;background:var(--green)}
+.hl li.n .hi{background:var(--red)}.hl li.n{background:var(--red-soft)}
+.hl p{margin:0;font-size:.9rem;line-height:1.35}.hl small{font-size:.74rem;color:var(--muted)}
+.hl .hs{font-size:.74rem;font-weight:600;color:var(--green);white-space:nowrap}.hl li.n .hs{color:var(--red)}
+.db-foot{margin-top:16px;display:grid;gap:4px}.db-foot .next{margin-top:0;padding-top:12px}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi.main{grid-column:1/-1}.c8,.c4,.c6{grid-column:1/-1}}
+@media (max-width:520px){.facts2g{grid-template-columns:1fr}.hl li{grid-template-columns:26px minmax(0,1fr)}.hl .hs{grid-column:2}}
+/* ---------- repositorio ---------- */
+.repo{padding-bottom:64px}
+.rhead2{padding:34px 0 18px;display:grid;gap:8px}
+.rhead2 h1,.otext h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.4vw,2.8rem);line-height:1.1;margin:0;color:var(--ink)}
+.lead2{font-family:var(--read);font-size:1.05rem;line-height:1.6;margin:0;max-width:62ch;color:var(--ink)}
+.note{font-size:.92rem;margin:6px 0;color:var(--gold)}
+.tools2{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 8px}
+.tools2 .views{width:min(340px,100%)}
+.count{font-family:var(--serif);font-size:1.05rem;color:var(--gold)}
+.arts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.art{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.anum{font-family:var(--serif);font-size:1.7rem;color:var(--gold);line-height:1}
+.abody{display:grid;gap:8px;min-width:0}
+.atop{display:flex;gap:12px;align-items:baseline;justify-content:space-between}
+.atop h3,.pcard h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;margin:0;color:var(--ink);overflow-wrap:anywhere}
+.empty-t{opacity:.45}
+.lang{font-size:.72rem;font-weight:600;letter-spacing:.08em;border:1px solid var(--gold);color:var(--gold);border-radius:6px;padding:2px 7px;flex:none}
+.ameta{margin:0;font-family:var(--read);font-size:.98rem;color:var(--ink);opacity:.8}
+.files{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fgroup{display:inline-flex;align-items:center;gap:4px}
+.dl{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:.88rem;color:var(--ink);cursor:pointer}
+.dl:hover{border-color:var(--gold);color:var(--gold)}
+.dl small{font-size:.76rem;opacity:.65}
+.dl .ico{color:var(--gold);font-weight:700}
+.dl.off{cursor:default;opacity:.45}.dl.off:hover{border-color:var(--line);color:var(--ink)}
+.up{position:relative;font-size:.8rem;font-weight:600;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:8px 12px;cursor:pointer;overflow:hidden}
+.up input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.up.busy{opacity:.6}
+.rm,.edit{border:0;background:transparent;font:inherit;font-size:.82rem;color:var(--ink);opacity:.55;cursor:pointer;padding:8px}
+.rm:hover,.edit:hover{opacity:1;color:var(--gold)}
+a.edit{text-decoration:none}
+.meta{display:grid;gap:10px;background:var(--soft);border-radius:14px;padding:14px}
+.meta label{display:grid;gap:4px;font-size:.8rem;font-weight:600;color:var(--ink)}
+.meta input,.meta select,#pwset input,.dlgbox input{font:inherit;font-size:.95rem;font-weight:400;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink);min-width:0}
+.row3{display:grid;grid-template-columns:90px minmax(0,1fr) 130px;gap:10px}
+.mbtns{display:flex;gap:8px;flex-wrap:wrap}
+.mbtns .go,#pwset .go,.lockline .go{border:0;cursor:pointer;font:inherit;font-weight:600;font-size:.9rem}
+.access{margin:6px 0 10px;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.access summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--gold)}
+#pwset{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.lockline{margin:6px 0 10px}.okk{font-size:.9rem;font-weight:600;color:var(--gold)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:10px}
+.pcard{display:grid;gap:10px;align-content:start}
+.pthumb,.othumb{position:relative;aspect-ratio:3/4;background:var(--soft);border-radius:12px;overflow:hidden;display:grid;place-items:center;border:1px solid var(--line)}
+.pthumb canvas,.othumb canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .4s}
+.pthumb canvas.ready,.othumb canvas.ready{opacity:1;background:#fff}
+.pph{font-family:var(--serif);font-size:1.1rem;color:var(--gold);opacity:.7}
+.emptybox{font-family:var(--read);font-size:1.02rem;border:1px dashed var(--line);border-radius:14px;padding:28px;text-align:center}
+.own{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:40px;align-items:center;padding:40px 0}
+.otext{display:grid;gap:12px;align-content:center}
+.otitle{font-family:var(--serif);font-size:1.35rem;margin:0;color:var(--ink)}
+.dlg{position:fixed;inset:0;background:rgba(21,24,30,.35);display:grid;place-items:center;z-index:50;padding:16px}
+.dlg[hidden]{display:none}
+.dlgbox{background:#fff;border-radius:18px;padding:24px;width:min(380px,100%);display:grid;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.dlgbox h3{font-family:var(--serif);font-weight:500;font-size:1.6rem;margin:0}
+.dlgbox p{margin:0;font-family:var(--read)}
+.err{font-size:.85rem;color:#a33;min-height:1em}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.9rem;z-index:60;max-width:calc(100% - 32px)}
+.toast[hidden]{display:none}
+@media (max-width:720px){.own{grid-template-columns:1fr;gap:22px;padding:24px 0}.othumb{max-width:280px}.row3{grid-template-columns:1fr 1fr}.art{grid-template-columns:40px minmax(0,1fr)}}
+/* ---------- catálogo bilingüe ---------- */
+.cat{margin-top:48px;display:grid;gap:6px}
+.cat h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0}
+.cat .lead2{font-size:.98rem;color:var(--muted)}
+.crows{list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--line)}
+.crow{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(250px,auto);gap:18px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.crow .anum{font-size:1.5rem;padding-top:2px}
+.ct-es{font-family:var(--serif);font-weight:500;font-size:1.18rem;line-height:1.3;margin:0;color:var(--ink);overflow-wrap:anywhere}
+.ct-en{font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.35;margin:4px 0 0;color:var(--muted);overflow-wrap:anywhere}
+.ct-meta{margin:6px 0 0;font-family:var(--read);font-size:.86rem;color:var(--muted)}
+.cacts{display:grid;gap:8px;justify-items:end}
+.cgrp{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.cgrp .tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;width:28px;text-align:center;border-radius:6px;padding:3px 0}
+.cgrp .tag.es{background:var(--gold);color:#fff}.cgrp .tag.en{border:1px solid var(--gold);color:var(--gold)}
+.cgrp .dl{padding:6px 12px;font-size:.84rem}
+.cpost{font-size:.82rem;color:var(--gold);text-decoration:none;padding:4px 2px}.cpost:hover{text-decoration:underline}
+@media (max-width:760px){.crow{grid-template-columns:38px minmax(0,1fr);gap:12px}.cacts{grid-column:2;justify-items:start}.cgrp{justify-content:flex-start}}
+/* ---------- originales en inglés ---------- */
+.bk-en{margin:-6px 0 0;font-family:var(--serif);font-style:italic;font-size:1.08rem;line-height:1.35;color:var(--muted)}
+.enlist{margin-top:46px;display:grid;gap:6px}
+.enlist h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0}
+.enrows{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
+.enrow{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.enrow .anum{font-size:1.4rem}
+.enrow h3{font-family:var(--serif);font-weight:500;font-size:1.15rem;line-height:1.3;margin:0;color:var(--ink);overflow-wrap:anywhere}
+.enrow p{margin:2px 0 0;font-family:var(--read);font-size:.9rem;color:var(--muted)}
+.enrow .files{justify-content:flex-end}
+.rd{position:fixed;inset:0;z-index:72;background:#eef1f6;display:grid;grid-template-rows:auto minmax(0,1fr)}
+.rd[hidden]{display:none}
+.rdbar{display:flex;align-items:center;gap:12px;padding:10px max(16px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--line)}
+.rdbar h3{flex:1;min-width:0;margin:0;font-family:var(--serif);font-weight:500;font-size:1.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdbar small{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.rdpages{overflow:auto;padding:18px 16px 40px;display:grid;justify-items:center;gap:16px;align-content:start}
+.rdpages img{width:min(900px,100%);height:auto;background:#fff;box-shadow:0 14px 30px -18px rgba(21,30,50,.45)}
+@media (max-width:640px){.enrow{grid-template-columns:36px minmax(0,1fr)}.enrow .files{grid-column:2;justify-content:flex-start}}
+/* ---------- sala de pósters ---------- */
+.phead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-bottom:10px}
+.phead>div:first-child{display:grid;gap:6px}.pmode{width:200px}
+.expo{--cw:clamp(170px,min(56vw,calc((100dvh - 430px)/1.414)),310px);position:relative;height:calc(var(--cw)*1.414 + 96px);perspective:1500px;overflow:hidden;border-radius:26px;outline:none;
+  background:linear-gradient(#fff 0%,#f7f8fb 72%,#eef1f6 100%);touch-action:pan-y;user-select:none;margin-top:6px}
+.expo:focus-visible{box-shadow:0 0 0 2px var(--gold)}
+.spot{position:absolute;left:50%;top:-30%;width:min(720px,90%);height:150%;transform:translateX(-50%);background:radial-gradient(ellipse 50% 60% at 50% 30%,rgba(36,64,107,.13),rgba(36,64,107,0) 70%);pointer-events:none}
+.floor{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(rgba(36,64,107,0),rgba(36,64,107,.05));border-top:1px solid rgba(36,64,107,.08)}
+.rail{position:absolute;inset:0;transform-style:preserve-3d}
+.pf{position:absolute;left:50%;top:26px;width:var(--cw);aspect-ratio:1/1.414;margin:0 0 0 calc(var(--cw) / -2);padding:9px;background:#fff;border:4px solid #1b2130;box-sizing:border-box;cursor:pointer;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .6s,filter .6s,box-shadow .6s;filter:saturate(.75) brightness(.97);
+  box-shadow:0 26px 50px -22px rgba(21,30,50,.45);-webkit-box-reflect:below 6px linear-gradient(rgba(0,0,0,.16),rgba(0,0,0,0) 24%)}
+.pf.cur{filter:none;box-shadow:0 40px 70px -24px rgba(21,30,50,.55),0 0 0 1px rgba(36,64,107,.15)}
+.rail.intro .pf{transform:translateY(80px) scale(.7)!important;opacity:0!important;transition:none}
+.pin{position:relative;display:block;width:100%;height:100%;overflow:hidden;background:#fff}
+.pin img,.pin canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff}
+.pin canvas{opacity:0;transition:opacity .5s}.pin canvas.ready{opacity:1}
+.ph{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;padding:12% 10%;text-align:left;border:1px solid var(--gold-soft);
+  background:linear-gradient(160deg,#fff 0%,#fff 55%,var(--gold-soft) 100%)}
+.phn{font-family:var(--serif);font-size:calc(var(--cw,240px)*.32);line-height:.9;color:var(--gold);letter-spacing:-.02em}
+.mosaic .phn{font-size:3.2rem}
+.pht{align-self:center;font-family:var(--serif);font-size:1.05rem;line-height:1.25;color:var(--ink);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.phl{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--gold-soft);padding-top:8px}
+.pnav{position:absolute;top:calc(50% - 30px);width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--ink);font-size:1.1rem;cursor:pointer;z-index:80;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.pnav:hover{border-color:var(--gold);color:var(--gold)}.pnav.pl{left:14px}.pnav.pr{right:14px}
+.pcap{display:grid;justify-items:center;gap:6px;text-align:center;padding:18px 0 6px}
+.pcap.swap{animation:capin .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes capin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pnum{font-family:var(--serif);font-size:2.2rem;line-height:1;color:var(--gold)}.pnum span{font-size:1rem;margin-left:6px;opacity:.6}
+.ptitle{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.2;margin:0;max-width:40ch;color:var(--ink);text-wrap:balance}
+.pmeta{margin:0;font-family:var(--read);font-size:.98rem;opacity:.8}
+.pfiles{justify-content:center;margin-top:6px}
+.ticks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin:14px auto 0;max-width:720px}
+.ticks button{position:relative;border:0;background:transparent;font:inherit;font-size:.78rem;color:var(--ink);opacity:.45;padding:7px 6px;border-radius:8px;cursor:pointer;min-width:34px}
+.ticks button.has{opacity:.85}.ticks button.has::after{content:"";position:absolute;left:50%;bottom:2px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--gold)}
+.ticks button.on{background:var(--ink);color:#fff;opacity:1}.ticks button.on::after{background:#fff}
+.pcount{text-align:center;font-family:var(--serif);font-size:1.05rem;color:var(--gold);margin:10px 0 0}
+.mosaic{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px;margin-top:10px}
+.mo{display:block;aspect-ratio:1/1.414;padding:7px;border:3px solid #1b2130;background:#fff;cursor:pointer;transition:transform .3s,box-shadow .3s;box-shadow:0 14px 30px -18px rgba(21,30,50,.45)}
+.mo:hover{transform:translateY(-4px) rotate(-.6deg);box-shadow:0 24px 40px -20px rgba(21,30,50,.55)}
+.lb{position:fixed;inset:0;z-index:70;background:rgba(250,251,253,.97);display:grid;place-items:center;padding:56px 16px 16px;overflow:auto}
+.lb[hidden]{display:none}
+.lbin{display:grid;place-items:center;max-width:100%}
+.lbin canvas,.lbin img{max-height:calc(100dvh - 80px);max-width:100%;width:auto;height:auto;box-shadow:0 30px 80px -30px rgba(21,30,50,.5);cursor:zoom-in;background:#fff}
+.lb.zoom{place-items:start center}.lb.zoom .lbin canvas,.lb.zoom .lbin img{max-height:none;width:min(1600px,100%);cursor:zoom-out}
+.lbx{position:fixed;top:14px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:1rem;cursor:pointer;z-index:2}
+@media (prefers-reduced-motion:reduce){.pf{transition:opacity .2s}.pcap.swap{animation:none}}
+@media (max-width:640px){.pnav{display:none}.expo{border-radius:18px}.pht{font-size:.9rem}}
+/* ---------- escenas comunes ---------- */
+.scene-head{padding:30px 0 16px;display:grid;gap:6px}
+.scene-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.12;margin:0;color:var(--ink);max-width:30ch;text-wrap:balance}
+.sinfo{display:grid;gap:12px;justify-items:center;text-align:center;padding:24px 0 8px}
+.sinfo .files{justify-content:center}.sinfo .lead2{max-width:56ch}
+.pnav-s{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:1rem;cursor:pointer;flex:none}
+.pnav-s:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}.pnav-s:disabled{opacity:.3;cursor:default}
+/* ---------- biblioteca ---------- */
+.lmode{width:min(330px,100%)}
+.lib{display:grid;gap:44px;margin-top:10px}
+.shelves{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px}
+.shelf{position:relative;display:flex;align-items:flex-end;gap:5px;height:300px;padding:0 14px}
+.shelf::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;border-radius:2px;background:linear-gradient(#eef1f6,#cdd5e1);box-shadow:0 16px 24px -12px rgba(21,30,50,.35)}
+.sp{position:relative;flex:1;min-width:0;height:var(--h);border:0;border-radius:3px 3px 1px 1px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 0 10px;font:inherit;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s,filter .4s,box-shadow .5s}
+.sp.es{background:linear-gradient(90deg,#1b3150,#24406b 45%,#2d4d7d);color:#fff;box-shadow:inset -3px 0 6px rgba(0,0,0,.25),inset 2px 0 0 rgba(255,255,255,.12)}
+.sp.en{background:linear-gradient(90deg,#e8ecf2,#fff 45%,#f2f4f8);color:var(--gold);box-shadow:inset -3px 0 6px rgba(21,30,50,.08),inset 0 0 0 1px #d4dbe6}
+.sp::before,.sp::after{content:"";position:absolute;left:5px;right:5px;height:2px;background:currentColor;opacity:.35}
+.sp::before{top:36px}.sp::after{bottom:30px}
+.sp:not(.has){opacity:.55}
+.sp:hover{transform:translateY(-10px)}
+.sp.on{transform:translateY(-30px);opacity:1;box-shadow:0 22px 30px -12px rgba(21,30,50,.5)}
+.sp.dim{opacity:.12;filter:grayscale(1)}
+.sp:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.spn{font-family:var(--serif);font-size:1.05rem;line-height:1}
+.spt{flex:1;min-height:0;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--serif);font-size:.95rem;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:16px 0 12px}
+.spl{font-size:.6rem;letter-spacing:.14em;font-weight:600}
+.lib.intro .sp{animation:drop .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 40ms)}
+@keyframes drop{from{transform:translateY(-70px) rotate(-4deg);opacity:0}}
+.book{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);max-width:980px;width:100%;margin:0 auto;perspective:1800px;filter:drop-shadow(0 30px 34px rgba(21,30,50,.16))}
+.lp{display:flex;flex-direction:column;gap:6px;padding:34px;background:linear-gradient(90deg,#fff 72%,#eef1f6);border:1px solid var(--line);border-right:0;border-radius:16px 0 0 16px;transform-origin:right center}
+.rp{display:grid;gap:14px;align-content:start;padding:34px 36px;background:linear-gradient(90deg,#eef1f6,#fff 10%);border:1px solid var(--line);border-left:0;border-radius:0 16px 16px 0}
+.book.open .lp{animation:bkopen 1s cubic-bezier(.2,.8,.2,1) both}.book.open .rp{animation:bkfade .8s .2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bkopen{from{transform:rotateY(85deg);opacity:0}}@keyframes bkfade{from{opacity:0;transform:translateX(18px)}}
+.bk-k{font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.bk-n{font-family:var(--serif);font-size:clamp(4rem,9vw,6.4rem);line-height:.9;color:var(--gold)}
+.bk-l{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink)}
+.bk-rule{width:46px;height:2px;background:var(--gold);margin:10px 0}
+.bk-v,.bk-y{font-family:var(--serif);font-size:1.08rem;color:var(--ink)}
+.bk-of{margin-top:auto;padding-top:24px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.bk-t{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.15;margin:0;color:var(--ink);text-wrap:balance;overflow-wrap:anywhere}
+.bk-a{margin:0;font-family:var(--read);font-size:1.02rem;color:var(--ink)}
+.bk-nav{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+/* ---------- journal ---------- */
+.desk{position:relative;display:grid;justify-items:center;gap:16px;padding:36px 16px 24px;border-radius:26px;perspective:1600px;
+  background:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(36,64,107,.12),rgba(36,64,107,0) 70%),linear-gradient(#fff,#f3f5f9)}
+.pgw{position:relative;width:min(100%,calc(min(74dvh,820px) * var(--ar,.707)));aspect-ratio:var(--ar,.707);transform-style:preserve-3d;transition:transform .35s ease-out;cursor:pointer;touch-action:pan-y}
+.pgw.empty{cursor:default}
+.stack{position:absolute;inset:0;background:#fff;box-shadow:3px 3px 0 -1px #fff,3px 3px 0 0 #dfe3ea,6px 6px 0 -1px #fff,6px 6px 0 0 #d9dee7,9px 9px 0 -1px #fff,9px 9px 0 0 #d2d8e2,0 40px 60px -24px rgba(21,30,50,.45)}
+.pg{position:absolute;inset:0;background:#fff;overflow:hidden;border:1px solid #e1e5ec;display:grid;place-items:center}
+.pg img{width:100%;height:100%;object-fit:contain;display:block}
+.pg::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(21,30,50,.10),rgba(21,30,50,0) 7%)}
+.pg.flip{transform-origin:left center;backface-visibility:hidden;z-index:3;box-shadow:0 10px 40px rgba(21,30,50,.25)}
+.pg.flip.fwd{animation:turnf .85s cubic-bezier(.45,.05,.25,1) forwards}.pg.flip.back{animation:turnb .85s cubic-bezier(.45,.05,.25,1) forwards}
+@keyframes turnf{to{transform:rotateY(-165deg)}}@keyframes turnb{from{transform:rotateY(-165deg)}to{transform:none}}
+.fbctl{display:flex;align-items:center;gap:14px}
+.jcount{font-family:var(--serif);font-size:1.15rem;color:var(--gold);min-width:120px;text-align:center}
+.jrange{width:min(420px,90%);accent-color:var(--gold)}
+/* ---------- beamer ---------- */
+.cine{position:relative;display:grid;justify-items:center;gap:18px;padding:44px 16px 78px;border-radius:26px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%,#1f2f4d 0%,#0c1424 72%);touch-action:pan-y}
+.beam{position:absolute;inset:-10% -20% 0;z-index:-1;pointer-events:none;background:conic-gradient(from 180deg at 50% 0%,transparent 158deg,rgba(190,210,255,.10) 170deg,rgba(225,235,255,.18) 180deg,rgba(190,210,255,.10) 190deg,transparent 202deg);filter:blur(4px)}
+.beam i{position:absolute;left:calc(35% + var(--x) * .3);top:var(--y);width:3px;height:3px;border-radius:50%;background:rgba(230,238,255,.55);animation:dust 9s ease-in-out infinite;animation-delay:calc(var(--d) * -1)}
+@keyframes dust{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(14px,-26px);opacity:.8}}
+.screen{position:relative;width:min(920px,100%,calc((100dvh - 330px) * var(--ar)));min-width:min(260px,100%);aspect-ratio:var(--ar);background:#fff;border-radius:4px;overflow:hidden;cursor:pointer;
+  box-shadow:0 0 0 6px #070b14,0 0 90px 12px rgba(170,195,255,.22),0 40px 60px -20px rgba(0,0,0,.7)}
+.screen.off{background:#111b2e;cursor:default;display:grid;place-items:center}
+.scr-empty{color:#c9d3e6;font-family:var(--serif);font-size:1.25rem;padding:20px;text-align:center}
+.slide{position:absolute;inset:0;background:#fff}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff}
+.slide img.in{animation:slin .65s cubic-bezier(.2,.8,.2,1)}@keyframes slin{from{opacity:0;transform:scale(1.04)}}
+.cine.power .screen{animation:poweron 1.6s steps(1,end) both}.cine.power .beam{animation:beamon 1.6s ease-out both}
+@keyframes poweron{0%{filter:brightness(.04)}10%{filter:brightness(.9)}14%{filter:brightness(.15)}22%{filter:brightness(1)}27%{filter:brightness(.4)}36%,100%{filter:none}}
+@keyframes beamon{0%,10%{opacity:0}40%{opacity:1}}
+.cinectl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;z-index:1}
+.cbtn{height:42px;min-width:42px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:.9rem;cursor:pointer}
+.cbtn:hover{background:rgba(255,255,255,.16)}
+.bcount{min-width:78px;text-align:center;color:#dfe6f3;font-family:var(--serif);font-size:1.2rem}
+.seats{position:absolute;left:0;right:0;bottom:-6px;height:52px;z-index:0;pointer-events:none;background:radial-gradient(circle at 22px 52px,#05080f 19px,transparent 20px) 0 0/44px 52px repeat-x,radial-gradient(circle at 22px 64px,#03050a 21px,transparent 22px) 22px 6px/44px 52px repeat-x}
+.cine.theater{position:fixed;inset:0;z-index:65;border-radius:0;align-content:center}
+.cine:fullscreen{border-radius:0;align-content:center}
+.film{display:flex;gap:10px;overflow-x:auto;padding:16px 2px 6px;scrollbar-width:thin}
+.fr{position:relative;flex:none;width:150px;aspect-ratio:var(--ar,1.6);padding:0;border:2px solid transparent;border-radius:6px;background:var(--soft);cursor:pointer;overflow:hidden;transition:transform .25s,border-color .25s}
+.fr img{width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.fr span{position:absolute;left:6px;bottom:5px;font-size:.7rem;font-weight:600;background:rgba(255,255,255,.9);color:var(--ink);border-radius:5px;padding:1px 5px}
+.fr.on{border-color:var(--gold);transform:translateY(-3px)}
+/* ---------- museo ---------- */
+.museo{position:relative;padding:44px 16px 70px;border-radius:26px;overflow:hidden;isolation:isolate;perspective:1700px;background:linear-gradient(#f3f4f7,#fafbfc 75%)}
+.mspot{position:absolute;left:50%;top:-25%;width:min(760px,95%);height:130%;transform:translateX(-58%);z-index:-1;pointer-events:none;background:radial-gradient(ellipse 45% 55% at 50% 35%,rgba(255,255,255,1),rgba(255,255,255,0) 70%),radial-gradient(ellipse 50% 60% at 50% 30%,rgba(36,64,107,.08),rgba(36,64,107,0) 72%)}
+.mfloor{position:absolute;left:0;right:0;bottom:0;height:62px;z-index:-1;background:linear-gradient(rgba(21,30,50,0),rgba(21,30,50,.06));border-top:1px solid rgba(21,30,50,.07)}
+.mwrap{display:flex;align-items:center;justify-content:center;gap:52px;flex-wrap:wrap}
+.mframe{position:relative;margin:0;width:min(100%,calc(min(68dvh,720px) * var(--ar,.707)));aspect-ratio:var(--ar,.707);padding:14px;background:#fff;border:6px solid #1b2130;box-sizing:border-box;cursor:zoom-in;
+  transition:transform .4s ease-out;transform-style:preserve-3d;box-shadow:0 50px 80px -30px rgba(21,30,50,.55),0 0 0 1px rgba(21,30,50,.06)}
+.mframe.empty{cursor:default}
+.mframe .pin{display:grid;place-items:center}
+.sheen{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--sx,30%) var(--sy,20%),rgba(255,255,255,.35),rgba(255,255,255,0) 45%);mix-blend-mode:screen}
+.lens{position:absolute;width:160px;height:160px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);background-repeat:no-repeat;background-color:#fff;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--gold),0 18px 40px rgba(21,30,50,.35);z-index:4}
+.plaque{width:min(270px,100%);display:grid;gap:8px;padding:22px 22px 20px;background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 18px 30px -18px rgba(21,30,50,.35);text-align:left}
+.pq-k{font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.plaque h2{font-family:var(--serif);font-weight:500;font-size:1.35rem;line-height:1.2;margin:0;color:var(--ink)}
+.pq-a{margin:0;font-family:var(--serif);font-style:italic;font-size:1.08rem;color:var(--ink)}
+.pq-m{margin:0;font-family:var(--serif);font-size:1rem;color:var(--ink)}
+.pq-d{margin:4px 0 6px;padding-top:10px;border-top:1px solid var(--line);font-family:var(--read);font-size:.95rem;line-height:1.5;color:var(--ink)}
+.plaque .dl{justify-self:start}
+@media (max-width:720px){
+ .shelves{grid-template-columns:1fr;gap:40px}.shelf{height:210px;gap:4px;padding:0 8px}.spt{font-size:.78rem}.spn{font-size:.9rem}.sp::before{top:30px}
+ .book{grid-template-columns:1fr}.lp{border-radius:16px 16px 0 0;border:1px solid var(--line);border-bottom:0;padding:24px;transform-origin:center bottom;background:linear-gradient(#fff 80%,#eef1f6)}
+ .rp{border-radius:0 0 16px 16px;border:1px solid var(--line);border-top:0;padding:22px 24px;background:#fff}
+ @keyframes bkopen{from{transform:rotateX(-80deg);opacity:0}}
+ .bk-n{font-size:3.6rem}.cine{padding:30px 12px 70px}.cbtn.wide{display:none}.mwrap{gap:28px}.museo{padding:30px 12px 60px}}
+@media (prefers-reduced-motion:reduce){.sp,.pgw,.mframe{transition:none}.beam i{animation:none}}
+</style>
+
+<main id="app"></main>
+
+<script>
+const GEO={"pe":["-6996,-424,-4,-9,-13,4,-11,-1,-8,5,-8,10,-13,-2,-10,0,-9,1,-14,-7,-6,-7,-5,-5,-18,-4,-17,-3,-12,-2,-8,-3,-15,-2,-17,-1,-10,-5,-14,-9,-18,-11,-9,-4,-12,-11,-14,-11,-9,-6,-13,-2,-6,-3,-1,-8,-2,-10,-4,-20,-1,-9,-10,-20,-9,-14,-5,-10,-3,-7,4,-6,3,-10,3,-8,0,-13,-4,-6,-14,-5,-18,-10,-19,-15,-7,-8,-5,-17,5,-9,4,-9,-3,-8,-10,-1,-11,-3,-2,-16,3,-7,5,-5,8,-8,10,-4,-1,-10,1,-10,8,-9,3,-7,4,-11,8,-14,9,-7,4,-11,6,-8,10,-7,8,-9,5,-7,10,-11,0,-13,-12,-15,-12,-14,20,0,20,0,21,-4,14,-4,8,-2,6,-5,3,-7,3,-14,9,-7,-1,-16,29,-1,28,0,27,2,10,2,12,12,8,3,7,5,9,10,7,4,5,6,9,5,13,8,-5,-10,2,-17,-7,-11,0,-15,0,-21,0,-18,0,-23,0,-25,0,-17,11,6,8,-7,6,-4,10,0,22,8,11,5,12,0,17,-2,9,0,13,-22,9,-16,10,-18,9,-14,12,-23,11,-19,12,-20,13,-23,-4,-6,-3,-13,-11,-7,-7,-6,-4,-6,1,-50,-1,-12,-4,-9,-6,-9,6,-10,5,-20,8,-11,2,-8,-10,-6,-4,-15,-11,-9,-4,-6,-7,-7,-5,-15,-8,-5,-1,-9,4,-15,14,-16,-7,-13,-4,-7,-12,-20,3,-14,17,-41,9,-7,22,-4,6,-5,-8,-8,-8,-4,-3,-11,2,-10,-11,-7,-7,-6,-7,-9,-11,-14,-6,-9,-19,-11,0,-10,11,-9,-7,-18,-9,-8,-13,-1,-3,-12,4,-12,-4,-19,-9,-12,-13,-7,-12,-4,-10,0,-10,-1,-11,5,-33,23,-12,12,-12,5,-28,20,-6,26,-13,12,-25,10,-9,5,-10,9,-14,6,-16,12,-9,11,-11,6,-32,10,-17,9,-30,13,-14,9,-33,10,-9,5,-33,24,-22,8,-18,13,-56,29,-8,9,-8,14,-13,9,-13,19,-21,12,-19,15,-8,13,-13,18,-3,9,-12,10,-1,18,-8,9,6,4,14,30,-5,15,-20,26,-7,13,-6,16,-8,9,-12,20,-7,18,-17,13,-4,5,-11,11,-1,14,-6,26,-9,13,-32,24,-1,10,-3,17,-7,18,-35,58,-10,17,-9,28,-8,16,-9,28,-13,21,-9,19,-9,23,0,12,-17,21,-8,20,-15,16,-15,13,-7,8,-21,42,-3,12,-14,23,-14,17,-9,13,-12,12,-70,37,-25,15,-8,7,-4,12,9,13,10,-5,11,10,0,13,-6,16,-23,30,6,14,-8,15,-10,12,-5,9,6,35,5,9,34,35,9,15,15,9,15,14,17,11,6,-3,3,-16,2,-13,4,-17,-9,-7,-9,-5,-8,2,-7,-9,2,-10,14,-4,-9,-13,-5,-5,7,-7,13,4,6,7,9,5,8,-3,10,-6,12,-6,13,-2,13,-3,6,-4,2,-13,5,-10,5,-7,7,-9,6,-3,19,-3,9,8,7,5,-1,9,7,10,12,8,7,7,-1,14,3,13,5,9,3,12,6,9,4,11,5,6,2,11,5,24,7,3,5,-9,7,3,-3,6,6,12,6,7,13,16,8,7,20,7,15,5,15,5,20,7,28,10,20,8,18,13,14,10,12,9,15,11,20,24,15,16,10,12,7,8,6,21,6,25,3,11,15,-1,-1,26,2,12,-7,8,-10,10,-4,9,-9,12,-7,4,15,0,14,2,12,10,16,-8,6,-4,6,-3,10,-1,6,-4,9,-9,7,-4,7,-6,9,-9,4,-6,5,-11,2,-8,7,-16,10,-7,13,-3,6,-7,13,-10,13,-1,6,-4,6,-7,3,-8,6,-5,3,-9,-4,-10,9,-10,9,-4,13,-1,4,-9,4,-12,1,-8,-3,-8,1,-12,8,-3,8,-3,5,-5,13,-2,9,2,6,3,16,-4,11,-3,9,2,16,3,9,6,12,3,6,6,7,6,13,-1,11,-4,7,-6,9,-5,10,0,10,2,9,6,8,3,11,0,21,-12,6,-7,13,-4,10,-4,6,-4,11,-8,8,-3,8,-2,2,-9,-8,-11,-14,-23,-13,-20,-20,-32,-12,-17,21,-9,11,2,12,1,6,-4,4,-12,11,-9,7,-7,6,-8"],
+"nb":["-7529,-11,-14,-30,15,-24,-13,-27,-10,-40,-23,-41,-35,-40,-27,-20,-32,-23,-48,-18,-35,-12,-35,-12,-21,-23,-16,-28,-19,-29,-15,-26,-11,-34,-18,-29,-13,-24,-41,7,-18,34,-38,11,-42,-7,-11,29,22,22,3,37,21,35,21,45,0,42,-31,-17,-25,-14,-31,27,-24,13,16,19,-6,45,-7,55,28,18,26,28,4,45,27,33,-1,43,16,27,29,11,38,13,33,10,59,-15,27,-15,37,-12,25,-36,31,-7,28,-10,42,13,34,-3,19,-20,41,-19",
+"-7132,120,-40,0,-53,0,-44,0,-37,0,40,0,45,0,40,0,35,0,45,0,47,0,45,0,35,0,47,0,53,0,60,0,41,0,42,0,-52,0,52,0,38,0,-47,0,-42,0,-42,0,-44,0,-44,0,-53,0,34,-15,13,-34,-35,1,-28,-11,-25,-16,-1,-43,15,-34,29,-19,9,-41,13,-23,-7,-47,-7,-40,-12,-65,-6,-35,-7,-34,-11,-64,-39,16,-41,5,29,50,27,43,-15,31,-28,13,-34,20,-38,-11,-26,11,-42,-11,-32,-8,-33,6,-36,1,-14,26,-14,31,-26,13,-8,32,-32,19,-32,16,-12,28,-18,26,-23,19,-28,12,-41,8,-31,13,-29,26,-34,3,-27,-11,-43,8,-31,7,-18,27,-23,14,-35,14,-33,23,-52,0,45,0,46,0,45,0,43,0,-41,0,52,0,39,0,46,0,52,0,48,0,36,0,47,0,39,0,75,0,59,0,44,0,57,0,45,0",
+"-7042,-1835,36,7,22,19,-1,39,26,13,23,-20,27,-28,5,-50,7,-42,21,-19,21,-18,-15,-38,39,-8,36,0,59,0,-53,0,-36,0,-46,0,-54,0,-41,0,-51,0,37,0,-41,0,-35,0,-51,0,-40,0,-52,0,66,0,-45,0,43,0,-53,0,-40,0,-45,0,-42,0,53,0,59,0,61,0,48,0,46,0,52,0,47,0,57,0,46,0,-55,0,-44,0,-46,0,-48,0,-41,0,-50,0,-39,0,-41,0,70,0,-50,0,-56,0,-54,0,37,0,51,0,53,0,-64,0,-41,0,-48,0,-39,0,37,0,-45,0,-50,0,44,0,39,0,52,0,-39,0,55,0,-35,0,-45,0,-37,0,-40,0,-36,0,-47,0,62,0,51,0,-46,0,42,0,-41,0,45,0,-38,0,-38,0,37,0,-45,0,-65,0,-37,0,46,0,49,0,60,0,43,0,35,0,40,0,-47,0,37,0,43,0,-36,0,-51,0,-44,0,48,0,47,0,42,0,37,0,37,0,40,0,51,0,45,0,40,0,-18,53,-7,44,-2,43",
+"-6688,120,26,-21,19,-17,37,-3,25,15,25,-19,6,41,0,-52,0,-42,0,-61,0,-37,0,-42,0,-37,0,41,0,-35,0,-52,0,-51,0,60,0,43,0,53,0,-39,0,-38,0,-38,0,-37,0,-66,0,40,0,-46,0,-45,0,-57,0,-37,0,-51,0,-47,0,-61,0,-61,0,-50,0,-46,0,-66,0,-52,0,-61,0,-54,0,-40,0,-57,0,-60,0,-45,0,-38,0,-36,0,-43,0,-40,0,-98,0,-60,0,-59,0,-35,0,-57,0,-56,0,-53,0,-40,0,-39,0,-64,0,-37,0,42,0,50,0,45,0,61,0,59,0,38,0,42,0,38,0,42,0,86,0,44,0,39,0,55,0,39,0,37,0,42,0,41,0,40,0,54,0,46,0,38,-43,8,-33,-4,-31,-7,-54,-37,-31,-12,-25,-21,-32,-7,-28,-26,-35,-18,-38,12,-46,4,-38,2,-38,-12,-31,10,-11,36,0,41,5,41,-17,20,-21,-20,-27,-20,-37,-4,-53,0,-13,32,-19,20,-35,8,-40,0,24,29,-23,40,-15,21,-20,16,-13,33,-14,28,-14,32,20,25,7,34,37,25,19,18,-11,30,17,31,15,49,22,23,23,17,39,26,24,14,32,3,37,8,29,16,33,6,29,-13,33,30,6,34,12,64,6,35,7,36,9,53,7,36,-5,45,-11,29,-15,23,-29,25,-3,39,8,40,32,8,41,-4,4,33,-25,10,-38,14,38,0,56,0,47,0,45,0,38,0,40,0",
+"-6951,-1751,-13,26,26,25,18,23,17,29,-16,30,-20,44,9,34,-3,36,10,44,22,22,14,21,-15,39,4,82,17,23,12,23,-13,23,-23,39,-12,23,-19,32,-22,38,35,-1,38,-5,35,-4,34,26,33,13,25,15,30,19,55,34,33,11,47,8,37,-1,6,-45,0,-46,0,-40,0,-47,0,-40,0,-46,0,-37,0,-60,0,-45,0,-40,0,-83,0,-39,0,-42,0,-40,0,-40,0,-38,0,-43,0,-44,0,-53,0,-43,0,-51,0,-38,0,51,0,-36,-36,-15,-36,0,-49,0,-45,0,-42,0,-41,0,-44,0,-15,24,-10,32,-29,27,-6,31,-6,38,-19,31,-21,35"],
+"dep":["-7506,-1801,-19,-19,-19,-25,-10,-12,-29,-16,-15,-26,-17,-13,-10,-18,-3,-21,-9,-14,18,-26,-4,-19,9,-17,14,-11,31,-6,-5,25,8,15,20,6,-4,20,0,23,17,6,14,12,16,18,1,24,20,17,9,16,3,26,-24,15,-12,20",
+"-7196,-2206,-17,34,-7,24,22,22,18,22,9,23,3,22,25,10,29,9,30,14,36,8,34,-9,-3,26,-22,25,-13,24,-18,21,-7,40,-11,16,-14,10,13,26,-1,27,-19,-10,-34,-11,-16,8,-20,-7,6,-18,-15,-17,-11,17,-27,-4,-15,-11,12,-29,28,-22,4,-28,-8,-15,-21,-12,-23,-12,-20,-14,-31,2,-20,-11,-11,-15,-16,-12,-10,-42,-19,-17,-10,-23,32,-6,6,-20,11,-14,-18,-22,14,-12,13,-20,32,-2,15,-9,17,17,21,6,23,-8,23,-2",
+"-7196,-2206,-24,1,-15,9,-17,-8,-24,-5,-52,0,-9,-15,-4,-31,-20,-12,-14,18,-53,10,-13,-20,23,-18,-7,-35,-7,-36,-10,-31,-18,-23,3,-20,6,-25,12,-21,-17,-14,-39,22,-13,16,-16,22,-28,16,-24,-14,-11,-26,-10,-34,36,-25,23,9,-8,-19,16,-18,49,-11,25,-3,15,-11,-1,-28,-4,-19,41,4,18,6,25,25,6,23,19,19,7,24,18,11,9,20,21,22,12,20,-10,14,-19,17,43,2,41,8,18,19,10,23,81,15,22,-6,20,-11,16,-15,21,-12,14,20,-12,23,-20,13,-7,27,-14,15,-24,15,-64,26,-34,-6,-5,28",
+"-7193,-2216,2,-24,37,2,49,-21,39,-20,14,-15,7,-27,20,-13,-6,105,21,4,25,1,27,-10,24,6,98,160,-13,11,-21,23,-68,43,-72,-36,-24,-2,-14,11,-36,-8,-14,-9,-33,-13,-37,-11,-3,-22,-9,-23,-14,-8,-21,-24,2,-36,14,-23,6,-21",
+"-7793,-2643,0,-35,19,-3,25,-5,17,-20,-8,-25,-31,-9,-21,-30,0,-27,38,8,15,11,31,3,15,8,11,21,23,5,16,-11,25,16,36,3,19,4,18,11,1,38,-15,30,-15,-13,-16,-6,-20,18,-1,39,5,18,26,51,-8,32,-7,23,-13,15,-14,-14,-13,-20,-15,22,-34,-6,-15,-29,-13,-10,-23,-7,-19,-7,-7,-23,-15,-36,-3,-23,-14,-17",
+"-7785,-2804,-7,34,14,23,26,11,22,23,-16,18,-15,14,-25,-4,-10,38,-24,6,-5,-27,-11,-20,-26,-18,-12,-20,-19,-9,-18,-22,6,-16,12,-17,-6,-36,6,-25,-8,-20,1,-26,6,-33,8,-15,9,-18,5,-29,23,-1,13,-29,12,-14,15,-9,6,32,11,19,6,30,11,24,-5,41,-9,18,-12,24,8,37,8,16",
+"-7595,-2488,7,-23,12,-22,-30,-61,-5,-18,2,-22,8,-32,27,3,27,-1,7,-44,-12,-17,-30,-8,-27,1,-26,-20,-24,11,-23,-5,-11,-21,-15,-8,-24,0,-22,-14,-20,-8,-19,-23,-8,-37,12,-24,9,-18,2,-34,-8,-31,-6,-30,-11,-19,-6,-32,130,-41,69,-44,62,-63,18,-57,22,4,-8,-22,3,-22,-19,-12,-22,-23,36,-4,21,-9,32,18,27,12,27,24,13,21,7,20,26,11,15,11,29,7,16,22,-5,20,22,12,20,17,-5,25,13,14,16,8,26,1,32,-1,33,1,23,-6,16,-14,35,5,12,16,24,-2,24,-8,26,7,16,15,21,5,19,5,17,14,-76,108,21,9,27,-2,12,21,24,25,-28,6,-11,-18,-31,1,-28,-3,-17,20,-23,-4,-22,9,-35,3,-25,0,-21,8,-21,15,-44,25,-34,9,-7,34,-4,24,-16,16,-11,20,10,36,-27,14,-36,22,-15,28,11,21,-21,6,-10,16,-27,-12,-21,-4,-16,19,1,28,-15,11,-25,3,-30,11,-23,9,-3,23,-18,-5,-31,21",
+"-7470,-1836,-3,-26,-9,-16,-20,-17,-1,-24,7,-17,24,-3,3,-20,-6,-26,-14,-15,14,-13,16,8,7,-20,17,-15,8,-20,0,-24,-9,-13,-7,-22,12,-10,22,17,23,-3,10,16,10,19,21,44,14,15,11,15,-17,8,-35,-23,0,41,11,12,5,26,9,22,-1,28,1,32,16,-11,32,-4,21,8,-16,9,-4,30,-15,16,-29,6,-46,9,-18,13,-14,-10,-12,-11,-12,-20,-25,-7",
+"-7431,-2129,-12,10,16,35,0,24,6,21,-13,10,-29,14,-23,6,11,24,6,26,-27,23,-23,-1,-14,-12,-17,-6,0,-23,4,-20,-20,-6,-8,-15,12,-22,5,-19,13,-16,9,-14,18,-15,16,-21,9,-14,31,-6,17,6,13,11",
+"-7441,-2259,13,20,53,-10,14,-18,20,12,4,31,9,15,-13,20,-14,12,19,8,-12,28,-6,20,-18,5,-26,-1,-28,-5,-18,-18,-17,-6,-31,6,-9,14,-7,19,-27,17,-9,14,-7,-27,-12,-24,-25,-19,-19,-9,-15,-16,-18,-24,-10,-19,-2,-21,23,-2,16,-18,39,-2,33,-8,35,-6,36,9,29,3",
+"-7652,-2235,2,21,10,19,18,24,15,16,19,9,21,9,16,34,-4,20,6,18,-13,18,-24,5,-28,15,-12,14,-24,-28,-15,-29,-18,-24,12,-14,-6,-27,-4,-24,-17,8,8,-20,-20,-7,-25,-9,-39,-27,-2,-28,-10,-20,-15,-21,10,-23,21,22,20,11,22,-19,29,-24,12,13,18,26,8,15,9,27",
+"-8008,-2621,-28,-27,-22,-22,-20,-10,-38,-15,15,-19,19,-26,34,-10,5,-31,15,10,7,19,26,8,19,7,13,18,-21,14,9,23,24,15,-17,18,-19,8,-21,20",
+"-8178,-2921,21,-22,10,-17,18,-10,27,-17,17,12,8,29,-15,13,-23,7,-20,15,-27,-3,-16,-7",
+"-7278,-1867,-18,-11,-26,8,-16,8,-14,-11,4,-19,1,-28,-9,-22,-11,-21,-10,-42,31,0,31,11,30,-7,36,18,23,12,21,12,8,15,-4,28,-18,19,-20,10,-11,17,-19,-4",
+"-7278,-1867,28,-3,15,13,26,-1,15,-13,14,18,21,28,38,2,25,23,1,24,6,22,8,20,-4,28,-11,20,-25,3,-10,12,-12,17,8,24,-11,22,-21,-5,-29,-17,-16,-6,-18,-15,-19,-19,-20,-4,-19,-11,-17,-7,-13,-9,-23,-12,-28,-8,-33,-21,-41,-22,-40,-24,-23,-13,12,-20,24,-15,26,11,6,17,18,14,14,10,18,-13,34,-4,30,-1,26,-26,4,-30",
+"-7019,-1642,14,28,27,17,21,9,-18,27,-18,7,6,25,-9,16,-27,16,-26,0,-16,-12,-25,-20,-25,-18,17,-24,12,-16,13,-20,23,-18,10,-23,12,12",
+"-7801,-2283,-19,-25,-12,-20,-8,-19,-15,-33,-7,-20,-11,-15,-13,-20,4,-24,37,-17,10,-23,21,-26,16,-10,18,-7,18,23,15,19,7,25,17,21,15,11,24,12,-9,19,-10,23,-12,24,8,15,10,18,-26,26,-23,26,-14,11,-10,-15,-8,-19,-14,12",
+"-7971,-2637,20,-25,-20,-11,-12,-13,16,-25,7,-25,-26,-3,2,-26,3,-23,6,-16,-7,-18,12,-12,19,-7,13,-11,14,-22,16,-7,10,23,6,17,-2,38,-11,30,-6,16,18,22,19,9,12,20,20,10,17,28,5,27,14,22,13,23,-20,20,-33,10,-18,-11,-20,-7,-39,5,-18,-11,-28,-13,-2,-34",
+"-7699,-2316,-6,-21,-10,-28,10,-15,12,-32,13,-12,-28,-19,-15,-11,-17,-21,13,-16,19,7,24,-7,34,6,11,-19,17,17,14,14,13,-15,6,25,11,27,16,32,23,-12,31,-28,13,-16,26,-18,26,-2,-6,20,-8,23,-4,28,19,30,-25,10,-23,4,-37,7,-32,2,-19,7,3,37,-19,10,-30,-6,-31,-11,-15,12,-20,-2",
+"-7971,-2637,2,22,17,16,15,15,8,15,24,-16,31,8,21,6,18,-4,22,-1,8,-19,-1,-24,-14,-22,27,-2,14,17,3,23,17,17,6,32,18,17,23,7,13,10,3,27,-31,2,-20,-9,-15,-19,-18,-23,-18,7,-16,10,-16,13,-13,24,-33,22,-8,19,-16,-16,-7,-25,-13,-9,-6,-21,-16,-12,-19,-15,-20,-22,-13,-24,-5,-20,12,-30",
+"-7680,-2300,17,-16,30,0,29,9,29,-5,-6,-23,10,-19,25,-1,39,-12,40,-2,25,-10,10,20,8,29,6,36,13,11,-26,17,-29,7,-24,-12,-46,5,-44,9,-25,1,-30,2,-23,19,-9,-27,-19,-38",
+"-7966,-2842,-16,20,8,34,-10,23,8,18,-32,3,-13,-18,-22,-19,0,27,-39,14,-15,16,-19,29,-18,-7,-36,-21,-7,-19,24,-4,8,-20,-10,-18,-16,-14,-15,-10,12,-14,-18,-26,-13,-12,-1,-21,7,-24,21,-16,16,7,27,3,20,-15,19,12,-15,21,28,-4,30,1,17,8,20,-5,17,9,8,27,17,15"],
+"mq":["-7123,-1555,-12,-9,-8,-2,3,-6,-3,-23,-9,-9,6,-4,11,-22,-7,-7,-4,-12,3,-5,12,-7,0,-10,10,-12,8,-4,17,1,3,-13,8,-7,4,-28,16,8,12,-4,14,5,2,11,6,9,-2,9,5,14,25,25,-14,7,-2,8,-5,7,-4,-1,-5,-10,-7,-2,-8,6,-3,9,1,8,-13,14,-10,4,-10,12,-3,8,-12,16,-20,9,-5,7"]};
+const HIST={"A": {"edges": [-773.7, -701.7, -629.7, -557.7, -485.6, -413.6, -341.6, -269.6, -197.6, -125.6, -53.6, 18.5, 90.5, 162.5, 234.5, 306.5, 378.5, 450.5, 522.5, 594.6, 666.6, 738.6, 810.6, 882.6, 954.6, 1026.6, 1098.6, 1170.7, 1242.7, 1314.7, 1386.7, 1458.7, 1530.7, 1602.7, 1674.7, 1746.8, 1818.8, 1890.8, 1962.8, 2034.8, 2106.8], "counts": [121, 126, 170, 214, 306, 387, 538, 572, 575, 614, 679, 662, 642, 593, 541, 458, 449, 381, 303, 258, 203, 194, 174, 140, 105, 129, 71, 67, 55, 35, 43, 39, 18, 13, 14, 16, 16, 12, 8, 59], "neg": 0.4143, "mean": 163.58553267000002, "p5": -526.27902, "p50": 93.50444999999999, "p95": 1078.6527749999993, "min": -961.9451, "max": 6942.6183}, "B": {"edges": [-91.9, 47.5, 186.8, 326.2, 465.5, 604.9, 744.2, 883.6, 1022.9, 1162.3, 1301.6, 1441.0, 1580.3, 1719.7, 1859.0, 1998.3, 2137.7, 2277.0, 2416.4, 2555.7, 2695.1, 2834.4, 2973.8, 3113.1, 3252.5, 3391.8, 3531.2, 3670.5, 3809.9, 3949.2, 4088.6, 4227.9, 4367.2, 4506.6, 4645.9, 4785.3, 4924.6, 5064.0, 5203.3, 5342.7, 5482.0], "counts": [121, 149, 273, 414, 534, 569, 687, 716, 718, 653, 594, 604, 532, 467, 416, 361, 331, 276, 252, 188, 172, 143, 109, 106, 105, 92, 60, 56, 40, 44, 27, 20, 21, 15, 22, 20, 19, 11, 10, 53], "neg": 0.009, "mean": 1529.99547478, "p5": 304.22218000000004, "p50": 1338.6145999999999, "p95": 3403.266684999999, "min": -470.681, "max": 9344.9777}, "Bpen": {"edges": [-339.1, 97.4, 534.0, 970.5, 1407.1, 1843.6, 2280.2, 2716.8, 3153.3, 3589.9, 4026.4, 4463.0, 4899.5, 5336.1, 5772.6, 6209.2, 6645.8, 7082.3, 7518.9, 7955.4, 8392.0, 8828.5, 9265.1, 9701.6, 10138.2, 10574.8, 11011.3, 11447.9, 11884.4, 12321.0, 12757.5, 13194.1, 13630.6, 14067.2, 14503.8, 14940.3, 15376.9, 15813.4, 16250.0, 16686.5, 17123.1], "counts": [115, 113, 222, 341, 431, 551, 579, 704, 676, 686, 641, 602, 566, 489, 413, 420, 385, 279, 243, 217, 196, 160, 165, 134, 105, 83, 75, 62, 54, 41, 32, 31, 28, 28, 19, 20, 12, 8, 14, 60], "neg": 0.0098, "mean": 5009.233169700001, "p5": 1036.020805, "p50": 4423.0283500000005, "p95": 10862.620665, "min": -1976.0079, "max": 39291.233}, "C": {"edges": [1032.6, 1491.8, 1950.9, 2410.1, 2869.2, 3328.4, 3787.5, 4246.7, 4705.8, 5165.0, 5624.1, 6083.3, 6542.5, 7001.6, 7460.8, 7919.9, 8379.1, 8838.2, 9297.4, 9756.5, 10215.7, 10674.8, 11134.0, 11593.1, 12052.3, 12511.4, 12970.6, 13429.7, 13888.9, 14348.0, 14807.2, 15266.3, 15725.5, 16184.6, 16643.8, 17102.9, 17562.1, 18021.2, 18480.4, 18939.5, 19398.7], "counts": [175, 320, 499, 605, 744, 756, 775, 715, 698, 598, 563, 510, 476, 383, 300, 260, 248, 211, 152, 144, 127, 101, 90, 80, 60, 46, 42, 44, 41, 33, 32, 19, 31, 20, 12, 11, 11, 4, 7, 57], "neg": 0.0, "mean": 5685.68894786, "p5": 1955.431965, "p50": 4970.2629, "p95": 11855.919544999993, "min": 243.2837, "max": 46015.478}};
+const IMG='mina.jpg';
+const SECS=[{id:'mapa',name:'Ubicación'},{id:'articulos',name:'Artículos'},{id:'posters',name:'Pósters'},{id:'resultados',name:'Resultados'},{id:'journal',name:'Journal'},{id:'beamer',name:'Beamer'},{id:'miposter',name:'Mi póster'}];
+const nb=s=>s.replace(/(\d) (\d)/g,'$1&nbsp;$2');
+const f0=x=>Math.round(x).toLocaleString('es-PE').replace(/,/g,' ');
+const fx=(x,d=1)=>x.toFixed(d).replace('.',',');
+
+function bar(cur){return `<div class="wrap"><div class="top"><a class="mini" href="#inicio" aria-label="Volver a la portada"><img src="${IMG}" alt=""></a>
+<nav class="crumbs">${SECS.map(x=>`<a href="#${x.id}" class="${x.id===cur?'on':''}">${x.name}</a>`).join('')}</nav></div></div>`}
+
+function cover(){return `<section class="cover">
+<div class="circle-wrap"><a class="circle" href="#mapa" aria-label="Ver la ubicación de la mina San Gabriel"><img src="${IMG}" alt="Operación minera con camión de acarreo y excavadora"></a></div>
+<div class="ttl"><h1 class="t-title">Riesgo del proyecto aurífero <em>San Gabriel</em>: simulación de Monte Carlo sobre el precio del oro, la demanda de inversión y el tipo de cambio</h1>
+<p class="t-en">Project risk of the San Gabriel gold mine: Monte Carlo simulation of the gold price, investment demand and exchange rate</p></div>
+<span class="author">Alejandro Soto Antezana</span>
+</section>`}
+/* ---------- mapa (todo dentro del dashboard) ---------- */
+const decR=s=>{const a=s.split(',').map(Number);let x=0,y=0;const o=[];for(let i=0;i<a.length;i+=2){x+=a[i];y+=a[i+1];o.push([x/100,y/100])}return o};
+const PX=lon=>(lon+83)*98.5, PY=lat=>(1.2-lat)*100;
+const pathOf=pts=>'M'+pts.map(([a,b])=>PX(a).toFixed(1)+','+PY(b).toFixed(1)).join('L')+'Z';
+const TITICACA=[[-69.78,-15.18],[-69.5,-15.28],[-69.25,-15.55],[-69.0,-15.9],[-68.78,-16.15],[-68.72,-16.35],[-68.88,-16.45],[-69.05,-16.55],[-69.25,-16.35],[-69.5,-16.22],[-69.75,-16.12],[-69.92,-16.0],[-70.0,-15.86],[-69.93,-15.68],[-69.88,-15.45]];
+const MINE=[-70.569,-16.2024];
+const VB_FULL=[60,40,1500,1960], VB_ZOOM=[1030,1570,400,380];
+const VIEWS=[{id:'general',name:'Vista general',mk:[65.2,48.8],km:(1000/2.30/1200*100).toFixed(2),kml:'1 km'},{id:'planta',name:'Instalaciones',mk:null,km:(500/1.147/1200*100).toFixed(2),kml:'500 m'},{id:'yacimiento',name:'Yacimiento',mk:[50,50],km:(500/1.147/1200*100).toFixed(2),kml:'500 m'}];let viewId='general';
+let mapZoom=false,vbNow=VB_FULL.slice(),vbRaf=0;
+function mapView(){const [mx,my]=[PX(MINE[0]),PY(MINE[1])];
+const city=(n,lon,lat,anchor='start',dx=9,dy=4,cls='zl')=>`<g class="${cls}"><circle cx="${PX(lon)}" cy="${PY(lat)}" r="3.2" class="cdot"/><text x="${PX(lon)+dx}" y="${PY(lat)+dy}" text-anchor="${anchor}" class="clab">${n}</text></g>`;
+return `<section class="mapstage${mapZoom?' zoomed':''}" id="mapstage">
+<a class="mapback" href="#inicio" aria-label="Volver a la portada"><img src="${IMG}" alt=""></a>
+<div class="maphint" id="maphint">${mapZoom?'':'Toca el mapa para ubicar la mina'}</div>
+<svg id="mapsvg" viewBox="${vbNow.join(' ')}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa del Perú con la ubicación del proyecto San Gabriel en Moquegua" tabindex="0">
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4e6f2"/><stop offset="1" stop-color="#b9d3e6"/></linearGradient>
+<filter id="relief" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="5" seed="7" result="n"/><feDiffuseLighting in="n" lighting-color="#fff" surfaceScale="3.2" result="l"><feDistantLight azimuth="315" elevation="48"/></feDiffuseLighting><feComposite in="l" in2="SourceGraphic" operator="in"/></filter>
+<clipPath id="peclip">${GEO.pe.map(r=>`<path d="${pathOf(decR(r))}"/>`).join('')}</clipPath>
+<radialGradient id="glow"><stop offset="0" stop-color="#24406b" stop-opacity=".35"/><stop offset="1" stop-color="#24406b" stop-opacity="0"/></radialGradient></defs>
+<rect x="-3000" y="-3000" width="8000" height="8000" fill="#c6dbeb"/>
+${[10,8,6,4,2,0,-2,-4,-6,-8,-10,-12,-14,-16,-18,-20,-22,-24,-26].map(l=>`<line x1="-3000" x2="5000" y1="${PY(l)}" y2="${PY(l)}" class="grat"/>`).join('')}
+${[-96,-94,-92,-90,-88,-86,-84,-82,-80,-78,-76,-74,-72,-70,-68,-66].map(l=>`<line y1="-3000" y2="5000" x1="${PX(l)}" x2="${PX(l)}" class="grat"/>`).join('')}
+<rect x="${PX(-65.75)}" y="-3000" width="6000" height="8000" class="nbf"/><rect x="${PX(-78.95)}" y="-3000" width="6000" height="${3000+PY(1.05)}" class="nbf"/><rect x="${PX(-70.25)}" y="${PY(-19.65)}" width="6000" height="4000" class="nbf"/>${GEO.nb.map(r=>`<path d="${pathOf(decR(r))}" class="nb"/>`).join('')}
+${GEO.pe.map(r=>`<path d="${pathOf(decR(r))}" class="pe"/>`).join('')}
+<g clip-path="url(#peclip)"><rect x="0" y="0" width="1600" height="2100" filter="url(#relief)" opacity=".32"/></g>
+${GEO.pe.map(r=>`<path d="${pathOf(decR(r))}" class="pe-line"/>`).join('')}
+<path d="${pathOf(TITICACA)}" class="lake"/>
+<g class="fl">
+<text x="${PX(-79.2)}" y="${PY(-1.6)}" class="country">ECUADOR</text><text x="${PX(-73.2)}" y="${PY(0.3)}" class="country">COLOMBIA</text>
+<text x="${PX(-69.2)}" y="${PY(-7)}" class="country">BRASIL</text><text x="${PX(-67.9)}" y="${PY(-14.6)}" class="country">BOLIVIA</text>
+<text x="${PX(-69.6)}" y="${PY(-18.7)}" class="country">CHILE</text><text x="${PX(-80.6)}" y="${PY(-13.4)}" class="ocean">Océano Pacífico</text>
+<text x="${PX(-75.6)}" y="${PY(-9.2)}" class="peru-lab">PERÚ</text>
+${city('Lima',-77.03,-12.05,'end',-10,5,'flc')}${city('Arequipa',-71.54,-16.41,'end',-10,5,'flc')}${city('Cusco',-71.97,-13.53,'start',10,5,'flc')}</g>
+<g class="zl-all">
+<text x="${PX(-71.7)}" y="${PY(-15.25)}" class="zcountry">PERÚ</text><text x="${PX(-69.25)}" y="${PY(-17.05)}" class="zcountry">BOLIVIA</text><text x="${PX(-69.75)}" y="${PY(-18.22)}" class="zcountry">CHILE</text>
+<text x="${PX(-69.42)}" y="${PY(-15.8)}" class="zlake" text-anchor="middle">Lago Titicaca</text>
+${city('Arequipa',-71.54,-16.41,'end',-8,4)}${city('Moquegua',-70.94,-17.19,'end',-8,4)}${city('Ilo',-71.34,-17.64,'end',-8,4)}${city('Tacna',-70.25,-18.01,'start',8,4)}${city('Puno',-70.02,-15.84,'end',-8,4)}${city('Juliaca',-70.13,-15.5,'end',-8,4)}
+<g transform="translate(${PX(-72.15)},${PY(-17.95)})"><line x1="0" x2="${0.935*98.5}" y1="0" y2="0" class="scale"/><line x1="0" x2="0" y1="-4" y2="4" class="scale"/><line x1="${0.935*98.5}" x2="${0.935*98.5}" y1="-4" y2="4" class="scale"/><text x="${0.935*98.5/2}" y="-8" text-anchor="middle" class="scalet">100 km</text></g></g>
+<circle cx="${mx}" cy="${my}" r="60" fill="url(#glow)" class="mglow"/>
+<g class="pin" transform="translate(${mx},${my})"><circle r="16" class="ping"/><circle r="7" class="pdot"/></g>
+<g class="zl-all"><text x="${mx+12}" y="${my-12}" class="mlab">San Gabriel</text></g>
+</svg>
+<div class="mapcard" id="mapcard" aria-live="polite">
+<span class="mc-kick">Ubicación del proyecto</span><h2>San Gabriel</h2><p class="mc-sub">Ichuña · Moquegua · Perú</p>
+<div class="satbox" id="satbox">${VIEWS.map(v=>`<div class="sv${v.id===viewId?' on':''}" data-v="${v.id}"><img src="sat/sg_${v.id}.jpg" alt="Vista aérea de San Gabriel: ${v.name}">${v.mk?`<span class="satmark" style="left:${v.mk[0]}%;top:${v.mk[1]}%"><i></i></span>`:''}<span class="satscale" style="width:${v.km}%"><i></i>${v.kml}</span></div>`).join('')}
+<span class="attr">Esri · Maxar</span></div>
+<div class="views" role="group" aria-label="Vista">${VIEWS.map(v=>`<button data-view="${v.id}" aria-pressed="${v.id===viewId}">${v.name}</button>`).join('')}</div>
+<dl class="mc-dl">
+<div><dt>Distrito</dt><dd>Ichuña</dd></div>
+<div><dt>Provincia</dt><dd>General Sánchez Cerro</dd></div>
+<div><dt>Altitud</dt><dd>4&nbsp;780 m s. n. m.</dd></div>
+<div><dt>Coordenadas</dt><dd>16,20°&nbsp;S · 70,57°&nbsp;O</dd></div>
+<div><dt>Distancia</dt><dd>837&nbsp;km de Lima · 116&nbsp;km de Moquegua</dd></div>
+<div><dt>Operador</dt><dd>Compañía de Minas Buenaventura</dd></div></dl>
+<div class="mcbtns"><a class="go" href="#articulos">Ver los artículos <span aria-hidden="true">→</span></a><button class="ghost" id="zoomOut">Ver todo el Perú</button></div></div>
+</section>`}
+const easeIO2=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function animVB(to,dur){const svg=document.getElementById('mapsvg');if(!svg)return;const from=vbNow.slice(),t0=performance.now();cancelAnimationFrame(vbRaf);
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)dur=0;
+const step=n=>{const k=dur?Math.min(1,(n-t0)/dur):1,e=easeIO2(k);vbNow=from.map((v,i)=>v+(to[i]-v)*e);svg.setAttribute('viewBox',vbNow.join(' '));if(k<1)vbRaf=requestAnimationFrame(step)};vbRaf=requestAnimationFrame(step)}
+function setZoom(z){mapZoom=z;const st=document.getElementById('mapstage');if(!st)return;st.classList.toggle('zoomed',z);document.getElementById('maphint').textContent=z?'':'Toca el mapa para ubicar la mina';animVB(z?VB_ZOOM:VB_FULL,1600)}
+function bindMap(){const svg=document.getElementById('mapsvg');svg.onclick=()=>{if(!mapZoom)setZoom(true)};svg.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setZoom(!mapZoom)}};
+document.getElementById('zoomOut').onclick=()=>setZoom(false);
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{viewId=b.dataset.view;document.querySelectorAll('.sv').forEach(v=>v.classList.toggle('on',v.dataset.v===viewId));document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view===viewId))})}
+
+/* ---------- resultados ---------- */
+const SC={
+ A:{name:'A · Precio del informe técnico',short:'Oro a US$ 2 172',text:'el precio del oro parte del supuesto del informe técnico, US$ 2 172 por onza',cvar:{usd:-647.8,pen:-2339.2},cur:['usd','pen'],pen:{mean:489.4,p5:-1836.9,p50:295.6,p95:3501.6,neg:.4188}},
+ B:{name:'B · Precio de mercado',short:'Oro a US$ 4 437 (31/08/2026)',text:'el precio del oro parte del valor de mercado al 31 de agosto de 2026, US$ 4 437 por onza',cvar:{usd:128.9,pen:426.1},cur:['usd','pen']},
+ C:{name:'C · Prueba de robustez',short:'B + tendencia histórica',text:'se usa el precio de mercado y además se mantiene la tendencia de subida histórica del oro',cvar:{usd:1534.0,pen:5336.1},cur:['usd','pen'],pen:{mean:19109.9,p5:6730.5,p50:16739.3,p95:39610.0,neg:0}}};
+let sc='B',cur='usd',thr=0;
+function series(){if(cur==='pen'&&sc==='B')return HIST.Bpen;return HIST[sc]}
+function stats(){const h=series(),s=SC[sc];if(cur==='pen'&&sc!=='B')return{...s.pen,cvar:s.cvar.pen};return{mean:h.mean,p5:h.p5,p50:h.p50,p95:h.p95,neg:h.neg,cvar:s.cvar[cur]}}
+function hasHist(){return cur==='usd'||sc==='B'}
+function histSVG(){const h=series(),W=760,H=280,pl=50,pr=16,pt=16,pb=40;const e=h.edges,c=h.counts,mx=Math.max(...c),lo=e[0],hi=e[e.length-1];
+const X=v=>pl+(v-lo)/(hi-lo)*(W-pl-pr),Yh=n=>(H-pb)-n/mx*(H-pb-pt);const bw=(W-pl-pr)/c.length;
+const ticks=[];const step=Math.pow(10,Math.floor(Math.log10((hi-lo)/4)));const st=[1,2,5,10].map(k=>k*step).find(s=>(hi-lo)/s<=6);for(let t=Math.ceil(lo/st)*st;t<=hi;t+=st)ticks.push(t);
+const u=cur==='usd'?'US$':'S/';
+return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Distribución de 10 000 valores simulados del VAN">
+${ticks.map(t=>`<line x1="${X(t)}" x2="${X(t)}" y1="${pt}" y2="${H-pb}" stroke="#eef0f3"/><text x="${X(t)}" y="${H-pb+16}" text-anchor="middle">${f0(t)}</text>`).join('')}
+${c.map((n,i)=>{const x0=e[i],x1=e[i+1],neg=x1<=0,thrHit=x1<=thr;return `<rect x="${(X(x0)+.5).toFixed(1)}" y="${Yh(n).toFixed(1)}" width="${Math.max(0,bw-1).toFixed(1)}" height="${((H-pb)-Yh(n)).toFixed(1)}" rx="2" fill="${neg?'#e08a7f':thrHit?'#9fb3d1':'#2463b8'}" opacity="${neg||thrHit?1:.85}"><title>${u} ${f0(x0)} a ${f0(x1)} mm: ${n} simulaciones</title></rect>`}).join('')}
+${lo<0&&hi>0?`<line x1="${X(0)}" x2="${X(0)}" y1="${pt-6}" y2="${H-pb}" stroke="#c0392b" stroke-width="2"/><text x="${X(0)+5}" y="${pt+6}" fill="#c0392b" style="fill:#c0392b">VAN = 0</text>`:''}
+${[['P5',h.p5],['Mediana',h.p50],['P95',h.p95]].map(([l,v])=>`<line x1="${X(v)}" x2="${X(v)}" y1="${pt}" y2="${H-pb}" stroke="#15181e" stroke-dasharray="3 3"/><text x="${X(v)}" y="${H-6}" text-anchor="middle" style="fill:#15181e;font-weight:600">${l}</text>`).join('')}
+<line x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}" stroke="#c5cbd4"/></svg>`}
+function probBelow(t){const h=series();if(t===0)return h.neg;let s=0,tot=0;h.counts.forEach((n,i)=>{tot+=n;const a=h.edges[i],b=h.edges[i+1];if(b<=t)s+=n;else if(a<t)s+=n*(t-a)/(b-a)});return s/tot}
+
+function resultados(){const s=stats(),S=SC[sc],u=cur==='usd'?'US$':'S/',neg=s.neg;
+const lvl=neg<0.05?['ok','Riesgo muy bajo']:neg<0.2?['mid','Riesgo moderado']:['bad','Riesgo alto'];
+const T=[['Precio del oro',3044],['Tipo de cambio',647.5],['Riesgo país (WACC)',-397.9],['Demanda de inversión',-35.3]];
+const H=[['Precio, demanda, tipo de cambio y riesgo país explican juntos el VAN','F = 5 291 · p < 0,001',1],['El precio del oro es el factor que más afecta al VAN','t = 135,1 · p < 0,001',1],['La demanda de inversión en oro se asocia positivamente con su precio','z = 0,01 · p = 0,496',0],['El tipo de cambio se mueve en sentido contrario al oro (cobertura natural)','r = −0,107 · p < 0,001',1],['El VAN esperado a precios de mercado supera al VAN oficial','t = 134,7 · p < 0,001',1],['La probabilidad de VAN negativo es menor que 5 %','90 de 10 000 simulaciones · p < 0,001',1]];
+const D=[['Oro pagable (vida de la mina)','1 547 mil oz'],['Vida de la mina','14,2 años'],['Producción anual','110,5 mil oz'],['Inversión pendiente','US$ 177 M'],['Costo total por onza (AISC)','US$ 1 568'],['Tasa de descuento (WACC)','8,26 %'],['VAN oficial','US$ 191 M'],['VAN del modelo','US$ 205 M']];
+const ok=H.filter(h=>h[2]).length;
+return `${bar('resultados')}<div class="db">
+<div class="wrap">
+<header class="db-head"><div><span class="kicker">Resultados · 10 000 simulaciones de Monte Carlo</span><h1>Valor de San Gabriel bajo incertidumbre</h1></div>
+<div class="db-ctl"><div class="seg" role="group" aria-label="Escenario">${Object.entries(SC).map(([k,v])=>`<button data-sc="${k}" aria-pressed="${k===sc}">${v.name}<small>${v.short}</small></button>`).join('')}</div>
+<div class="seg" role="group" aria-label="Moneda"><button data-cur="usd" aria-pressed="${cur==='usd'}">US$</button><button data-cur="pen" aria-pressed="${cur==='pen'}">Soles</button></div></div></header>
+
+<section class="kpis" aria-label="Indicadores clave">
+<div class="kpi main"><span class="kl">VAN esperado</span><span class="kv">${u} ${f0(s.mean)}<small> M</small></span><span class="ks">Promedio de 10 000 escenarios</span></div>
+<div class="kpi"><span class="kl">Mediana</span><span class="kv">${u} ${f0(s.p50)}<small> M</small></span><span class="ks">La mitad de los casos está por debajo</span></div>
+<div class="kpi"><span class="kl">Peor 5 % (P5)</span><span class="kv${s.p5<0?' neg':''}">${u} ${f0(s.p5)}<small> M</small></span><span class="ks">Escenario pesimista</span></div>
+<div class="kpi"><span class="kl">Mejor 5 % (P95)</span><span class="kv">${u} ${f0(s.p95)}<small> M</small></span><span class="ks">Escenario optimista</span></div>
+<div class="kpi risk ${lvl[0]}"><span class="kl">Prob. de VAN negativo</span><span class="kv">${fx(neg*100)}<small> %</small></span><span class="ks"><i></i>${lvl[1]}</span></div>
+</section>
+
+<section class="grid">
+<article class="card c8"><header class="ch"><h2>Distribución del VAN</h2><span class="ctag">${S.short}</span></header>
+${hasHist()?`<div class="chart" id="histBox">${histSVG()}</div>
+<div class="slider"><label for="thr">Probabilidad de que el VAN sea menor que <output id="thrOut">${u} ${f0(thr)} M</output>: <output id="thrP" class="big">${fx(probBelow(thr)*100)} %</output></label>
+<input type="range" id="thr" min="${Math.round(series().edges[0])}" max="${Math.round(series().p95)}" step="1" value="${thr}"></div>
+<details class="tip"><summary>Cómo leer</summary>Cada barra agrupa simulaciones con un VAN parecido. Rojo: la mina pierde dinero (VAN negativo). Celeste: casos por debajo del valor elegido en el control. Las líneas punteadas marcan P5, la mediana y P95.</details>`:`<p class="empty-n">Para este escenario en soles solo hay indicadores resumidos (tabla 8); la distribución completa se simuló en dólares.</p>`}
+</article>
+
+<article class="card c4"><header class="ch"><h2>¿Qué factor pesa más?</h2><span class="ctag">Δ VAN, S/ M</span></header>
+<div class="tor">${T.map(([n,v])=>`<div class="tr"><span class="tn">${n}</span><div class="tt"><span class="mid"></span><span class="bar" style="${v>=0?`left:50%;width:${v/3044*50}%;background:#2463b8`:`right:50%;width:${-v/3044*50}%;background:#c0392b`}"></span></div><span class="tv ${v<0?'neg':''}">${v>0?'+':'−'}${f0(Math.abs(v))}</span></div>`).join('')}</div>
+<div class="r2"><span>R²</span><b>0,897</b><small>Estos cuatro factores explican casi el 90 % del VAN.</small></div>
+<details class="tip"><summary>Cómo leer</summary>Cambio del VAN cuando el factor sube una desviación estándar. Azul: el VAN sube; rojo: baja. El precio del oro pesa casi cinco veces más que el tipo de cambio.</details>
+</article>
+
+<article class="card c6"><header class="ch"><h2>Margen de seguridad del precio</h2><span class="ctag">US$ por onza</span></header>
+<div class="gauge"><div class="gtrack"><span class="gfill" style="width:${1831/4437*100}%"></span><span class="gmk be" style="left:${1831/4437*100}%"><b>US$ 1 831</b>Equilibrio</span><span class="gmk mk"><b>US$ 4 437</b>Mercado</span></div></div>
+<p class="gtext">Equilibrio: precio con el que el VAN es 0. Mercado: precio al 31/08/2026.<br>El oro puede caer <b>58,7 %</b> antes de que la mina deje de ser rentable.</p>
+<div class="facts2g">${D.map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>
+<p class="note2">Datos extraídos del informe técnico presentado a la SEC; el modelo replica el VAN oficial con una diferencia de 7,5 %.</p>
+</article>
+
+<article class="card c6"><header class="ch"><h2>Hipótesis</h2><span class="ctag score">${ok} de ${H.length} se cumplen</span></header>
+<ul class="hl">${H.map(([t,st,v])=>`<li class="${v?'y':'n'}"><span class="hi" aria-hidden="true">${v?'✓':'✕'}</span><div><p>${t}</p><small>${st}</small></div><span class="hs">${v?'Se cumple':'No se cumple'}</span></li>`).join('')}</ul>
+</article>
+</section>
+
+<footer class="db-foot"><p class="small">${nb('Fuente: cálculos del equipo con 10 000 simulaciones (semilla 531, bloques de 21 días) y datos diarios del BCRP, Yahoo Finance y FRED, del 18/11/2004 al 31/08/2026.')}</p>
+<nav class="next"><a class="back" href="#posters">← Pósters</a><a class="back" href="#journal">Journal →</a><a class="back" href="#inicio">Portada</a></nav></footer>
+</div></div>`}
+
+function bindRes(){document.querySelectorAll('[data-sc]').forEach(b=>b.onclick=()=>{sc=b.dataset.sc;thr=0;paint(true)});
+document.querySelectorAll('[data-cur]').forEach(b=>b.onclick=()=>{cur=b.dataset.cur;thr=0;paint(true)});
+const r=document.getElementById('thr');if(r)r.oninput=()=>{thr=+r.value;const u=cur==='usd'?'US$':'S/';document.getElementById('thrOut').textContent=`${u} ${f0(thr)} M`;document.getElementById('thrP').textContent=`${fx(probBelow(thr)*100)} %`;document.getElementById('histBox').innerHTML=histSVG()}}
+/* ================= repositorio: artículos, pósters y trabajo propio ================= */
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ART_IDS=Array.from({length:20},(_,i)=>'art'+String(i+1).padStart(2,'0'));
+const OWN={journal:{title:'Journal',kick:'Mi trabajo',desc:'Artículo del proyecto en formato journal.'},beamer:{title:'Beamer',kick:'Mi trabajo',desc:'Presentación del proyecto en Beamer.'},miposter:{title:'Póster',kick:'Mi trabajo',desc:'Póster académico del proyecto.'}};
+const STATIC_DOCS={"art01": {"authors": "Senova, A.; Tobisova, A.; Rozenberg, R.", "lang": "es", "pdf": {"id": "723641a0278d7a16ba2d3610642b4bd6", "name": "Articulo_01_ES.pdf", "size": 222775, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%201%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "8f8dfe78c58f8edb187c34be0ba9bd9d", "name": "Articulo_01_original_EN.pdf", "size": 4560728, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%201.pdf"}, "posterPdf": {"id": "1a491cc8e3285704d6ea4c49adbedb83", "name": "Poster_01.pdf", "size": 219261, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%201.pdf"}, "posterZip": {"name": "Poster_01_LaTeX.zip", "size": 58388, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%201.zip"}, "title": "Nuevos enfoques para evaluar el riesgo de proyectos mediante el método de Monte Carlo", "titleEn": "New Approaches to Project Risk Assessment Utilizing the Monte Carlo Method", "venue": "Sustainability", "year": "2023"}, "art02": {"authors": "Khodaeibabajan, A.; Ozturk, C. A.", "lang": "es", "pdf": {"id": "10ce73e6f569404352422c4acd3188cd", "name": "Articulo_02_ES.pdf", "size": 207756, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%202%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "0c680e2dfa7e3bdb1ebc608dd612ffac", "name": "Articulo_02_original_EN.pdf", "size": 2749907, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%202.pdf"}, "posterPdf": {"id": "5b12d0eca1765043af1ca598211d9e7a", "name": "Poster_02.pdf", "size": 245469, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%202.pdf"}, "posterZip": {"name": "Poster_02_LaTeX.zip", "size": 58396, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%202.zip"}, "title": "Marco de decisión basado en riesgo para la minería aurífera a tajo abierto con simulación de Monte Carlo", "titleEn": "A Risk-Based Decision Framework for Economic Sustainability in Open-Pit Gold Mining Using Monte Carlo Simulation", "venue": "Sustainability", "year": "2026"}, "art03": {"authors": "Markovic, P.; Stevanovic, D.; Kolonja, B.; Slavkovic, D.; Krzanovic, D.", "lang": "es", "pdf": {"id": "6e4a66043b19c388630bdf79b39092ad", "name": "Articulo_03_ES.pdf", "size": 617366, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%203%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "5eb7ef0e20ebf36ec7f5edf6089c2ae5", "name": "Articulo_03_original_EN.pdf", "size": 13056918, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%203.pdf"}, "posterPdf": {"id": "7cd2e5948efcfe38ac603354802c0218", "name": "Poster_03.pdf", "size": 224328, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%203.pdf"}, "posterZip": {"name": "Poster_03_LaTeX.zip", "size": 58380, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%203.zip"}, "title": "Modelo híbrido para la planificación estratégica basada en riesgo en minería a tajo abierto (determinista, estocástico e ISO 31000)", "titleEn": "A Hybrid Model for Risk-Based Strategic Planning in Open-Pit Mining: Integrating Deterministic, Stochastic, and ISO 31000 Approaches", "venue": "Applied Sciences", "year": "2025"}, "art04": {"authors": "Toro Morales, D. A.; Franco Sepúlveda, G.; de la Barra, E.; Del Río Cuervo, J. C.", "lang": "es", "pdf": {"id": "88ab5354b7218af54be4a246f70ad4fe", "name": "Articulo_04_ES.pdf", "size": 218122, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%204%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "56ab460d5b51d4cb0be8ca80165472a2", "name": "Articulo_04_original_EN.pdf", "size": 3598491, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%204.pdf"}, "posterPdf": {"id": "556459a8a9e96b7b41f4dd73482460ec", "name": "Poster_04.pdf", "size": 225593, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%204.pdf"}, "posterZip": {"name": "Poster_04_LaTeX.zip", "size": 58296, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%204.zip"}, "title": "Optimización de la ley de corte con incertidumbre geológica en una mina subterránea de oro: un caso real", "titleEn": "Cutoff Grade Optimization on Operative Decision Variables with Geological Uncertainty in an Underground Gold Mine: A Real Case Study", "venue": "Mathematics", "year": "2024"}, "art05": {"authors": "Tampubolon, D. K. F.; Khayam, U.; Isnandar, S. et al.", "lang": "es", "pdf": {"id": "d187670852b3ad6061ac89ec2d26fedf", "name": "Articulo_05_ES.pdf", "size": 321985, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%205%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "dba87dc9da22b05aef5032d0bc01895e", "name": "Articulo_05_original_EN.pdf", "size": 3661348, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%205.pdf"}, "posterPdf": {"id": "ff09c96e2d716fa3b370d7ef3863f756", "name": "Poster_05.pdf", "size": 222713, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%205.pdf"}, "posterZip": {"name": "Poster_05_LaTeX.zip", "size": 58352, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%205.zip"}, "title": "Evaluación del riesgo de proyectos de energía renovable en distintas estructuras del mercado eléctrico: revisión sistemática", "titleEn": "Project Risk Assessment of Renewable Energy Projects in Electricity Market Structures: A Systematic Literature Review", "venue": "Energies", "year": "2026"}, "art06": {"authors": "Chambers, D. M.", "lang": "es", "pdf": {"id": "638eb041dc659a54bdec7b119b8db8e1", "name": "Articulo_06_ES.pdf", "size": 370439, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%206%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "cf7184f188606906623f1407265deffd", "name": "Articulo_06_original_EN.pdf", "size": 604013, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%206.pdf"}, "posterPdf": {"id": "dc8b31260ac6c7ec8e5d62396fdd2bf3", "name": "Poster_06.pdf", "size": 243441, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%206.pdf"}, "posterZip": {"name": "Poster_06_LaTeX.zip", "size": 58457, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%206.zip"}, "title": "Cálculo del valor actual neto para la garantía financiera de poscierre minero", "titleEn": "Net Present Value Calculations for Mining Post-Closure Financial Assurance", "venue": "Mine Water and the Environment", "year": "2024"}, "art07": {"authors": "Krysa, Z.; Bodziony, P.; Patyk, M.", "lang": "es", "pdf": {"id": "30e35d69226ec4c9579a286415bcd8be", "name": "Articulo_07_ES.pdf", "size": 219614, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%207%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "f13773db088d84360222eecdec70329b", "name": "Articulo_07_original_EN.pdf", "size": 5694474, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%207.pdf"}, "posterPdf": {"id": "f90719e256212f355466058444bbadb9", "name": "Poster_07.pdf", "size": 220670, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%207.pdf"}, "posterZip": {"name": "Poster_07_LaTeX.zip", "size": 58254, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%207.zip"}, "title": "Explotación de recursos minerales con precios volátiles de la energía: análisis técnico-económico de yacimientos de baja calidad", "titleEn": "Exploitation of Mineral Resources in Conditions of Volatile Energy Prices: Technical and Economic Analysis of Low-Quality Deposits", "venue": "Energies", "year": "2024"}, "art08": {"authors": "Danielson, M. G.", "lang": "es", "pdf": {"id": "9580087b6fd899f7f1e7920b89b02dd4", "name": "Articulo_08_ES.pdf", "size": 236764, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%208%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "87c6fadef13692e2d7f52cf9bd5c20f7", "name": "Articulo_08_original_EN.pdf", "size": 1404550, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%208.pdf"}, "posterPdf": {"id": "938a097f4148feef2ab678c8ae07aa31", "name": "Poster_08.pdf", "size": 239125, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%208.pdf"}, "posterZip": {"name": "Poster_08_LaTeX.zip", "size": 58257, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%208.zip"}, "title": "Escudos fiscales, costo promedio ponderado del capital y la tasa de descuento para proyectos de vida útil finita", "titleEn": "Tax Shields, the Weighted Average Cost of Capital, and the Appropriate Discount Rate for a Project with a Finite Useful Life", "venue": "Journal of Risk and Financial Management", "year": "2023"}, "art09": {"authors": "Fregonara, E.; Ferrando, D. G.", "lang": "es", "pdf": {"id": "afc17da3b6d6aad0ab16fad149cfdf8e", "name": "Articulo_09_ES.pdf", "size": 214289, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%209%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "01b8a6409d927aee4f28630acfad763d", "name": "Articulo_09_original_EN.pdf", "size": 2340179, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%209.pdf"}, "posterPdf": {"id": "997b275259486ca0ae8ccced74ad4165", "name": "Poster_09.pdf", "size": 226397, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%209.pdf"}, "posterZip": {"name": "Poster_09_LaTeX.zip", "size": 58261, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%209.zip"}, "title": "La tasa de descuento en la evaluación de la sostenibilidad económico-ambiental de proyectos", "titleEn": "The Discount Rate in the Evaluation of Project Economic-Environmental Sustainability", "venue": "Sustainability", "year": "2023"}, "art10": {"authors": "Herley, M. D.; Orlowski, L. T.; Ritter, M. A.", "lang": "es", "pdf": {"id": "240f0a86a4a0bba1975fc1b78ef5d804", "name": "Articulo_10_ES.pdf", "size": 174692, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2010%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "efca8f87b7c0a4f9df946c6fb99840bc", "name": "Articulo_10_original_EN.pdf", "size": 499740, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2010.pdf"}, "posterPdf": {"id": "1d07b9484154a0c75ab90acb35287a98", "name": "Poster_10.pdf", "size": 238170, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2010.pdf"}, "posterZip": {"name": "Poster_10_LaTeX.zip", "size": 58233, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2010.zip"}, "title": "Elasticidad de los retornos del oro al tipo de cambio del dólar en distintas zonas de la tasa de fondos federales", "titleEn": "US Dollar Exchange Rate Elasticity of Gold Returns at Different Federal Fund Rate Zones", "venue": "Economies", "year": "2024"}, "art11": {"authors": "Ergül, Ö.; Karakaş, T.", "lang": "es", "pdf": {"id": "10659d183824364ec1967f505510d63e", "name": "Articulo_11_ES.pdf", "size": 1931877, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2011%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "aef2c9fb29f373d03a233ef7f131ade7", "name": "Articulo_11_EN_original.pdf", "size": 2706471, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2011.pdf"}, "posterPdf": {"id": "e5b323726df64db644ae3ed2b80540d9", "name": "Poster_11.pdf", "size": 246559, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2011.pdf"}, "posterZip": {"name": "Poster_11_LaTeX.zip", "size": 58232, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2011.zip"}, "title": "Análisis de la relación entre los precios del oro, la inflación y el bitcoin en el período posterior a la reducción gradual", "titleEn": "Analysis of the relationship of gold prices with inflation and bitcoin in the post-tapering period", "venue": "Borsa Istanbul Review", "year": "2024"}, "art12": {"authors": "Ryan, M.; Corbet, S.; Oxley, L.", "lang": "es", "pdf": {"id": "260665532f60efb2c61b0652c0c8ac8c", "name": "Articulo_12_ES.pdf", "size": 229559, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2012%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "5317855efa5c82181a3e665b2c932346", "name": "Articulo_12_original_EN.pdf", "size": 722937, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2012.pdf"}, "posterPdf": {"id": "7b7fa3e5eeda3f338a49116873f2e2ae", "name": "Poster_12.pdf", "size": 252912, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2012.pdf"}, "posterZip": {"name": "Poster_12_LaTeX.zip", "size": 58234, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2012.zip"}, "title": "¿Es el oro siempre un activo refugio?", "titleEn": "Is gold always a safe haven?", "venue": "Finance Research Letters", "year": "2024"}, "art13": {"authors": "Ben Ameur, H.; Jamaani, F.; Abu Alfoul, M. N.", "lang": "es", "pdf": {"id": "faf03a9480e15b00419fa2a21f4ada05", "name": "Articulo_13_ES.pdf", "size": 819172, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2013%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "0b0556ea5c55483ac948909e4ad4ae46", "name": "Articulo_13_original_EN.pdf", "size": 3314302, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2013.pdf"}, "posterPdf": {"id": "5470dcb23a92c229421a9122be2877bc", "name": "Poster_13.pdf", "size": 210035, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2013.pdf"}, "posterZip": {"name": "Poster_13_LaTeX.zip", "size": 58152, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2013.zip"}, "title": "Capacidad de cobertura y refugio del oro y las criptomonedas ante extremos geopolíticos y de mercado", "titleEn": "Examining the safe-haven and hedge capabilities of gold and cryptocurrencies: A GARCH and regression quantiles approach in geopolitical and market extremes", "venue": "Heliyon", "year": "2024"}, "art14": {"authors": "Kayral, I. E.; Jeribi, A.; Loukil, S.", "lang": "es", "pdf": {"id": "82491e52937452e4e8dc8ebd4f4ae2af", "name": "Articulo_14_ES.pdf", "size": 637201, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2014%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "df7ff149920b6671f2350ba6a73fa907", "name": "Articulo_14_original_EN.pdf", "size": 1599423, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2014.pdf"}, "posterPdf": {"id": "53a15744eb32ac99c1ea04152ff6e40d", "name": "Poster_14.pdf", "size": 222745, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2014.pdf"}, "posterZip": {"name": "Poster_14_LaTeX.zip", "size": 58198, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2014.zip"}, "title": "¿Son el bitcoin y el oro activos refugio durante el COVID-19 y la guerra Rusia–Ucrania de 2022?", "titleEn": "Are Bitcoin and Gold a Safe Haven during COVID-19 and the 2022 Russia–Ukraine War?", "venue": "Journal of Risk and Financial Management", "year": "2023"}, "art15": {"authors": "Chakroun, M. A.; Abidli, F.", "lang": "es", "pdf": {"id": "fd3a698088729a6f8e248056c436835c", "name": "Articulo_15_ES.pdf", "size": 264792, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2015%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "4c6f42e27dbbc7032f6fde4623f1b98b", "name": "Articulo_15_original_EN.pdf", "size": 9044043, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2015.pdf"}, "posterPdf": {"id": "0d4fe5c9a5f5d9ab622feab62f126cf6", "name": "Poster_15.pdf", "size": 215600, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2015.pdf"}, "posterZip": {"name": "Poster_15_LaTeX.zip", "size": 58168, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2015.zip"}, "title": "Impacto de la volatilidad del oro, la plata y el bitcoin en el riesgo sistémico bancario: ¿refugio o amplificador?", "titleEn": "The Impact of Gold, Silver, and Bitcoin Volatility on Banking Systemic Risk: Safe-Haven or Amplifier?", "venue": "Risks", "year": "2026"}, "art16": {"authors": "Jamali, S.; Elbouazizi, S.", "lang": "es", "pdf": {"id": "e53def65de2034b1b4908137f13103a8", "name": "Articulo_16_ES.pdf", "size": 252646, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2016%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "ad0cdf85c54ca2e17aa8277704a5e476", "name": "Articulo_16_original_EN.pdf", "size": 356038, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2016.pdf"}, "posterPdf": {"id": "56b2f39cda006a4241b2be213e53cd0c", "name": "Poster_16.pdf", "size": 213885, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2016.pdf"}, "posterZip": {"name": "Poster_16_LaTeX.zip", "size": 58201, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2016.zip"}, "title": "Volatilidad del tipo de cambio y resiliencia del flujo de caja empresarial: evidencia en mercados emergentes de Oriente Medio y Norte de África", "titleEn": "Exchange Rate Volatility and Corporate Cash-Flow Resilience: Firm-Level Evidence from MENA Emerging Markets", "venue": "Journal of Risk and Financial Management", "year": "2026"}, "art17": {"authors": "Jeon, J.; Kim, G.", "lang": "es", "pdf": {"id": "6515fdb67f85248ef150f40de0d8fa5a", "name": "Articulo_17_ES.pdf", "size": 179903, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2017%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "8fa23a9ac5916640cbbf36be05efae26", "name": "Articulo_17_original_EN.pdf", "size": 291835, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2017.pdf"}, "posterPdf": {"id": "54d910e28ad3057fc66f9bca7b826beb", "name": "Poster_17.pdf", "size": 235710, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2017.pdf"}, "posterZip": {"name": "Poster_17_LaTeX.zip", "size": 58162, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2017.zip"}, "title": "Valoración de un bono vinculado a materias primas con rendimiento de conveniencia y volatilidad estocásticos y riesgo de crédito", "titleEn": "Valuation of Commodity-Linked Bond with Stochastic Convenience Yield, Stochastic Volatility, and Credit Risk in an Intensity-Based Model", "venue": "Mathematics", "year": "2023"}, "art18": {"authors": "Huang, L.; Lee, W. Y.; Rennie, C. G.", "lang": "es", "pdf": {"id": "2204ff3f40132757b24a61e360588ecf", "name": "Articulo_18_ES.pdf", "size": 384971, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2018%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "8c9b7f2028d8d724efd8b89f114f5b2b", "name": "Articulo_18_original_EN.pdf", "size": 1441394, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2018.pdf"}, "posterPdf": {"id": "c70eb07356881f78bacaef8ff8ac8f9f", "name": "Poster_18.pdf", "size": 217874, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2018.pdf"}, "posterZip": {"name": "Poster_18_LaTeX.zip", "size": 58167, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2018.zip"}, "title": "Habilidad de selección y de sincronización en los retornos de los fondos mutuos de bonos: evidencia de simulaciones bootstrap", "titleEn": "Selection and Timing Skill in Bond Mutual Fund Returns: Evidence from Bootstrap Simulations", "venue": "Journal of Risk and Financial Management", "year": "2025"}, "art19": {"authors": "Contreras-Valdez, M. I.; Sahu, S.; Núñez-Mora, J. A.; Santillán-Salgado, R. J.", "lang": "es", "pdf": {"id": "3737934b49a8be8d59c557b12322b8a9", "name": "Articulo_19_ES.pdf", "size": 234894, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2019%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "fd460b8d05407e5f1f30f3bb970a293e", "name": "Articulo_19_original_EN.pdf", "size": 7704816, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2019.pdf"}, "posterPdf": {"id": "924e481ae05c655788a2810cccb17f5a", "name": "Poster_19.pdf", "size": 223077, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2019.pdf"}, "posterZip": {"name": "Poster_19_LaTeX.zip", "size": 58214, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2019.zip"}, "title": "Efectividad del valor en riesgo: un enfoque con datos de alta frecuencia y colas semipesadas", "titleEn": "Value-at-Risk Effectiveness: A High-Frequency Data Approach with Semi-Heavy Tails", "venue": "Risks", "year": "2024"}, "art20": {"authors": "Benhamed, A.; Gassouma, M. S.", "lang": "es", "pdf": {"id": "5c3b1b9ae05ad4375551348d5c244bb6", "name": "Articulo_20_ES.pdf", "size": 238714, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2020%20Traducido%20al%20espa%C3%B1ol.pdf"}, "pdfEn": {"id": "6ab1b901d4346bdbe15552d17e68a07d", "name": "Articulo_20_original_EN.pdf", "size": 1471130, "href": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2020.pdf"}, "posterPdf": {"id": "4ebefa134762be45588e5abcdbc15dbc", "name": "Poster_20.pdf", "size": 241119, "href": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2020.pdf"}, "posterZip": {"name": "Poster_20_LaTeX.zip", "size": 58190, "href": "Desarrollo_Alejandro%20Soto%20Antezana/Template%20Posters_Alejandro%20Soto%20Antezana/Poster%2020.zip"}, "title": "Análisis y modelación del riesgo sistemático económico y del requerimiento de capital: una simulación de Monte Carlo", "titleEn": "Investigation and Modelling of Economic Systematic Risk and Capital Requirement: A Monte Carlo Simulation", "venue": "Journal of Risk and Financial Management", "year": "2023"}};
+const FILEMAP={"723641a0278d7a16ba2d3610642b4bd6": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%201%20Traducido%20al%20espa%C3%B1ol.pdf", "8f8dfe78c58f8edb187c34be0ba9bd9d": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%201.pdf", "1a491cc8e3285704d6ea4c49adbedb83": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%201.pdf", "10ce73e6f569404352422c4acd3188cd": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%202%20Traducido%20al%20espa%C3%B1ol.pdf", "0c680e2dfa7e3bdb1ebc608dd612ffac": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%202.pdf", "5b12d0eca1765043af1ca598211d9e7a": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%202.pdf", "6e4a66043b19c388630bdf79b39092ad": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%203%20Traducido%20al%20espa%C3%B1ol.pdf", "5eb7ef0e20ebf36ec7f5edf6089c2ae5": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%203.pdf", "7cd2e5948efcfe38ac603354802c0218": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%203.pdf", "88ab5354b7218af54be4a246f70ad4fe": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%204%20Traducido%20al%20espa%C3%B1ol.pdf", "56ab460d5b51d4cb0be8ca80165472a2": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%204.pdf", "556459a8a9e96b7b41f4dd73482460ec": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%204.pdf", "d187670852b3ad6061ac89ec2d26fedf": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%205%20Traducido%20al%20espa%C3%B1ol.pdf", "dba87dc9da22b05aef5032d0bc01895e": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%205.pdf", "ff09c96e2d716fa3b370d7ef3863f756": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%205.pdf", "638eb041dc659a54bdec7b119b8db8e1": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%206%20Traducido%20al%20espa%C3%B1ol.pdf", "cf7184f188606906623f1407265deffd": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%206.pdf", "dc8b31260ac6c7ec8e5d62396fdd2bf3": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%206.pdf", "30e35d69226ec4c9579a286415bcd8be": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%207%20Traducido%20al%20espa%C3%B1ol.pdf", "f13773db088d84360222eecdec70329b": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%207.pdf", "f90719e256212f355466058444bbadb9": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%207.pdf", "9580087b6fd899f7f1e7920b89b02dd4": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%208%20Traducido%20al%20espa%C3%B1ol.pdf", "87c6fadef13692e2d7f52cf9bd5c20f7": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%208.pdf", "938a097f4148feef2ab678c8ae07aa31": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%208.pdf", "afc17da3b6d6aad0ab16fad149cfdf8e": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%209%20Traducido%20al%20espa%C3%B1ol.pdf", "01b8a6409d927aee4f28630acfad763d": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%209.pdf", "997b275259486ca0ae8ccced74ad4165": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%209.pdf", "240f0a86a4a0bba1975fc1b78ef5d804": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2010%20Traducido%20al%20espa%C3%B1ol.pdf", "efca8f87b7c0a4f9df946c6fb99840bc": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2010.pdf", "1d07b9484154a0c75ab90acb35287a98": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2010.pdf", "10659d183824364ec1967f505510d63e": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2011%20Traducido%20al%20espa%C3%B1ol.pdf", "aef2c9fb29f373d03a233ef7f131ade7": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2011.pdf", "e5b323726df64db644ae3ed2b80540d9": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2011.pdf", "260665532f60efb2c61b0652c0c8ac8c": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2012%20Traducido%20al%20espa%C3%B1ol.pdf", "5317855efa5c82181a3e665b2c932346": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2012.pdf", "7b7fa3e5eeda3f338a49116873f2e2ae": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2012.pdf", "faf03a9480e15b00419fa2a21f4ada05": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2013%20Traducido%20al%20espa%C3%B1ol.pdf", "0b0556ea5c55483ac948909e4ad4ae46": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2013.pdf", "5470dcb23a92c229421a9122be2877bc": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2013.pdf", "82491e52937452e4e8dc8ebd4f4ae2af": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2014%20Traducido%20al%20espa%C3%B1ol.pdf", "df7ff149920b6671f2350ba6a73fa907": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2014.pdf", "53a15744eb32ac99c1ea04152ff6e40d": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2014.pdf", "fd3a698088729a6f8e248056c436835c": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2015%20Traducido%20al%20espa%C3%B1ol.pdf", "4c6f42e27dbbc7032f6fde4623f1b98b": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2015.pdf", "0d4fe5c9a5f5d9ab622feab62f126cf6": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2015.pdf", "e53def65de2034b1b4908137f13103a8": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2016%20Traducido%20al%20espa%C3%B1ol.pdf", "ad0cdf85c54ca2e17aa8277704a5e476": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2016.pdf", "56b2f39cda006a4241b2be213e53cd0c": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2016.pdf", "6515fdb67f85248ef150f40de0d8fa5a": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2017%20Traducido%20al%20espa%C3%B1ol.pdf", "8fa23a9ac5916640cbbf36be05efae26": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2017.pdf", "54d910e28ad3057fc66f9bca7b826beb": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2017.pdf", "2204ff3f40132757b24a61e360588ecf": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2018%20Traducido%20al%20espa%C3%B1ol.pdf", "8c9b7f2028d8d724efd8b89f114f5b2b": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2018.pdf", "c70eb07356881f78bacaef8ff8ac8f9f": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2018.pdf", "3737934b49a8be8d59c557b12322b8a9": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2019%20Traducido%20al%20espa%C3%B1ol.pdf", "fd460b8d05407e5f1f30f3bb970a293e": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2019.pdf", "924e481ae05c655788a2810cccb17f5a": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2019.pdf", "5c3b1b9ae05ad4375551348d5c244bb6": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20traducidos_Alejandro%20Soto%20Antezana/Articulo%2020%20Traducido%20al%20espa%C3%B1ol.pdf", "6ab1b901d4346bdbe15552d17e68a07d": "Producto_Alejandro%20Soto%20Antezana/Art%C3%ADculos%20en%20Ingles_Alejandro%20Soto%20Antezana/Articulo%2020.pdf", "4ebefa134762be45588e5abcdbc15dbc": "Producto_Alejandro%20Soto%20Antezana/Posters%20de%20art%C3%ADculos_Alejandro%20Soto%20Antezana/Poster%2020.pdf"};const blobURL=id=>FILEMAP[id]||('/_blob/'+id);
+const R={db:null,assets:null,downloads:null,user:null,canEdit:false,docs:{},cfg:null,loaded:false,slow:false,unlocked:false,editing:null,lang:'all',busy:{},msg:''};
+try{R.unlocked=sessionStorage.getItem('sg_unlock')==='1'}catch(_){}
+async function repoInit(){
+  const [db,assets,downloads,user]=window.claude?.use?await Promise.all(['db','assets','downloads','user'].map(n=>window.claude.use(n).catch(()=>null))):[null,null,null,null];
+  Object.assign(R,{db,assets,downloads,user});
+  R.canEdit=!!assets||((await user?.canEdit?.().catch(()=>false))??false);
+  if(!db){R.docs=STATIC_DOCS;R.loaded=true;repaint();return}
+  const t=setTimeout(()=>{R.slow=true;repaint()},10000);
+  db.collection('docs').onSnapshot(s=>{if(!s.metadata?.fromCache){clearTimeout(t);R.slow=false}R.docs={};s.docs.forEach(d=>R.docs[d.id]=d.data()||{});R.loaded=true;repaint()},()=>{clearTimeout(t);if(!Object.keys(R.docs).length)R.docs=STATIC_DOCS;R.loaded=true;repaint()});
+  db.doc('config/access').onSnapshot(s=>{R.cfg=s.exists?s.data():null;repaint()},()=>{});
+}
+function repaint(){const ae=document.activeElement;const lbx=document.getElementById('lb');if(lbx&&!lbx.hidden)return;const rdx=document.getElementById('rd');if(rdx&&!rdx.hidden)return;if(ae&&ae.closest&&ae.closest('form.meta,#pwset,#lockform'))return;const dl=document.getElementById('lockdlg');if(dl&&!dl.hidden)return;const h=location.hash.slice(1);if(['articulos','posters','journal','beamer','miposter'].includes(h))paint(true)}
+const locked=()=>!!(R.cfg&&R.cfg.hash)&&!R.unlocked&&!R.canEdit;
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const fmtSize=n=>n>1048576?(n/1048576).toFixed(1).replace('.',',')+' MB':Math.max(1,Math.round(n/1024))+' KB';
+
+/* ---------- descarga ---------- */
+async function getFile(f,ext){
+  if(locked()){openLock();return}
+  if(f.href){const a=document.createElement('a');a.href=f.href;a.download=f.name||('archivo.'+ext);document.body.appendChild(a);a.click();a.remove();return}
+  if(!R.downloads||f.remote){if(f.id&&!f.enc&&!f.remote){const a=document.createElement('a');a.href='/_blob/'+f.id;a.download=f.name||('archivo.'+ext);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();return}if(f.remote){toast('El LaTeX .zip se descarga ingresando con una cuenta de Claude.');return}toast('Las descargas no están disponibles en esta vista.');return}
+  try{let data;if(f.b64){data=new Blob([f.b64],{type:'text/plain'})}else{const r=await fetch(blobURL(f.id));if(!r.ok)throw 0;data=await r.blob()}
+    if(f.enc==='b64'){const txt=await data.text();const bin=atob(txt.trim());const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);data=new Blob([u],{type:'application/zip'})}
+    await R.downloads.save({filename:f.name||('archivo.'+ext),data});
+  }catch(e){if(e&&e.code==='declined')return;toast(e&&e.code==='rejected_extension'?'Ese tipo de archivo no se puede descargar aquí.':'No se pudo descargar el archivo. Inténtalo de nuevo.')}}
+/* ---------- subida ---------- */
+async function putFile(docId,field,file){
+  if(!R.assets||!R.db)return;const isZip=/\.zip$/i.test(file.name);const isPdf=/\.pdf$/i.test(file.name)||file.type==='application/pdf';
+  if(field==='posterZip'&&!isZip){toast('Elige un archivo .zip exportado de Overleaf.');return}
+  if(field!=='posterZip'&&!isPdf){toast('Elige un archivo PDF.');return}
+  R.busy[docId+field]=true;repaint();
+  try{let blob=file,opts={type:'application/pdf'},enc=null;
+    if(isZip){const buf=new Uint8Array(await file.arrayBuffer());let s='';for(let i=0;i<buf.length;i+=0x8000)s+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));blob=new Blob([btoa(s)],{type:'text/plain'});opts={type:'text/plain'};enc='b64'}
+    const res=await R.assets.upload(blob,opts);
+    const prev=R.docs[docId]?.[field];
+    const rec={id:res.id,name:file.name,size:file.size,at:new Date().toISOString()};if(enc)rec.enc=enc;
+    await R.db.doc('docs/'+docId).set({...(R.docs[docId]||{}),[field]:rec});
+    if(prev?.id)R.assets.delete(prev.id).catch(()=>{});
+    toast('Archivo subido.');
+  }catch(e){toast(e&&e.code==='too_large'?'El archivo supera los 20 MB permitidos.':e&&e.code==='quota_or_state'?'Se llenó el espacio de almacenamiento.':'No se pudo subir el archivo.')}
+  R.busy[docId+field]=false;repaint()}
+async function dropFile(docId,field){const f=R.docs[docId]?.[field];if(!f)return;const d={...R.docs[docId]};delete d[field];
+  try{await R.db.doc('docs/'+docId).set(d);await R.assets.delete(f.id).catch(()=>{});toast('Archivo quitado.')}catch(_){toast('No se pudo quitar el archivo.')}}
+async function saveMeta(docId,form){const fd=new FormData(form);const d={...(R.docs[docId]||{})};['title','authors','year','venue','lang'].forEach(k=>{const v=(fd.get(k)||'').toString().trim().slice(0,300);if(v)d[k]=v;else delete d[k]});
+  try{await R.db.doc('docs/'+docId).set(d);R.editing=null;toast('Datos guardados.')}catch(_){toast('No se pudieron guardar los datos.')}repaint()}
+
+/* ---------- contraseña ---------- */
+function openLock(){const m=document.getElementById('lockdlg');if(m){m.hidden=false;setTimeout(()=>document.getElementById('pw')?.focus(),50)}}
+async function tryUnlock(pw){if(!R.cfg)return;const h=await sha(R.cfg.salt+pw);if(h===R.cfg.hash){R.unlocked=true;try{sessionStorage.setItem('sg_unlock','1')}catch(_){}document.getElementById('lockdlg').hidden=true;repaint();toast('Descargas desbloqueadas.')}else{const e=document.getElementById('pwerr');if(e)e.textContent='Contraseña incorrecta.'}}
+async function setPassword(pw){const salt=[...crypto.getRandomValues(new Uint8Array(12))].map(x=>x.toString(16).padStart(2,'0')).join('');
+  try{await R.db.doc('config/access').set({salt,hash:await sha(salt+pw)});toast('Contraseña guardada.')}catch(_){toast('No se pudo guardar la contraseña.')}}
+async function clearPassword(){try{await R.db.doc('config/access').delete();toast('Contraseña quitada: las descargas quedan libres.')}catch(_){toast('No se pudo quitar la contraseña.')}}
+let toastT;function toast(t){const el=document.getElementById('toast');if(!el)return;el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,3200)}
+
+/* ---------- vista previa de PDF (primera página) ---------- */
+let pdfjsP=null;
+function loadPdfjs(){if(pdfjsP)return pdfjsP;pdfjsP=import('./lib/pdf.min.mjs').then(m=>{m.GlobalWorkerOptions.workerSrc=new URL('lib/pdf.worker.min.mjs',location.href).href;return m}).catch(()=>loadPdfjsCDN());return pdfjsP}
+function loadPdfjsCDN(){const add=src=>new Promise((ok,ko)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=ko;document.head.appendChild(s)});
+  pdfjsP=add('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js').then(()=>add('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js')).then(()=>window.pdfjsLib).catch(()=>null);return pdfjsP}
+const thumbCache={};
+
+/* ---------- piezas de interfaz ---------- */
+function fileBtn(docId,field,label,ext){const f=R.docs[docId]?.[field];const busy=R.busy[docId+field];
+  const dl=f?`<button class="dl" data-get="${docId}|${field}|${ext}"><span class="ico">↓</span>${label}<small>${fmtSize(f.size||0)}</small></button>`:`<span class="dl off"><span class="ico">–</span>${label}<small>Pendiente</small></span>`;
+  if(!R.canEdit||!R.assets)return dl;
+  return `<span class="fgroup">${dl}<label class="up${busy?' busy':''}">${busy?'Subiendo…':(f?'Reemplazar':'Subir')}<input type="file" accept="${ext==='zip'?'.zip':'.pdf,application/pdf'}" data-put="${docId}|${field}" ${busy?'disabled':''}></label>${f?`<button class="rm" data-drop="${docId}|${field}" aria-label="Quitar ${label}">✕</button>`:''}</span>`}
+function metaForm(id){const d=R.docs[id]||{};return `<form class="meta" data-meta="${id}">
+<label>Título<input name="title" value="${esc(d.title)}" maxlength="300" placeholder="Título del artículo"></label>
+<label>Autores<input name="authors" value="${esc(d.authors)}" maxlength="300" placeholder="Apellido, N.; Apellido, N."></label>
+<div class="row3"><label>Año<input name="year" value="${esc(d.year)}" maxlength="4" inputmode="numeric"></label><label>Revista<input name="venue" value="${esc(d.venue)}" maxlength="300"></label>
+<label>Idioma<select name="lang"><option value="es"${d.lang!=='en'?' selected':''}>Español</option><option value="en"${d.lang==='en'?' selected':''}>Inglés</option></select></label></div>
+<div class="mbtns"><button type="submit" class="go">Guardar</button><button type="button" class="ghost" data-cancel>Cancelar</button></div></form>`}
+function status(){if(!R.db)return '';if(!R.loaded)return `<p class="note">Cargando archivos…</p>`;if(R.slow)return `<p class="note">No se pudo conectar con el almacenamiento todavía; lo que ves puede no estar al día.</p>`;return ''}
+function lockBar(){const has=!!(R.cfg&&R.cfg.hash);let s='';
+  if(R.canEdit&&R.db)s=`<details class="access"><summary>Contraseña de descarga · ${has?'activada':'sin contraseña'}</summary><form id="pwset"><input type="password" id="newpw" minlength="4" placeholder="Nueva contraseña" autocomplete="new-password"><button class="go" type="submit">${has?'Cambiar':'Activar'}</button>${has?'<button class="ghost" type="button" id="pwclear">Quitar</button>':''}</form></details>`;
+  else if(has)s=`<div class="lockline">${R.unlocked?'<span class="okk">Descargas desbloqueadas</span>':'<button class="go" id="openlock">Ingresar contraseña para descargar</button>'}</div>`;
+  return s}
+function shell(cur,inner){return `${bar(cur)}<div class="wrap repo">${inner}</div>
+<div class="dlg" id="lockdlg" hidden><form class="dlgbox" id="lockform"><h3>Descargas protegidas</h3><p>Ingresa la contraseña para descargar los documentos.</p><input type="password" id="pw" autocomplete="current-password"><span id="pwerr" class="err"></span><div class="mbtns"><button class="go" type="submit">Desbloquear</button><button class="ghost" type="button" id="lockcancel">Cancelar</button></div></form></div>
+<div class="toast" id="toast" hidden></div>`}
+
+/* ---------- páginas ---------- */
+/* ---------- pósters: sala de exposición ---------- */
+let pIdx=0,pMode='sala';
+const thumbImg={};
+async function drawThumbs(){const cs=[...document.querySelectorAll('canvas[data-pdf]:not(.ready)')];if(!cs.length||locked())return;
+  for(const c of cs){const id=c.dataset.pdf;try{const pg=await pdfPage(id);const v=pg.getViewport({scale:1});const sc=Math.min(900,Math.max(300,(c.clientWidth||300)*2))/v.width;const vp=pg.getViewport({scale:sc});
+    c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;c.classList.add('ready');try{thumbImg[id]=c.toDataURL('image/jpeg',.88)}catch(_){}}catch(_){}}}
+function pFace(id){const d=R.docs[id]||{},p=d.posterPdf,n=id.slice(3);
+  const ph=`<div class="ph"><span class="phn">${n}</span><span class="pht">${d.title?esc(d.title):'Póster '+n}</span><span class="phl">${p&&locked()?'Protegido':p?'':'Pendiente'}</span></div>`;
+  if(!p||locked())return ph;return thumbImg[p.id]?`<img src="${thumbImg[p.id]}" alt="Póster ${n}">`:ph+`<canvas data-pdf="${p.id}"></canvas>`}
+function pCap(){const id=ART_IDS[pIdx],d=R.docs[id]||{},n=id.slice(3),p=d.posterPdf;
+  return `<div class="pnum">${n}<span>/ 20</span></div><h2 class="ptitle">${d.title?esc(d.title):'Póster del artículo '+n}</h2>
+  ${(d.authors||d.year)?`<p class="pmeta">${[d.authors,d.year].filter(Boolean).map(esc).join(' · ')}</p>`:''}<span class="lang">${(d.lang||'es')==='en'?'EN':'ES'}</span>
+  <div class="files pfiles">${p&&!locked()?`<button class="dl" id="pZoom"><span class="ico">⤢</span>Ampliar</button>`:''}${fileBtn(id,'posterPdf','Póster PDF','pdf')}${fileBtn(id,'posterZip','LaTeX .zip','zip')}</div>`}
+function posters(){const n=ART_IDS.filter(id=>R.docs[id]?.posterPdf).length;
+  return shell('posters',`<header class="rhead2 phead"><div><span class="mc-kick">Exposición · LaTeX · Overleaf</span><h1>Pósters</h1></div>
+<div class="views pmode" role="group" aria-label="Vista">${[['sala','Sala'],['mosaico','Mosaico']].map(([k,l])=>`<button data-pmode="${k}" aria-pressed="${pMode===k}">${l}</button>`).join('')}</div></header>
+${status()}${lockBar()}
+${pMode==='sala'?`<section class="expo" id="expo" tabindex="0" aria-roledescription="carrusel" aria-label="Pósters de los artículos. Usa las flechas para recorrerlos.">
+<div class="spot" aria-hidden="true"></div><div class="floor" aria-hidden="true"></div>
+<div class="rail" id="rail">${ART_IDS.map((id,i)=>`<figure class="pf" data-i="${i}"><div class="pin">${pFace(id)}</div></figure>`).join('')}</div>
+<button class="pnav pl" id="pPrev" aria-label="Póster anterior">←</button><button class="pnav pr" id="pNext" aria-label="Póster siguiente">→</button></section>
+<div class="pcap" id="pcap" aria-live="polite">${pCap()}</div>
+<nav class="ticks" aria-label="Elegir póster">${ART_IDS.map((id,i)=>`<button data-pi="${i}" class="${R.docs[id]?.posterPdf?'has':''}${i===pIdx?' on':''}" aria-label="Póster ${i+1}">${String(i+1).padStart(2,'0')}</button>`).join('')}</nav>
+<p class="pcount">${n} de 20 pósters en sala</p>`
+:`<div class="mosaic">${ART_IDS.map((id,i)=>`<button class="mo" data-mo="${i}" aria-label="Ver póster ${i+1}"><span class="pin">${pFace(id)}</span></button>`).join('')}</div>`}
+<div class="lb" id="lb" hidden><button class="lbx" id="lbx" aria-label="Cerrar">✕</button><div class="lbin" id="lbin"></div></div>`)}
+function placeCards(intro){const rail=document.getElementById('rail');if(!rail)return;const f0=rail.querySelector('.pf');const cw=f0.offsetWidth,W=rail.clientWidth,mob=W<640;
+  const g0=cw*(mob?.62:.78),gn=cw*(mob?.2:.3),vis=mob?2:4,rot=mob?50:42;
+  rail.querySelectorAll('.pf').forEach(f=>{const i=+f.dataset.i,d=i-pIdx,a=Math.abs(d),s=Math.sign(d);
+    const x=a?s*(g0+(a-1)*gn):0;f.style.transitionDelay=intro?(a*70)+'ms':'0ms';
+    f.style.transform=a?`translateX(${x}px) translateZ(${-160-a*30}px) rotateY(${-s*rot}deg)`:'translateZ(40px)';
+    f.style.opacity=a>vis?0:1;f.style.zIndex=50-a;f.classList.toggle('cur',a===0);f.style.pointerEvents=a>vis?'none':'';f.setAttribute('aria-hidden',a?'true':'false')});
+  if(intro)setTimeout(()=>rail.querySelectorAll('.pf').forEach(f=>f.style.transitionDelay='0ms'),1600)}
+function goPoster(i){i=Math.max(0,Math.min(19,i));if(i===pIdx)return;pIdx=i;placeCards();const c=document.getElementById('pcap');if(c){c.classList.remove('swap');void c.offsetWidth;c.innerHTML=pCap();c.classList.add('swap')}
+  document.querySelectorAll('.ticks button').forEach((b,k)=>b.classList.toggle('on',k===pIdx));bindRepo(true)}
+function closeLB(){const lb=document.getElementById('lb');if(lb&&!lb.hidden){lb.hidden=true;document.getElementById('expo')?.focus()}}
+function bindPosters(){const intro=window.__pv!=='posters';
+  document.querySelectorAll('[data-pmode]').forEach(b=>b.onclick=()=>{pMode=b.dataset.pmode;paint(true)});
+  document.querySelectorAll('[data-mo]').forEach(b=>b.onclick=()=>{pIdx=+b.dataset.mo;pMode='sala';window.__pv='';paint(true)});
+  const rail=document.getElementById('rail');if(rail){if(intro){rail.classList.add('intro');requestAnimationFrame(()=>requestAnimationFrame(()=>{rail.classList.remove('intro');placeCards(true)}))}else placeCards();
+    rail.querySelectorAll('.pf').forEach(f=>f.onclick=()=>{const i=+f.dataset.i;if(i===pIdx)openLB();else goPoster(i)});
+    document.getElementById('pPrev').onclick=()=>goPoster(pIdx-1);document.getElementById('pNext').onclick=()=>goPoster(pIdx+1);
+    document.querySelectorAll('[data-pi]').forEach(b=>b.onclick=()=>goPoster(+b.dataset.pi));
+    const ex=document.getElementById('expo');let x0=null;ex.onpointerdown=e=>{x0=e.clientX};ex.onpointerup=e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>45)goPoster(pIdx+(dx<0?1:-1))};
+    let wt=0;ex.onwheel=e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();const now=Date.now();if(now-wt<350)return;wt=now;goPoster(pIdx+(e.deltaX>0?1:-1))}}
+}
+if(!window.__pk){window.__pk=1;addEventListener('keydown',e=>{if(location.hash!=='#posters'||e.target.closest?.('input,select,textarea'))return;const lb=document.getElementById('lb');
+  if(lb&&!lb.hidden){if(e.key==='Escape')closeLB();return}if(pMode!=='sala')return;
+  if(e.key==='ArrowRight'){e.preventDefault();goPoster(pIdx+1)}else if(e.key==='ArrowLeft'){e.preventDefault();goPoster(pIdx-1)}else if(e.key==='Enter'&&document.activeElement?.id==='expo')openLB()});
+  addEventListener('resize',()=>{if(location.hash==='#posters')placeCards()})}
+/* ================= escenas: biblioteca, journal, beamer, museo ================= */
+const pdfDocs={},pageImg={};
+function pdfDoc(id){if(!pdfDocs[id]){pdfDocs[id]=loadPdfjs().then(lib=>{if(!lib)throw 0;if(!thumbCache[id])thumbCache[id]=fetch(blobURL(id)).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()});return thumbCache[id].then(buf=>lib.getDocument({data:buf.slice(0),isEvalSupported:false}).promise)});pdfDocs[id].catch(()=>{delete pdfDocs[id];delete thumbCache[id]})}return pdfDocs[id]}
+async function pdfPage(id,n=1){return (await pdfDoc(id)).getPage(n)}
+async function pageCount(id){return (await pdfDoc(id)).numPages}
+async function pageRatio(id,n=1){const v=(await pdfPage(id,n)).getViewport({scale:1});return v.width/v.height}
+async function pageURL(id,n,w){const k=id+'|'+n+'|'+w;if(pageImg[k])return pageImg[k];const pg=await pdfPage(id,n);const v=pg.getViewport({scale:1});const vp=pg.getViewport({scale:w/v.width});const c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;return pageImg[k]=c.toDataURL('image/jpeg',.9)}
+const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const editBtn=(id,l)=>R.canEdit&&R.db&&R.editing!==id?`<button class="edit" data-edit="${id}">${l}</button>`:'';
+const lbHTML=()=>`<div class="lb" id="lb" hidden><button class="lbx" id="lbx" aria-label="Cerrar">✕</button><div class="lbin" id="lbin"></div></div>`;
+const unlockBtn=()=>locked()?`<button class="dl" data-unlock><span class="ico">⚿</span>Ingresar contraseña</button>`:'';
+
+/* ---------- Artículos: biblioteca ---------- */
+let aSel=0;
+function spine(id,i){const d=R.docs[id]||{},n=id.slice(3),l=R.lang==='en'?'en':'es',dim=false,h=[94,86,100,90,82,97,88,92,85,99][i%10];
+  return `<button class="sp ${l}${d.pdf?' has':''}${i===aSel?' on':''}${dim?' dim':''}" style="--h:${h}%;--i:${i}" data-sp="${i}" aria-pressed="${i===aSel}" aria-label="Artículo ${n}${d.title?': '+esc(d.title):''}"><span class="spn">${n}</span><span class="spt">${esc((l==='en'&&d.titleEn)||d.title||'Artículo '+n)}</span><span class="spl">${R.lang==='all'?'ES·EN':l.toUpperCase()}</span></button>`}
+function bookHTML(){const id=ART_IDS[aSel],d=R.docs[id]||{},n=id.slice(3),en=d.lang==='en',ed=R.editing===id;
+  return `<div class="lp"><span class="bk-k">Artículo</span><span class="bk-n">${n}</span><span class="bk-l">${d.pdfEn&&d.pdf&&d.pdf.id!==d.pdfEn.id?'Español · English':en?'English':'Español'}</span><span class="bk-rule"></span>${d.venue?`<span class="bk-v">${esc(d.venue)}</span>`:''}${d.year?`<span class="bk-y">${esc(d.year)}</span>`:''}<span class="bk-of">${n} de 20</span></div>
+<div class="rp">${R.lang==='en'&&d.titleEn?`<h2 class="bk-t" lang="en">${esc(d.titleEn)}</h2>${d.title?`<p class="bk-en">${esc(d.title)}</p>`:''}`:`<h2 class="bk-t">${d.title?esc(d.title):'Artículo '+n}</h2>${d.titleEn&&d.titleEn!==d.title?`<p class="bk-en" lang="en">${esc(d.titleEn)}</p>`:''}`}${d.authors?`<p class="bk-a">${esc(d.authors)}</p>`:''}
+${ed?metaForm(id):''}
+<div class="cacts" style="justify-items:start">${d.pdf?`<span class="cgrp"><span class="tag es">ES</span><button class="dl" data-read="${id}|pdf"><span class="ico">▤</span>Leer traducción</button>${fileBtn(id,'pdf','PDF','pdf')}</span>`:''}${d.pdfEn&&!(d.pdf&&d.pdf.id===d.pdfEn.id)?`<span class="cgrp"><span class="tag en">EN</span><button class="dl" data-read="${id}|pdfEn"><span class="ico">▤</span>Read original</button>${fileBtn(id,'pdfEn','PDF','pdf')}</span>`:''}</div>
+<div class="files">${d.posterPdf||d.posterZip?`<a class="edit" href="#posters" data-gop="${aSel}">Ver su póster →</a>`:''}${editBtn(id,'Editar datos')}</div>
+<div class="bk-nav"><button class="pnav-s" data-bk="-1" aria-label="Artículo anterior"${aSel===0?' disabled':''}>←</button><button class="pnav-s" data-bk="1" aria-label="Artículo siguiente"${aSel===19?' disabled':''}>→</button></div></div>`}
+function articulos(){const cnt=ART_IDS.filter(id=>R.docs[id]?.pdf).length;
+  return shell('articulos',`<header class="rhead2 phead"><div><span class="mc-kick">Biblioteca · español e inglés</span><h1>Artículos</h1></div>
+<div class="views pmode lmode" role="group" aria-label="Idioma">${[['all','Ambos'],['es','Español'],['en','English']].map(([k,l])=>`<button data-lang="${k}" aria-pressed="${R.lang===k}">${l}</button>`).join('')}</div></header>
+${status()}${lockBar()}
+<section class="lib" id="lib"><div class="shelves">${[0,10].map(o=>`<div class="shelf">${ART_IDS.slice(o,o+10).map((id,k)=>spine(id,o+k)).join('')}</div>`).join('')}</div>
+<div class="book" id="book">${bookHTML()}</div></section>
+<p class="pcount">${cnt} de 20 artículos traducidos · ${ART_IDS.filter(id=>R.docs[id]?.pdfEn).length} originales en inglés</p>
+${catalog()}
+<div class="rd" id="rd" hidden role="dialog" aria-modal="true" aria-label="Lector de PDF"><div class="rdbar"><h3 id="rdt"></h3><small id="rdc"></small><button class="ghost" id="rdx">Cerrar ✕</button></div><div class="rdpages" id="rdp"></div></div>`)}
+function catalog(){const L=R.lang,showEs=L!=='en',showEn=L!=='es';
+  const grp=(id,f,tag,rl,dl)=>R.docs[id]?.[f]?`<span class="cgrp"><span class="tag ${tag}">${tag.toUpperCase()}</span><button class="dl" data-read="${id}|${f}"><span class="ico">▤</span>${rl}</button>${fileBtn(id,f,dl,'pdf')}</span>`:'';
+  return `<section class="cat" id="catalogo"><span class="mc-kick">Catálogo bilingüe · Español / English</span><h2>Los 20 artículos</h2>
+<p class="lead2">${L==='en'?'Títulos y archivos originales en inglés.':L==='es'?'Títulos y traducciones al español.':'Cada artículo con su traducción al español y su original en inglés.'}</p>
+<ul class="crows">${ART_IDS.map((id,i)=>{const d=R.docs[id]||{},n=id.slice(3);
+ const tEs=d.title||('Artículo '+n),tEn=d.titleEn||'';
+ return `<li class="crow"><span class="anum">${n}</span><div>${showEs?`<h3 class="ct-es">${esc(tEs)}</h3>`:''}${showEn&&tEn?`<p class="ct-en" lang="en"${showEs?'':' style="font-style:normal;color:var(--ink);font-size:1.15rem;margin:0"'}>${esc(tEn)}</p>`:''}<p class="ct-meta">${[d.authors,d.venue,d.year].filter(Boolean).map(esc).join(' · ')}</p></div>
+<div class="cacts">${showEs?grp(id,'pdf','es','Leer','PDF'):''}${showEn?grp(id,'pdfEn','en','Read','PDF'):''}${d.posterPdf?`<a class="cpost" href="#posters" data-gop="${i}">Ver póster →</a>`:''}</div></li>`}).join('')}</ul></section>`}
+let rdTok=0;
+async function openReader(id,field){if(locked()){openLock();return}const d=R.docs[id]||{},f=d[field];if(!f)return;const rd=document.getElementById('rd');if(!rd)return;
+  const tok=++rdTok,box=document.getElementById('rdp'),cnt=document.getElementById('rdc');document.getElementById('rdt').textContent=(field==='pdfEn'?(d.titleEn||d.title):d.title)||('Artículo '+id.slice(3));
+  box.innerHTML='<span class="pph">Abriendo…</span>';cnt.textContent='';rd.hidden=false;document.body.style.overflow='hidden';document.getElementById('rdx').focus();
+  try{const N=await pageCount(f.id);if(tok!==rdTok)return;box.innerHTML='';const w=Math.min(1800,Math.round(Math.min(900,innerWidth)*2));
+    for(let n=1;n<=N;n++){if(tok!==rdTok||rd.hidden)return;const u=await pageURL(f.id,n,w);if(tok!==rdTok||rd.hidden)return;const im=new Image();im.src=u;im.alt='Página '+n;box.appendChild(im);cnt.textContent=n+' / '+N+' págs.'}}
+  catch(_){if(tok===rdTok)box.innerHTML='<span class="pph">No se pudo abrir el PDF.</span>'}}
+function closeReader(){const rd=document.getElementById('rd');if(rd&&!rd.hidden){rd.hidden=true;rdTok++;document.body.style.overflow=''}}
+function selBook(i){i=Math.max(0,Math.min(19,i));if(i===aSel)return;aSel=i;R.editing=null;
+  document.querySelectorAll('.sp').forEach((b,k)=>{b.classList.toggle('on',k===aSel);b.setAttribute('aria-pressed',k===aSel)});
+  const bk=document.getElementById('book');if(bk){bk.classList.remove('open');void bk.offsetWidth;bk.innerHTML=bookHTML();bk.classList.add('open')}bindRepo(true)}
+function bindLib(){const lib=document.getElementById('lib');if(!lib)return;if(window.__pv!=='articulos'&&!RM()){lib.classList.add('intro');document.getElementById('book').classList.add('open');setTimeout(()=>lib.classList.remove('intro'),1800)}}
+
+/* ---------- Journal: revista para hojear ---------- */
+let jPg=1,jN=0;
+function journal(){const id='journal',d=R.docs[id]||{},p=d.pdf,lk=locked(),ok=p&&!lk;
+  return shell('journal',`<div class="scene-head"><span class="mc-kick">Mi trabajo · Journal</span><h1>${d.title?esc(d.title):'Journal'}</h1>${d.authors?`<p class="bk-a">${esc(d.authors)}</p>`:''}</div>
+${status()}${lockBar()}
+<section class="desk" id="desk"><div class="pgw${ok?'':' empty'}" id="pgw"><div class="stack" aria-hidden="true"></div>
+<div class="pg" id="pgU">${ok?'<span class="pph">Abriendo…</span>':`<div class="ph"><span class="phn">J</span><span class="pht">${lk?'Protegido con contraseña':'Aún no se ha subido el journal'}</span><span class="phl">Journal</span></div>`}</div></div>
+${ok?`<div class="fbctl"><button class="pnav-s" id="jPrev" aria-label="Página anterior">←</button><span class="jcount" id="jCount">Página ${jPg}</span><button class="pnav-s" id="jNext" aria-label="Página siguiente">→</button></div><input type="range" class="jrange" id="jRange" min="1" max="${Math.max(jN,1)}" value="${jPg}" aria-label="Ir a la página"${jN>1?'':' hidden'}>`:''}</section>
+<div class="sinfo"><p class="lead2">${OWN.journal.desc}</p>${R.editing===id?metaForm(id):''}<div class="files">${unlockBtn()}${fileBtn(id,'pdf','Journal PDF','pdf')}${fileBtn(id,'posterZip','Fuente LaTeX .zip','zip')}${editBtn(id,'Editar datos')}</div></div>`)}
+async function jShow(n,dir){const p=R.docs.journal?.pdf;const u=document.getElementById('pgU');if(!p||locked()||!u)return;
+  try{jN=await pageCount(p.id);n=Math.max(1,Math.min(jN,n));const w=Math.min(1500,Math.round((u.clientWidth||600)*2));const [url,r]=await Promise.all([pageURL(p.id,n,w),pageRatio(p.id,n)]);
+    const wrap=document.getElementById('pgw');if(!wrap)return;wrap.style.setProperty('--ar',r);
+    const old=u.querySelector('img'),img=new Image();img.src=url;img.alt='Página '+n;
+    if(dir&&old&&!RM()){const ov=document.createElement('div');ov.className='pg flip '+(dir>0?'fwd':'back');
+      if(dir>0){ov.appendChild(old);u.replaceChildren(img)}else ov.appendChild(img);wrap.appendChild(ov);
+      ov.addEventListener('animationend',()=>{if(dir<0)u.replaceChildren(img);ov.remove()},{once:true})}
+    else u.replaceChildren(img);
+    jPg=n;const c=document.getElementById('jCount');if(c)c.textContent=`Página ${n} de ${jN}`;const rg=document.getElementById('jRange');if(rg){rg.max=jN;rg.value=n;rg.hidden=jN<2}
+    if(n<jN)pageURL(p.id,n+1,w).catch(()=>{})
+  }catch(_){u.innerHTML='<span class="pph">No se pudo abrir el PDF.</span>'}}
+function jGo(n){if(n<1||(jN&&n>jN)||n===jPg)return;jShow(n,n>jPg?1:-1)}
+function tilt(el,box,max){if(!el||!box||RM()||!matchMedia('(pointer:fine)').matches)return;box.onpointermove=e=>{const r=box.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`rotateX(${(-y*max).toFixed(2)}deg) rotateY(${(x*max*1.3).toFixed(2)}deg)`;el.style.setProperty('--sx',(x+.5)*100+'%');el.style.setProperty('--sy',(y+.5)*100+'%')};box.onpointerleave=()=>{el.style.transform=''}}
+function bindJournal(){const w=document.getElementById('pgw');if(!w||w.classList.contains('empty'))return;jShow(jPg,0);tilt(w,document.getElementById('desk'),5);
+  document.getElementById('jPrev').onclick=()=>jGo(jPg-1);document.getElementById('jNext').onclick=()=>jGo(jPg+1);
+  document.getElementById('jRange').onchange=e=>jGo(+e.target.value);
+  w.onclick=e=>{const r=w.getBoundingClientRect();jGo(jPg+(e.clientX-r.left<r.width/2?-1:1))};
+  let x0=null;w.onpointerdown=e=>{x0=e.clientX};w.onpointerup=e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>45){e.stopPropagation();w.__sw=1;jGo(jPg+(dx<0?1:-1))}};
+  const oc=w.onclick;w.onclick=e=>{if(w.__sw){w.__sw=0;return}oc(e)}}
+
+/* ---------- Beamer: sala de proyección ---------- */
+let bPg=1,bN=0,bAr=16/9;
+function beamer(){const id='beamer',d=R.docs[id]||{},p=d.pdf,lk=locked(),ok=p&&!lk;
+  return shell('beamer',`<div class="scene-head"><span class="mc-kick">Mi trabajo · Beamer</span><h1>${d.title?esc(d.title):'Presentación'}</h1>${d.authors?`<p class="bk-a">${esc(d.authors)}</p>`:''}</div>
+${status()}${lockBar()}
+<section class="cine" id="cine" style="--ar:${bAr}"><div class="beam" aria-hidden="true">${Array.from({length:14},(_,i)=>`<i style="--x:${(i*37)%100}%;--y:${(i*53)%100}%;--d:${(i%7)*1.3}s"></i>`).join('')}</div>
+<div class="screen${ok?'':' off'}" id="screen">${ok?'<div class="slide" id="slideU"></div>':`<div class="scr-empty">${lk?'Protegido con contraseña':'Aún no se ha subido la presentación'}</div>`}</div>
+${ok?`<div class="cinectl"><button class="cbtn" id="bPrev" aria-label="Diapositiva anterior">←</button><span id="bCount" class="bcount">${bPg}${bN?' / '+bN:''}</span><button class="cbtn" id="bNext" aria-label="Diapositiva siguiente">→</button><button class="cbtn wide" id="bFull" aria-pressed="false">Pantalla completa</button></div>`:''}
+<div class="seats" aria-hidden="true"></div></section>
+${ok?'<div class="film" id="film" aria-label="Diapositivas"></div>':''}
+<div class="sinfo"><p class="lead2">${OWN.beamer.desc}</p>${R.editing===id?metaForm(id):''}<div class="files">${unlockBtn()}${fileBtn(id,'pdf','Beamer PDF','pdf')}${fileBtn(id,'posterZip','LaTeX .zip','zip')}${editBtn(id,'Editar datos')}</div></div>`)}
+async function bShow(n){const p=R.docs.beamer?.pdf,u=document.getElementById('slideU');if(!p||locked()||!u)return;
+  try{bN=await pageCount(p.id);n=Math.max(1,Math.min(bN,n));const sc=document.getElementById('screen');const w=Math.min(2000,Math.round((sc.clientWidth||800)*2));
+    const [url,r]=await Promise.all([pageURL(p.id,n,w),pageRatio(p.id,n)]);bAr=r;document.getElementById('cine')?.style.setProperty('--ar',r);
+    const img=new Image();img.src=url;img.alt='Diapositiva '+n;if(!RM())img.className='in';const olds=[...u.children];u.appendChild(img);setTimeout(()=>olds.forEach(o=>o.remove()),650);
+    bPg=n;const c=document.getElementById('bCount');if(c)c.textContent=`${n} / ${bN}`;
+    const f=document.getElementById('film');if(f){if(!f.children.length)buildFilm(p.id);f.querySelectorAll('.fr').forEach((b,k)=>b.classList.toggle('on',k===n-1));const on=f.children[n-1];if(on)f.scrollTo({left:on.offsetLeft-f.clientWidth/2+on.clientWidth/2,behavior:RM()?'auto':'smooth'})}
+    if(n<bN)pageURL(p.id,n+1,w).catch(()=>{})
+  }catch(_){u.innerHTML='<div class="scr-empty">No se pudo abrir el PDF.</div>'}}
+async function buildFilm(fid){const f=document.getElementById('film');if(!f)return;const N=Math.min(bN,120);
+  f.innerHTML=Array.from({length:N},(_,i)=>`<button class="fr${i===bPg-1?' on':''}" data-fr="${i+1}" aria-label="Diapositiva ${i+1}"><span>${i+1}</span></button>`).join('');
+  f.querySelectorAll('.fr').forEach(b=>b.onclick=()=>bShow(+b.dataset.fr));
+  for(let i=1;i<=N;i++){if(!document.body.contains(f))return;try{const u=await pageURL(fid,i,300);const b=f.children[i-1];if(b&&!b.querySelector('img')){const im=new Image();im.src=u;im.alt='';b.prepend(im)}}catch(_){return}}}
+function bindBeamer(){const sc=document.getElementById('screen');if(!sc||sc.classList.contains('off'))return;const cine=document.getElementById('cine');
+  if(window.__pv!=='beamer'&&!RM()){cine.classList.add('power');setTimeout(()=>cine.classList.remove('power'),1900)}
+  bShow(bPg);document.getElementById('bPrev').onclick=()=>bShow(bPg-1);document.getElementById('bNext').onclick=()=>bShow(bPg+1);
+  sc.onclick=e=>{const r=sc.getBoundingClientRect();bShow(bPg+(e.clientX-r.left<r.width/3?-1:1))};
+  const fb=document.getElementById('bFull');fb.onclick=async()=>{if(document.fullscreenElement){document.exitFullscreen?.();return}if(cine.classList.contains('theater')){theater(false);return}
+    try{await cine.requestFullscreen();}catch(_){theater(true)}};
+  let x0=null;cine.onpointerdown=e=>{x0=e.clientX};cine.onpointerup=e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>50)bShow(bPg+(dx<0?1:-1))}}
+function theater(on){const c=document.getElementById('cine');if(!c)return;c.classList.toggle('theater',on);const b=document.getElementById('bFull');if(b){b.textContent=on?'Salir':'Pantalla completa';b.setAttribute('aria-pressed',on)}setTimeout(()=>bShow(bPg),50)}
+document.addEventListener('fullscreenchange',()=>{const b=document.getElementById('bFull');if(b){const on=!!document.fullscreenElement;b.textContent=on?'Salir':'Pantalla completa';b.setAttribute('aria-pressed',on)}});
+
+/* ---------- Mi póster: pieza de museo ---------- */
+function miposter(){const id='miposter',d=R.docs[id]||{},p=d.pdf,lk=locked(),ok=p&&!lk;
+  return shell('miposter',`<div class="scene-head"><span class="mc-kick">Mi trabajo · Póster</span><h1>Pieza principal</h1></div>
+${status()}${lockBar()}
+<section class="museo" id="museo"><div class="mspot" aria-hidden="true"></div><div class="mfloor" aria-hidden="true"></div>
+<div class="mwrap"><figure class="mframe${ok?'':' empty'}" id="mframe"${ok?' tabindex="0" role="button" aria-label="Ampliar el póster"':''}><div class="pin" id="mpin">${ok?'<span class="pph">Colgando el póster…</span>':`<div class="ph"><span class="phn">SG</span><span class="pht">${lk?'Protegido con contraseña':'Aún no se ha subido el póster'}</span><span class="phl">Póster</span></div>`}</div><div class="sheen" aria-hidden="true"></div><div class="lens" id="lens" hidden></div></figure>
+<aside class="plaque"><span class="pq-k">Póster académico</span><h2>${esc(d.title||'Riesgo del proyecto aurífero San Gabriel')}</h2><p class="pq-a">${esc(d.authors||'Alejandro Soto Antezana')}</p>${d.venue||d.year?`<p class="pq-m">${[d.venue,d.year].filter(Boolean).map(esc).join(' · ')}</p>`:''}<p class="pq-d">Simulación de Monte Carlo sobre el precio del oro, la demanda de inversión y el tipo de cambio.</p>${ok?'<button class="dl" id="mZoom"><span class="ico">⤢</span>Ampliar</button>':''}</aside></div></section>
+<div class="sinfo">${R.editing===id?metaForm(id):''}<div class="files">${unlockBtn()}${fileBtn(id,'pdf','Póster PDF','pdf')}${fileBtn(id,'posterZip','LaTeX .zip','zip')}${editBtn(id,'Editar datos')}</div></div>
+${lbHTML()}`)}
+async function bindMuseo(){const fr=document.getElementById('mframe');if(!fr)return;tilt(fr,document.getElementById('museo'),7);if(fr.classList.contains('empty'))return;const p=R.docs.miposter.pdf;
+  const open=()=>openLBid(p.id);fr.onclick=open;fr.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};document.getElementById('mZoom').onclick=open;
+  try{const [u,r]=await Promise.all([pageURL(p.id,1,1400),pageRatio(p.id,1)]);const pin=document.getElementById('mpin');if(!pin)return;fr.style.setProperty('--ar',r);pin.innerHTML=`<img src="${u}" alt="Póster">`;
+    if(!matchMedia('(pointer:fine)').matches)return;const hi=await pageURL(p.id,1,2600);const lens=document.getElementById('lens');if(!lens)return;lens.style.backgroundImage=`url(${hi})`;
+    fr.onpointerenter=()=>{lens.hidden=false};fr.onpointerleave=()=>{lens.hidden=true};
+    fr.addEventListener('pointermove',e=>{const b=pin.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top,Z=2.6;lens.style.left=(x+14)+'px';lens.style.top=(y+14)+'px';lens.style.backgroundSize=`${b.width*Z}px ${b.height*Z}px`;lens.style.backgroundPosition=`${-(x*Z-80)}px ${-(y*Z-80)}px`})
+  }catch(_){const pin=document.getElementById('mpin');if(pin)pin.innerHTML='<span class="pph">No se pudo abrir el PDF.</span>'}}
+
+/* ---------- visor ampliado común ---------- */
+async function openLB(){const p=R.docs[ART_IDS[pIdx]]?.posterPdf;if(p)openLBid(p.id)}
+async function openLBid(fid){if(locked())return;const lb=document.getElementById('lb'),inn=document.getElementById('lbin');if(!lb)return;lb.hidden=false;lb.classList.remove('zoom');
+  const pre=thumbImg[fid]||Object.keys(pageImg).filter(k=>k.startsWith(fid+'|1|')).map(k=>pageImg[k]).pop();inn.innerHTML=pre?`<img src="${pre}" alt="">`:'<span class="pph">Cargando…</span>';document.getElementById('lbx').focus();
+  try{const u=await pageURL(fid,1,Math.min(2600,Math.round(innerWidth*2.2)));if(!lb.hidden)inn.innerHTML=`<img src="${u}" alt="">`}catch(_){if(!pre)inn.innerHTML='<span class="pph">No se pudo abrir el póster.</span>'}}
+if(!window.__sk){window.__sk=1;addEventListener('keydown',e=>{if(e.target.closest?.('input,select,textarea'))return;const h=location.hash,lb=document.getElementById('lb');
+  const rdd=document.getElementById('rd');if(rdd&&!rdd.hidden){if(e.key==='Escape')closeReader();return}if(lb&&!lb.hidden){if(e.key==='Escape')closeLB();return}const dir=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+  if(h==='#articulos'&&dir&&!e.target.closest?.('.views')){e.preventDefault();selBook(aSel+dir)}
+  else if(h==='#journal'&&dir){e.preventDefault();jGo(jPg+dir)}
+  else if(h==='#beamer'){if(dir){e.preventDefault();bShow(bPg+dir)}else if(e.key==='Escape')theater(false)}})}
+
+function bindRepo(light){const app=document.getElementById('app');app.querySelectorAll('[data-gop]').forEach(a=>a.onclick=()=>{pIdx=+a.dataset.gop;pMode='sala'});
+  app.querySelectorAll('[data-get]').forEach(b=>b.onclick=()=>{const [id,f,ext]=b.dataset.get.split('|');getFile(R.docs[id][f],ext)});
+  app.querySelectorAll('[data-put]').forEach(i=>i.onchange=()=>{const [id,f]=i.dataset.put.split('|');if(i.files[0])putFile(id,f,i.files[0])});
+  app.querySelectorAll('[data-drop]').forEach(b=>b.onclick=()=>{const [id,f]=b.dataset.drop.split('|');if(b.dataset.sure){dropFile(id,f)}else{b.dataset.sure='1';b.textContent='¿Quitar?';setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent='✕'}},3000)}});
+  app.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{R.editing=b.dataset.edit;paint(true)});
+  app.querySelectorAll('[data-cancel]').forEach(b=>b.onclick=()=>{R.editing=null;paint(true)});
+  app.querySelectorAll('form[data-meta]').forEach(f=>f.onsubmit=e=>{e.preventDefault();saveMeta(f.dataset.meta,f)});
+  app.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{R.lang=b.dataset.lang;paint(true)});
+  const ps=document.getElementById('pwset');if(ps)ps.onsubmit=e=>{e.preventDefault();const v=document.getElementById('newpw').value;if(v.length>=4)setPassword(v);else toast('Usa al menos 4 caracteres.')};
+  const pc=document.getElementById('pwclear');if(pc)pc.onclick=()=>{if(pc.dataset.sure)clearPassword();else{pc.dataset.sure='1';pc.textContent='¿Seguro?'}};
+  const ol=document.getElementById('openlock');if(ol)ol.onclick=openLock;
+  const lf=document.getElementById('lockform');if(lf){lf.onsubmit=e=>{e.preventDefault();tryUnlock(document.getElementById('pw').value)};document.getElementById('lockcancel').onclick=()=>document.getElementById('lockdlg').hidden=true}
+  app.querySelectorAll('[data-sp]').forEach(b=>b.onclick=()=>selBook(+b.dataset.sp));app.querySelectorAll('[data-bk]').forEach(b=>b.onclick=()=>selBook(aSel+ +b.dataset.bk));
+  app.querySelectorAll('[data-unlock]').forEach(b=>b.onclick=openLock);
+  app.querySelectorAll('[data-read]').forEach(b=>b.onclick=()=>{const [id,f]=b.dataset.read.split('|');openReader(id,f)});
+  const rx=document.getElementById('rdx');if(rx)rx.onclick=closeReader;
+  const lb=document.getElementById('lb');if(lb){document.getElementById('lbx').onclick=closeLB;lb.onclick=e=>{if(e.target===lb)closeLB();else if(e.target.tagName==='CANVAS'||e.target.tagName==='IMG')lb.classList.toggle('zoom')}}
+  if(!light){const h=location.hash;if(h==='#posters')bindPosters();else if(h==='#articulos')bindLib();else if(h==='#journal')bindJournal();else if(h==='#beamer')bindBeamer();else if(h==='#miposter')bindMuseo()}drawThumbs()}
+
+function paint(keep){const h=location.hash.slice(1),app=document.getElementById('app'),y=window.scrollY;document.body.style.overflow='';rdTok++;
+app.innerHTML=h==='mapa'?mapView():h==='articulos'?articulos():h==='posters'?posters():OWN[h]?({journal,beamer,miposter})[h]():h==='resultados'?resultados():cover();if(h==='articulos'||h==='posters'||OWN[h])bindRepo();if(h==='resultados')bindRes();if(h==='mapa')bindMap();window.__pv=h;if(keep)window.scrollTo(0,y)}
+window.addEventListener('hashchange',()=>{const go=()=>{paint();window.scrollTo(0,0)};
+if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(go);else go()});
+paint();repoInit();
+</script>
+
+<script>
+/* Mi trabajo: si existen los archivos en Producto/ y Desarrollo/ se muestran solos en Journal, Beamer y Mi póster */
+(async()=>{const M={"journal": ["Producto_Alejandro Soto Antezana/Journal_Alejandro Soto Antezana/journal.pdf", "Desarrollo_Alejandro Soto Antezana/Template Journal_Alejandro Soto Antezana/journal.zip"], "beamer": ["Producto_Alejandro Soto Antezana/Beamer_Alejandro Soto Antezana/beamer.pdf", "Desarrollo_Alejandro Soto Antezana/Template Beamer_Alejandro Soto Antezana/beamer.zip"], "miposter": ["Producto_Alejandro Soto Antezana/Poster del Journal_ Alejandro Soto Antezana/poster.pdf", "Desarrollo_Alejandro Soto Antezana/Template Poster Journal_Alejandro Soto Antezana/poster.zip"]},INFO="Producto_Alejandro Soto Antezana/info.json";let info={},ch=false;
+ const ok=async u=>{try{const r=await fetch(u,{method:'HEAD',cache:'no-store'});return r.ok}catch(_){return false}};
+ try{const r=await fetch(encodeURI(INFO),{cache:'no-store'});if(r.ok)info=await r.json()}catch(_){}
+ for(const [k,[pf,zf]] of Object.entries(M)){const pdf=encodeURI(pf),zip=encodeURI(zf);
+  if(await ok(pdf)){const d=Object.assign({},STATIC_DOCS[k]||{},Object.fromEntries(Object.entries(info[k]||{}).filter(([_,v])=>v)));const pid='mt_'+k;
+   d.pdf={id:pid,name:pf.split('/').pop(),href:pdf};FILEMAP[pid]=pdf;
+   if(await ok(zip)){d.posterZip={id:pid+'_z',name:zf.split('/').pop(),href:zip};FILEMAP[pid+'_z']=zip}
+   STATIC_DOCS[k]=d;ch=true}}
+ if(ch&&typeof repaint==='function')repaint()})();
+</script></body></html>

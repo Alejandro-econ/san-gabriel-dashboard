@@ -1,0 +1,48 @@
+DASHBOARD SAN GABRIEL - SITIO WEB COMPLETO
+==========================================
+
+Contenido de la carpeta
+- index.html .......... la página principal (NO cambiar de lugar)
+- mina.jpg, sat/ ...... imágenes de la portada y del mapa
+- lib/ ................ visor de PDF (pdf.js, licencia Apache 2.0)
+- Producto_Alejandro Soto Antezana/
+    Artículos en Ingles_...        20 artículos originales (Articulo N.pdf)
+    Artículos traducidos_...       20 traducciones (Articulo N Traducido al español.pdf)
+    Posters de artículos_...       20 pósters (Poster N.pdf)
+    Journal_...                    -> poner journal.pdf
+    Beamer_...                     -> poner beamer.pdf
+    Poster del Journal_ ...        -> poner poster.pdf
+    info.json                      título y autores opcionales del journal/beamer/póster
+- Desarrollo_Alejandro Soto Antezana/
+    Template Posters_...           código LaTeX de los 20 pósters (Poster N.zip)
+    Template Journal_...           -> poner journal.zip
+    Template Beamer_...            -> poner beamer.zip
+    Template Poster Journal_...    -> poner poster.zip
+
+IMPORTANTE: no cambies los nombres de las carpetas ni de los archivos que ya están.
+Los archivos nuevos deben llamarse EXACTAMENTE journal.pdf, beamer.pdf, poster.pdf
+(y journal.zip, beamer.zip, poster.zip). La página los detecta sola.
+
+CÓMO PUBLICARLO GRATIS EN INTERNET (recomendado: GitHub Pages, el enlace no caduca)
+1. Crea una cuenta gratis en https://github.com
+2. Pulsa "New repository", nombre: san-gabriel, marca "Public" y pulsa "Create repository".
+3. Pulsa "uploading an existing file".
+4. Arrastra TODO EL CONTENIDO de esta carpeta (index.html debe quedar en la raíz, no dentro de otra carpeta).
+   Si el navegador no sube las subcarpetas, súbelas en dos o tres tandas.
+5. Pulsa "Commit changes".
+6. Ve a Settings > Pages > Branch: main / (root) > Save.
+7. En 1–2 minutos tu sitio estará en https://TU-USUARIO.github.io/san-gabriel/
+
+TU JOURNAL, BEAMER Y PÓSTER (cuando estén listos)
+En GitHub entra a la carpeta correspondiente > "Add file" > "Upload files", sube el archivo
+con su nombre exacto y pulsa "Commit changes". En 1–2 minutos ya se ve en línea.
+
+OTRA OPCIÓN: Netlify Drop (más rápido, pero sin cuenta el enlace caduca en 1 hora)
+1. Entra a https://app.netlify.com/drop y arrastra la carpeta completa.
+2. Crea una cuenta gratis para que el enlace quede permanente.
+
+VERLO EN TU COMPUTADORA
+Si abres index.html con doble clic, el navegador bloquea la lectura de los PDF.
+Para verlo completo en tu PC, abre una terminal dentro de la carpeta y escribe:
+    python -m http.server 8000
+y luego entra en el navegador a: http://localhost:8000
