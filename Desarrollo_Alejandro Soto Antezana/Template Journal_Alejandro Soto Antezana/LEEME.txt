@@ -1,0 +1,2 @@
+Coloca aquí el LaTeX/plantilla de tu journal comprimido como: journal.zip
+Aparecerá como botón de descarga en la sección "Journal" (requiere que exista también journal.pdf).

@@ -1,0 +1,2 @@
+Coloca aquí el LaTeX/plantilla del póster de tu journal comprimido como: poster.zip
+Aparecerá como botón de descarga en la sección "Mi póster" (requiere que exista también poster.pdf).

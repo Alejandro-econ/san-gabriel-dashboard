@@ -1,0 +1,2 @@
+Coloca aquí el LaTeX/plantilla de tu beamer comprimido como: beamer.zip
+Aparecerá como botón de descarga en la sección "Beamer" (requiere que exista también beamer.pdf).
