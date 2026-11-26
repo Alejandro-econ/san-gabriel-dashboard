@@ -1,0 +1,2 @@
+Coloca aquí el PDF de tu beamer con el nombre exacto: beamer.pdf
+Aparecerá solo en la sección "Beamer" del dashboard.

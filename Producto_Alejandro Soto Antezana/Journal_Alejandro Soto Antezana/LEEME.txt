@@ -1,0 +1,2 @@
+Coloca aquí el PDF de tu journal con el nombre exacto: journal.pdf
+Aparecerá solo en la sección "Journal" del dashboard.

@@ -1,0 +1,2 @@
+Coloca aquí el PDF del póster de tu journal con el nombre exacto: poster.pdf
+Aparecerá solo en la sección "Mi póster" del dashboard.
