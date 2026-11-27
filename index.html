@@ -992,6 +992,9 @@ document.addEventListener('fullscreenchange',()=>{const b=document.getElementByI
 /* ---------- Datos y código (Carpeta N.º 3) ---------- */
 const REPO='https://github.com/Alejandro-econ/tema55-montecarlo-san-gabriel';
 const RAW='https://raw.githubusercontent.com/Alejandro-econ/tema55-montecarlo-san-gabriel/main/';
+const C3='Base de datos y código_Alejandro Soto Antezana';
+const C3URL=encodeURI(C3)+'/';
+const C3GH='https://github.com/Alejandro-econ/san-gabriel-dashboard/tree/main/'+encodeURI(C3);
 function datos(){
 const pasos=[
  ['01_extraccion_api.py','Vía 1 · API','Descarga del BCRP (oro PD04704XD, tipo de cambio PD04638PD y EMBIG Perú PD04709XD) y de Yahoo Finance (cierre y volumen del fondo GLD). Guarda cada respuesta intacta en datos_crudos.'],
@@ -1024,10 +1027,17 @@ return shell('datos',`<div class="dc">
 <ol class="pipe">${pasos.map((p,i)=>`<li><span class="pn">${i+1}</span><div><h3><code>${p[0]}</code> · ${p[1]}</h3><p>${nb(p[2])}</p></div><a href="${REPO}/blob/main/codigo/${p[0]}" target="_blank" rel="noopener">Ver código ↗</a></li>`).join('')}</ol>
 <h2>Algunas salidas del código</h2>
 <div class="gal">${figs.map(f=>`<figure><a href="${RAW}salidas/${f[0]}.png" target="_blank" rel="noopener"><img src="${RAW}salidas/${f[0]}.png" alt="${f[1]}: ${f[2]}" loading="lazy"></a><figcaption><b>${f[1]}.</b> ${f[2]}</figcaption></figure>`).join('')}</div>
+<h2>Datos publicados (Carpeta N.º 3)</h2>
+<p class="lead2">${nb('La carpeta completa está publicada en este mismo repositorio, con el código, los datos crudos tal como salieron de cada fuente, la base procesada, las salidas y la documentación.')}</p>
+<div class="dc-btns"><a class="go" href="${C3GH}" target="_blank" rel="noopener">Ver la Carpeta N.º 3 en GitHub <span aria-hidden="true">↗</span></a>
+<a class="ghost" href="${C3URL}datos_procesados/datos_procesados_2024200531K.csv" download>↓ Base procesada (CSV)</a>
+<a class="ghost" href="${C3URL}datos_procesados/parametros_proyecto_2024200531K.csv" download>↓ Parámetros del proyecto (CSV)</a>
+<a class="ghost" href="${C3GH}/datos_crudos" target="_blank" rel="noopener">Datos crudos ↗</a></div>
 <h2>Verificación</h2>
-<p class="lead2">Hash SHA-256 de <code>datos_procesados_2024200531K.csv</code>, que permite comprobar que la base entregada no cambió.</p>
+<p class="lead2">Hash SHA-256 de <code>datos_procesados_2024200531K.csv</code>. Si el archivo descargado da este mismo código, la base es exactamente la que se usó en el artículo.</p>
 <p class="hash">5f76f03e7199fb95181165c16c8f9969448de893d13bded15025e57245849a95</p>
-<p class="lead2">${nb('Los datos crudos y procesados van completos en la Carpeta N.º 3 del trabajo entregado. Antes de cada descarga se leyó robots.txt: el archivo histórico de SPDR estaba prohibido, por eso la demanda se mide con el monto negociado de GLD (registrado en incidencias_fuente.md).')}</p>
+<p class="lead2">${nb('Para comprobarlo en Windows, abra una terminal en la carpeta de descarga y escriba certutil -hashfile datos_procesados_2024200531K.csv SHA256 (en Mac o Linux, sha256sum datos_procesados_2024200531K.csv).')}</p>
+<p class="lead2">${nb('Antes de cada descarga se leyó robots.txt. El archivo histórico de SPDR estaba prohibido, por eso la demanda se mide con el monto negociado de GLD (registrado en incidencias_fuente.md).')}</p>
 <h2>Historial de commits</h2>
 <ul class="commits"><li>Commit 1 · scripts de extracción y documentación inicial<small>17/10/2026</small></li><li>Commit 2 · limpieza (03), análisis (04), tablas, figuras y documentación<small>18/10/2026</small></li><li>Commit 3 · README completo con fechas reales, hash y versiones<small>19/10/2026</small></li><li>Commit 4 · figuras simplificadas, guías de lectura y documentación de fuentes actualizada<small>27/11/2026</small></li></ul>
 <nav class="next"><a class="back" href="#resultados">← Resultados</a><a class="back" href="#journal">Journal →</a><a class="back" href="#inicio">Portada</a></nav>
