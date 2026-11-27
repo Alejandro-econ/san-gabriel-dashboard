@@ -8,16 +8,15 @@
 | fecha | Día de la observación (llave de unión) | AAAA-MM-DD | Diaria | Todas | — |
 | precio_oro | Cotización internacional del oro (Londres) | US$ por onza troy | Diaria | BCRP, BCRPData, serie PD04704XD | `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04704XD/json/2004-11-18/2026-08-31` |
 | tc | Tipo de cambio interbancario, venta | S/ por US$ | Diaria | BCRP, BCRPData, serie PD04638PD | `.../api/PD04638PD/json/2004-11-18/2026-08-31` |
-| ust10 | Rendimiento de los bonos del Tesoro de EE. UU. a 10 años | % | Diaria | BCRP, BCRPData, serie PD04719XD | `.../api/PD04719XD/json/2004-11-18/2026-08-31` |
+| ust10 | Rendimiento de los bonos del Tesoro de EE. UU. a 10 años | % | Diaria | FRED (Fed de St. Louis), serie DGS10, archivo CSV | `https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2004-11-18&coed=2026-08-31` |
 | embig_peru | Spread EMBIG Perú (riesgo país) | Puntos básicos | Diaria | BCRP, BCRPData, serie PD04709XD | `.../api/PD04709XD/json/2004-11-18/2026-08-31` |
-| demanda_ton | Oro físico que guarda el fondo SPDR Gold Shares (demanda de inversión en oro) | Toneladas | Diaria | SPDR Gold Shares (World Gold Trust Services), archivo histórico GLD en Excel, hoja «US GLD Historical Archive», columna «Tonnes of Gold» | `https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en` |
 | gld_cierre | Precio de cierre del fondo GLD | US$ por acción | Diaria | Yahoo Finance (yfinance) | `yfinance.download("GLD", "2004-11-18", "2026-09-01")` |
 | gld_volumen | Acciones del fondo GLD negociadas en el día | Número de acciones | Diaria | Yahoo Finance (yfinance) | Ídem |
-| gld_monto_musd | Monto negociado del fondo GLD = cierre × volumen / 1 000 000 (respaldo de la demanda) | US$ millones | Diaria | Cálculo propio (Yahoo) | — |
-| riesgo_pais_tasa | Tasa de EE. UU. a 10 años + EMBIG Perú / 100 | % | Diaria | Cálculo propio (BCRP) | — |
+| gld_monto_musd | Demanda de inversión en oro: monto negociado del fondo GLD = cierre × volumen / 1 000 000 | US$ millones | Diaria | Cálculo propio (Yahoo) | — |
+| riesgo_pais_tasa | Tasa de EE. UU. a 10 años + EMBIG Perú / 100 | % | Diaria | Cálculo propio (FRED y BCRP) | — |
 | r_oro | Rendimiento logarítmico diario del oro: ln(P_t / P_t-1) | Proporción | Diaria | Cálculo propio | — |
 | r_tc | Rendimiento logarítmico diario del tipo de cambio | Proporción | Diaria | Cálculo propio | — |
-| r_demanda | Rendimiento logarítmico diario de la demanda | Proporción | Diaria | Cálculo propio | — |
+| r_demanda | Rendimiento logarítmico diario de la demanda (gld_monto_musd) | Proporción | Diaria | Cálculo propio | — |
 | d_riesgo_pais | Cambio diario de riesgo_pais_tasa | Puntos porcentuales | Diaria | Cálculo propio | — |
 | atipico_* | 1 si el valor está a más de 5 desviaciones estándar de la media (se marca, no se borra) | 0/1 | Diaria | Cálculo propio | — |
 

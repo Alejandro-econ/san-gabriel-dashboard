@@ -8,6 +8,7 @@
 | Docente | Dr. Ciro Iván Machacuay Meza |
 | Tema del temario | N.º 55: Riesgo del proyecto: simulación de Monte Carlo sobre precio, demanda y tipo de cambio |
 | Repositorio | https://github.com/Alejandro-econ/tema55-montecarlo-san-gabriel |
+| Dashboard y carpetas publicadas | https://alejandro-econ.github.io/san-gabriel-dashboard/ · https://github.com/Alejandro-econ/san-gabriel-dashboard |
 
 ## 1. Qué hace este proyecto
 Calcula la **distribución del VAN** de la mina de oro San Gabriel (Buenaventura, Moquegua) con **10 000 simulaciones de Monte Carlo**. Los parámetros del proyecto se leen con código del informe técnico oficial presentado a la SEC. El riesgo del precio del oro, de la demanda de inversión en oro, del tipo de cambio y del riesgo país se calibra con **datos diarios reales** (más de 5 000 días por variable).
@@ -15,10 +16,10 @@ Calcula la **distribución del VAN** de la mina de oro San Gabriel (Buenaventura
 ## 2. Fuentes y vías de extracción
 | Vía | Fuente | Endpoint o URL | Variables |
 |---|---|---|---|
-| 1. API | BCRPData (BCRP) | `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/{código}/json/2004-11-18/2026-08-31` | PD04704XD oro, PD04638PD tipo de cambio, PD04719XD tasa EE. UU. 10 años, PD04709XD EMBIG Perú |
-| 1. API | Yahoo Finance (`yfinance`) | `yfinance.download("GLD", start="2004-11-18", end="2026-09-01")` | Precio y volumen del fondo GLD |
+| 1. API | BCRPData (BCRP) | `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/{código}/json/2004-11-18/2026-08-31` | PD04704XD oro, PD04638PD tipo de cambio, PD04709XD EMBIG Perú |
+| 1. API | Yahoo Finance (`yfinance`) | `yfinance.download("GLD", start="2004-11-18", end="2026-09-01")` | Precio y volumen del fondo GLD (demanda de inversión = cierre × volumen) |
 | 2. Descarga programática | SEC (EE. UU.) | `https://www.sec.gov/Archives/edgar/data/1013131/000141057825001056/tmb-20241231xex96d2.pdf` | Parámetros del proyecto (PDF leído con `pdfplumber`) |
-| 2. Descarga programática | SPDR Gold Shares | `https://api.spdrgoldshares.com/api/v1/historical-archive?product=gld&exchange=NYSE&lang=en` | Toneladas de oro del fondo GLD (demanda) |
+| 2. Descarga programática | FRED (Fed de St. Louis) | `https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2004-11-18&coed=2026-08-31` | DGS10, tasa del Tesoro de EE. UU. a 10 años (parte de la tasa de riesgo país) |
 
 - **Fecha de inicio (parámetro):** 2004-11-18. **Fecha de corte (parámetro):** 2026-08-31.
 - **Primera y última fecha con datos reales en la base procesada:** 2004-11-18 a 2026-08-31 (5,221 días).
@@ -28,9 +29,10 @@ Calcula la **distribución del VAN** de la mina de oro San Gabriel (Buenaventura
 1. Copie `.env.example` con el nombre `.env` y escriba su nombre y correo en `SEC_USER_AGENT`. La SEC exige identificarse para descargar; no se necesita ninguna clave de pago.
 2. `pip install -r requirements.txt`
 3. `python codigo/01_extraccion_api.py` → datos crudos del BCRP y de Yahoo
-4. `python codigo/02_scraping_web.py` → PDF de la SEC, parámetros y archivo SPDR
+4. `python codigo/02_scraping_web.py` → PDF de la SEC, parámetros y archivo CSV de FRED
 5. `python codigo/03_limpieza_datos.py` → base procesada, hash y tabla de cotejo
-6. `python codigo/04_analisis.py` → todas las tablas y figuras en `salidas/`
+6. `python codigo/04_analisis.py` → tablas 1 a 10, 12 y 13, figuras 1 a 7, 13, 14 y 15, y simulaciones en `salidas/`
+7. `python codigo/05_figuras_3d.py` → figuras 3D (8 a 12) y tabla 11 de evidencia de la SEC en `salidas/`
 
 También se puede ejecutar todo con el cuaderno `ejecutar_en_colab.ipynb`.
 
@@ -42,6 +44,7 @@ También se puede ejecutar todo con el cuaderno `ejecutar_en_colab.ipynb`.
 - **SHA-256 de `datos_procesados/datos_procesados_2024200531K.csv`:** `5f76f03e7199fb95181165c16c8f9969448de893d13bded15025e57245849a95`
 - `log_ejecucion.txt`: fecha y hora, URL, código HTTP y filas de cada extracción.
 - `salidas/tabla_cotejo_10_datos.csv`: 10 días al azar con su valor crudo y procesado, y el enlace a la web del BCRP para compararlos.
+- Datos crudos y procesados: publicados sin editar en la Carpeta N.º 3 del repositorio `san-gabriel-dashboard`.
 - `incidencias_fuente.md`: ajustes y bloqueos de las fuentes.
 
 ## 6. Ética del rastreo
