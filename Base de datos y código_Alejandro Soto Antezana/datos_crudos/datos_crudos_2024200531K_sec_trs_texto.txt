@@ -1,0 +1,2217 @@
+S-K 1300 Technical Report Summary
+San Gabriel Project, General Sánchez Cerro Province,
+Peru
+Compañía de Minas Buenaventura S.A.A.
+Calle Las Begonias 415, San Isidro, Lima, Peru
+Prepared by:
+SLR Consulting (Canada) Ltd.
+55 University Ave., Suite 501, Toronto, ON M5J 2H7
+SLR Project No.: 233.065320.00001
+Effective Date:
+December 31, 2024
+Signature Date:
+April 23, 2025
+Revision: 0
+
+=== PÁGINA SIGUIENTE ===
+
+SLR Consulting (Canada) Ltd.
+55 University Ave., Suite 501, Toronto, ON M5J 2H7
+April 23, 2025
+Consent of Qualified Person
+Re: Form 20-F of Compañia de Minas Buenaventura S.A.A. (the “Company”)
+SLR Consulting (Canada) Ltd. (“SLR”), in connection with the Company’s Annual Report on
+Form 20-F for the year ended December 31, 2024 (the “Form 20-F”), consents to:
+the public filing by the Company and use of the technical report titled “S-K 1300
+Technical Report Summary, San Gabriel Project, General Sánchez Cerro Province,
+Peru” (the “Technical Report Summary”), with an effective date of December 31, 2024
+and issue date of April 23, 2025, that was prepared in accordance with Subpart 1300 of
+Regulation S-K promulgated by the U.S. Securities and Exchange Commission, as an
+exhibit to and referenced in the Company’s Form 20-F;
+the use of and references to our name, including our status as an expert or “qualified
+person” (as defined in Subpart 1300 of Regulation S-K promulgated by the U.S.
+Securities and Exchange Commission), in connection with the Form 20-F and any such
+Technical Report Summary; and
+any extracts from or a summary of the Technical Report Summary in the Form 20-F and
+the use of any information derived, summarized, quoted, or referenced from the
+Technical Report Summary, or portions thereof, that was prepared by us, that we
+supervised the preparation of, and/or that was reviewed and approved by us, that is
+included or incorporated by reference in the Form 20-F.
+SLR is responsible for authoring, and this consent pertains to, the Technical Report Summary.
+SLR certifies that it has read the Form 20-F and that it fairlyand accurately representsthe
+information in the Technical Report Summaryforwhich it isresponsible.
+SLR Consulting (Canada) Ltd.
+Per:
+Jason J. Cox, P.Eng.
+Global Technical Director
+
+=== PÁGINA SIGUIENTE ===
+
+
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Table of Contents
+Table of Contents ....................................................................................................................... i
+1.0 Executive Summary ...................................................................................................1-1
+1.1 Summary ......................................................................................................................1-1
+1.2 Economic Analysis .....................................................................................................1 -10
+1.3 Technical Summary ....................................................................................................1 -15
+2.0 Introduction ................................................................................................................2-1
+2.1 Site Visits .....................................................................................................................2-1
+2.2 Sources of Information .................................................................................................2-2
+2.3 List of Abbreviations .....................................................................................................2-3
+3.0 Property Description ..................................................................................................3-1
+3.1 Property Location .........................................................................................................3-1
+3.2 Peruvian Mining Law ....................................................................................................3-3
+3.3 Land Title and Mineral Rights .......................................................................................3-5
+3.4 Surface Rights ..............................................................................................................3-9
+3.5 Royalties ......................................................................................................................3-9
+3.6 Required Permits and Status ........................................................................................3-9
+3.7 Other Significant Factors and Risks ............................................................................3 -10
+4.0 Accessibility, Climate, Local Resources, Infrastructure and Physiography ..........4-1
+4.1 Accessibility ..................................................................................................................4-1
+4.2 Climate .........................................................................................................................4-3
+4.3 Local Resources ...........................................................................................................4-3
+4.4 Infrastructure ................................................................................................................4-3
+4.5 Topography, Elevation and Vegetation .........................................................................4-4
+5.0 History .........................................................................................................................5-1
+5.1 Ownership History ........................................................................................................5-1
+5.2 Exploration and Development History ...........................................................................5-1
+5.3 Past Production ............................................................................................................5-5
+6.0 Geological Setting, Mineralization, and Deposit ......................................................6-1
+6.1 Regional Geological Framework ...................................................................................6-1
+6.2 Stratigraphy ..................................................................................................................6-3
+6.3 Intrusives ......................................................................................................................6-6
+6.4 Regional Tectonic Framework ......................................................................................6-6
+6.5 Structural Geology ........................................................................................................6-7
+i
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+6.6 Local Geology ............................................................................................................6 -11
+6.7 Hydrothermal Alteration .............................................................................................. 6-13
+6.8 Mineralization .............................................................................................................6 -14
+6.9 Geochemistry .............................................................................................................6 -16
+6.10 Deposit Types ............................................................................................................6 -17
+7.0 Exploration..................................................................................................................7-1
+7.1 Exploration ...................................................................................................................7-1
+7.2 History of Exploration ...................................................................................................7-1
+7.3 Summary of the Exploration Program ...........................................................................7-1
+7.4 Exploration Targets ......................................................................................................7-2
+7.5 Drilling ..........................................................................................................................7-3
+7.6 Geotechnical Data ........................................................................................................7-8
+8.0 Sample Preparation, Analyses, and Security ...........................................................8-1
+8.1 Sample Preparation Methods and Quality Control Measures ........................................8-2
+8.2 Sample Preparation and Analysis Procedures ..............................................................8-5
+8.3 Quality Control/Quality Assurance Procedures .............................................................8-6
+8.4 Opinion on Sample Preparation, Security, and Analytical Procedures ........................ 8-13
+9.0 Data Verification .........................................................................................................9-1
+9.1 Internal Data Verification ..............................................................................................9-1
+9.2 External Data Verification .............................................................................................9-2
+9.3 Data Verification ...........................................................................................................9-2
+9.4 Limitations ....................................................................................................................9-7
+9.5 Opinions and Recommendations on Data Adequacy ....................................................9-7
+10.0 Mineral Processing and Metallurgical Testing .......................................................1 0-1
+10.1 Introduction ................................................................................................................1 0-1
+10.2 Historical Test Programs ............................................................................................ 10-1
+10.3 Mineralogical Characterization – SGS Lakefield 2017-2018 ....................................... 10-1
+10.4 Process Development for PFS and FS Stages of the Project ..................................... 10-3
+10.5 FS Test Programs (2019-2020) ..................................................................................1 0-4
+10.6 Subsequent FS Studies (2021) ...................................................................................1 0-5
+10.7 Metallurgical Design Basis ........................................................................................ 10-14
+11.0 Mineral Resource Estimates ....................................................................................1 1-1
+11.1 Key Assumptions, Parameters, and Methods .............................................................1 1-1
+11.2 Cut-Off Grade Estimates .......................................................................................... 11-24
+ii
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+11.3 Reasonable Prospects of Economic Extraction for Mineral Resources ..................... 11-26
+11.4 Mineral Resource Statement .................................................................................... 11-27
+11.5 Mineral Resource Uncertainty Discussion ................................................................ 11-28
+11.6 Qualified Person’s Opinion on Influence for Economic Extraction ............................. 11-28
+12.0 Mineral Reserve Estimates ......................................................................................1 2-1
+12.1 Summary ....................................................................................................................1 2-1
+12.2 Dilution and Mining Recovery .....................................................................................1 2-2
+12.3 Net Smelter Return .....................................................................................................1 2-2
+12.4 Cut-off Grade Value ....................................................................................................1 2-3
+12.5 Mineral Reserve Estimation ........................................................................................1 2-4
+12.6 Comparison with Previous Estimate – San Gabriel ..................................................... 12-6
+13.0 Mining Methods ........................................................................................................1 3-1
+13.1 Geotechnical Considerations ......................................................................................1 3-1
+13.2 Mining Methods ..........................................................................................................1 3-8
+13.3 Mine Design ...............................................................................................................1 3-9
+13.4 Backfill ......................................................................................................................1 3-13
+13.5 Life of Mine Plan ....................................................................................................... 13-14
+13.6 Mine Infrastructure.................................................................................................... 13-18
+13.7 Mine Equipment ....................................................................................................... 13-20
+13.8 Mine Personnel ........................................................................................................ 13-21
+14.0 Processing and Recovery Methods ........................................................................1 4-1
+14.2 Summary Process Description ...................................................................................1 4-1
+14.9 Power Consumption ................................................................................................. 14-11
+14.10 Personnel ................................................................................................................. 14-12
+15.0 Infrastructure ............................................................................................................1 5-1
+15.1 Access Roads ............................................................................................................1 5-1
+15.2 Power .........................................................................................................................1 5-1
+15.5 Air and Oxygen Services ............................................................................................ 15-6
+15.6 Fuel Storage and Supply ............................................................................................ 15-7
+15.7 Accommodation Camp ...............................................................................................1 5-7
+15.8 Maintenance Workshop .............................................................................................. 15-7
+15.9 Cemented Backfill Plant .............................................................................................1 5-7
+15.10 Organic Material Storage Facility ................................................................................1 5-7
+15.11 Inadequate Material Storage Facility ..........................................................................1 5-8
+iii
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+15.12 Tailing Storage Facility ...............................................................................................1 5-8
+16.0 Market Studies ..........................................................................................................1 6-1
+16.1 Markets ......................................................................................................................1 6-1
+16.2 Contracts ....................................................................................................................1 6-2
+17.0 Environmental Studies, Permitting, and Plans, Negotiations, or Agreements
+with Local Individuals or Groups ............................................................................1 7-1
+17.1 Environmental Aspects ...............................................................................................1 7-1
+17.2 Waste and Tailings Disposal, Site Monitoring, and Water Management ..................... 17-7
+17.3 Environmental Permitting............................................................................................ 17-9
+17.4 Social or Community Requirements ......................................................................... 17-11
+17.5 Mine Closure Requirements ..................................................................................... 17-14
+17.6 Qualified Person’s Opinion on the Adequacy of Current Plans to Address any
+Issues Related to Environmental Compliance, Permitting and Local Individuals or
+Groups .....................................................................................................................1 7-17
+18.0 Capital and Operating Costs ...................................................................................1 8-1
+18.1 Capital Costs ..............................................................................................................1 8-1
+18.2 Operating Costs .........................................................................................................1 8-2
+19.0 Economic Analysis ...................................................................................................1 9-1
+19.1 Economic Criteria .......................................................................................................1 9-1
+19.2 Cash Flow ..................................................................................................................1 9-2
+19.3 Sensitivity Analysis .....................................................................................................1 9-4
+20.0 Adjacent Properties ..................................................................................................2 0-1
+21.0 Other Relevant Data and Information ......................................................................2 1-1
+22.0 Interpretation and Conclusions ...............................................................................2 2-1
+22.1 Geology and Mineral Resources.................................................................................2 2-1
+22.2 Mining and Mineral Reserves .....................................................................................2 2-2
+22.3 Mineral Processing .....................................................................................................2 2-3
+22.4 Infrastructure ..............................................................................................................2 2-4
+22.5 Environmental, Permitting and Social Considerations ................................................. 22-5
+22.6 Capital and Operating Costs and Economics..............................................................2 2-6
+23.0 Recommendations ...................................................................................................2 3-1
+23.1 Geology and Mineral Resources.................................................................................2 3-1
+23.2 Mining and Mineral Reserves .....................................................................................2 3-2
+23.3 Mineral Processing .....................................................................................................2 3-3
+23.4 Environmental, Permitting and Social Considerations ................................................. 23-3
+iv
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+23.5 Capital and Operating Costs and Economics..............................................................2 3-3
+24.0 References ................................................................................................................2 4-1
+25.0 Reliance on Information Provided by the Registrant ............................................. 25-1
+26.0 Date and Signature Page .........................................................................................2 6-1
+27.0 Appendix 1 ................................................................................................................2 7-1
+27.1 Sample Analysis Support Information .........................................................................2 7-1
+28.0 Appendix 2 ................................................................................................................2 8-1
+28.1 Mineral Resource Estimate Support Information .........................................................2 8-1
+Tables
+Table 1-1: Economic Analysis Gold and Silver Price Assumptions ................................. 1-11
+Table 1-2: After-Tax Cash Flow Summary ...................................................................... 1-13
+Table 1-3: Summary of Mineral Resources – December 31, 2024 .................................. 1-17
+Table 1-4: Summary of Mineral Reserves – December 31, 2024 .................................... 1-17
+Table 1-5: LOM Operating Costs Summary .................................................................... 1-22
+Table 2-1: Qualified Person Responsibilities ..................................................................... 2-2
+Table 3-1: Mining Concessions ......................................................................................... 3-6
+Table 3-2: Royalties .......................................................................................................... 3-9
+Table 5-1: Exploration History of the San Gabriel Project ................................................. 5-4
+Table 7-1: Number of Drill Holes per Year (2008–2024) ................................................... 7-6
+Table 7-2: Percentage of Metres Recovered (2008–2024) ................................................ 7-7
+Table 7-3: Au Grades vs. Recovery .................................................................................. 7-7
+Table 8-1: Results of the Quality Control Evaluation of the San Gabriel Project (2008-2022)
+........................................................................................................................ 8-1
+Table 8-2: Summary of the Estimation Database by Drilling Type ..................................... 8-2
+Table 8-3: Distribution of Samples by Laboratory and Period ............................................ 8-5
+Table 8-4: Analytical Methods and Detection Limits at the CER Laboratory ...................... 8-6
+Table 8-5: Insertion of Control Samples at the Certimin Laboratory by Year ..................... 8-6
+Table 8-6: Summary of Insertion of Control Samples ........................................................ 8-6
+Table 8-7: Summary of Blank Insertion Rates ................................................................... 8-7
+Table 8-8: PDL of the CER Laboratory ............................................................................. 8-8
+Table 8-9: Summary of the Results for Contamination Evaluation .................................... 8-8
+Table 8-10: Constants Used in the Hyperbolic Equation ..................................................... 8-9
+Table 8-11: Results of the Precision Evaluation for Certimin Laboratory ........................... 8-10
+v
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Table 8-12: Summary of the Values of the SRM Certificates ............................................ 8-11
+Table 8-13: Summary of the Accuracy Evaluation of the Certimin Laboratory ................... 8-12
+Table 9-1: Summary of Files Provided by San Gabriel ...................................................... 9-1
+Table 9-2: Summary of Samples and Drill Holes by Year .................................................. 9-2
+Table 9-3: Summary of Occurrences in Database Verification .......................................... 9-4
+Table 9-4: Laboratory Cross-Validation Results ................................................................ 9-5
+Table 9-5: Bulk Density Database Summary by Source .................................................... 9-6
+Table 10-1: Revised Geometallurgical Gold Domains ....................................................... 10-7
+Table 10-2: Ore Characteristics ...................................................................................... 10-10
+Table 10-3: Ore Comminution Parameters...................................................................... 10-11
+Table 10-4: Results of Gravity – CIL Leach Tests ........................................................... 10-12
+Table 10-5: Results of CIL Leach Tests .......................................................................... 10-12
+Table 10-6: Reagent Consumptions – Destruction ........................................................... 10-13
+Table 11-1: Coordinates that Limit the Models (lithological, alteration and mineralization) 11-2
+Table 11-2: Domain Codification ....................................................................................... 11-5
+Table 11-3: Statistical Summary of the San Gabriel Database .......................................... 11-6
+Table 11-4: Summary of Assay Data Statistics According to Estimation Domain .............. 11-7
+Table 11-5: Statistics of Capped Samples for Au (g/t), Ag (g/t) and Fe (%) Applied by
+Estimation Domain ......................................................................................... 11-9
+Table 11-6: Summary of the Estimation Domain Composite Data Statistics for Au (g/t), Ag
+(g/t) and Fe (%) ............................................................................................ 11-10
+Table 11-7: Summary of Estimation Domain Variographic Parameters of Au (g/t), Ag (g/t) and
+Fe (%) .......................................................................................................... 11-13
+Table 11-8: Characteristics of the San Gabriel Block Model ........................................... 11-14
+Table 11-9: Estimation Parameters for Au (g/t) According to Estimation Domain ............ 11-14
+Table 11-10: Estimation Parameters for Ag (g/t) According to Estimation Domain ............ 11-15
+Table 11-11: Estimation Parameters for Fe (%) According to Estimation Domain ............. 11-16
+Table 11-12: Restrictions for Au (g/t), Ag (g/t) and Fe (%) ................................................ 11-17
+Table 11-13: Review of Estimation Domain Global Bias for Au by Category ..................... 11-18
+Table 11-14: Density Statistics by Estimation Domain ...................................................... 11-22
+Table 11-16: Definition of the Mineral Resource Category Parameters ............................. 11-23
+Table 11-17: Cut-Off Grade Calculation for Resources ..................................................... 11-25
+Table 11-18: Metal Prices ................................................................................................. 11-25
+Table 11-19: “Unit Value” San Gabriel .............................................................................. 11-25
+Table 11-20: Metallurgical Recovery ................................................................................. 11-26
+vi
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Table 11-21: NSR Calculation Formula ............................................................................. 11-26
+Table 11-22: SMU Mining Dimensions .............................................................................. 11-27
+Table 11-23: Report Fields ............................................................................................... 11-27
+Table 11-24: Summary of Mineral Resources – December 31, 2024 ................................ 11-27
+Table 12-1: Summary of Mineral Reserves – December 31, 2024 .................................... 12-1
+Table 12-2: Dilution Factors .............................................................................................. 12-2
+Table 12-3: NSR Calculation Inputs .................................................................................. 12-3
+Table 12-4: Metallurgical Recovery Assumptions.............................................................. 12-3
+Table 12-5: Cut-off Value Calculation ............................................................................... 12-4
+Table 12-6: Mineral Reserve Estimate Comparison .......................................................... 12-6
+Table 13-1: Number of Geotechnical Tests Split by Major Lithology ................................. 13-1
+Table 13-2: San Gabriel RMR Classification Ranges ........................................................ 13-3
+Table 13-3: Permanent Excavation Support Recommendations ....................................... 13-7
+Table 13-4: Recommendations for the Implementation of the UDF Mining Method ........... 13-8
+Table 13-5: Mine Design Parameters ................................................................................ 13-9
+Table 13-6: LOM Plan ..................................................................................................... 13-16
+Table 13-7: Mobile Equipment List .................................................................................. 13-20
+Table 13-8: Mine Personnel ............................................................................................ 13-21
+Table 14-1: San Gabriel Project Process Design Criteria .................................................. 14-4
+Table 14-2: Process Materials and Reagent Consumptions ............................................ 14-11
+Table 14-3: Power Consumption, Process and Infrastructure ......................................... 14-11
+Table 14-4: Reference Documents ................................................................................. 14-12
+Table 15-1: Non-Grinding Power Consumption by Area .................................................... 15-3
+Table 16-1: San Gabriel Price Forecast for Economic Analysis ........................................ 16-1
+Table 17-1: Environmental Permits ................................................................................. 17-10
+Table 17-2: Summary of Main Closure Activities for Final Mine Closure ......................... 17-15
+Table 18-1: Remaining Initial Capital Cost Estimate ......................................................... 18-1
+Table 18-2: Sustaining Capital .......................................................................................... 18-1
+Table 18-3: Main Consumable Price Assumptions and Equipment Costs ......................... 18-2
+Table 18-4: Mining Operating Costs Summary ................................................................. 18-3
+Table 18-5: Sources of Process Operating Cost Data by Category ................................... 18-3
+Table 18-6: San Gabriel 2021 Average Feasibility Study Process Operating Costs .......... 18-4
+Table 18-7: San Gabriel LOM Process Plant Operating Costs for TRS ............................. 18-5
+Table 18-8: San Gabriel LOM Site Services Operating Costs ........................................... 18-5
+vii
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Table 18-9: Total LOM Operating Costs Summary ........................................................... 18-6
+Table 19-1: Economic Analysis Gold and Silver Price Assumptions ................................. 19-1
+Table 19-2: Annual After-Tax Cash Flow Summary .......................................................... 19-3
+Table 19-3: After-Tax Sensitivity Analyses ........................................................................ 19-5
+Table 28-3: Statistics of Capping Analysis for the Seven Elements by Estimation ............ 28-5
+Figures
+Figure 3-1: Property Location ............................................................................................. 3-2
+Figure 3-2: San Gabriel Mineral Tenure ............................................................................. 3-7
+Figure 3-3: Buenaventura Land and Project Effective Area ................................................ 3-8
+Figure 4-1: Access by Road ............................................................................................... 4-2
+Figure 5-1: Regional Geology and Location of High Sulphidation Deposits ........................ 5-3
+Figure 6-1: Simplified Geological Map of Peru ................................................................... 6-2
+Figure 6-2: Stratigraphic Column of the Ichuña District ...................................................... 6-5
+Figure 6-3: Geological Map with Plan View and Section AA’ .............................................. 6-8
+Figure 6-4: Longitudinal Section AA’ Showing the Mineralization Limited by the East and
+West Faults ...................................................................................................... 6-9
+Figure 6-5: Geological Map with Plan View and Section BB’ ............................................ 6-10
+Figure 6-6: Longitudinal Section BB’ Showing the Mineralization Limited by the Canahuire
+South and North Faults .................................................................................. 6-11
+Figure 6-7: Different Types of Breccias in San Gabriel. A) Phreatomagmatic breccia. B)
+Polymictic breccia. C) Monomictic calcarea breccia. D) Monomictic clastic
+breccia. E) Monomictic clastic breccia. ........................................................... 6-12
+Figure 6-8: Geological Map of the Ichuña Region Showing the Location of the San Gabriel
+Deposit .......................................................................................................... 6-12
+Figure 6-9: Alteration Map of the San Gabriel Deposit ..................................................... 6-14
+Figure 6-10: Paragenetic Sequence of the San Gabriel Deposit ........................................ 6-15
+Figure 6-11: Geochemical Control of the San Gabriel Deposit ........................................... 6-16
+Figure 6-12: Plunge of Mineralization of the San Gabriel Deposit ...................................... 6-17
+Figure 7-1: Plan View of the Drill Holes Utilized in the Resource Estimation Process ........ 7-4
+Figure 7-2: Section AA’ of the Drill Holes Utilized in the Resource Estimation Process ...... 7-5
+Figure 8-1: Certimin Laboratory Sample Preparation Flowchart ......................................... 8-4
+Figure 8-2: PDL of Ag at the Certimin Laboratory ............................................................... 8-8
+Figure 8-3: Graph of the Hyperbolic Method for Twin Fe Samples (%) at Certimin Laboratory
+...................................................................................................................... 8-10
+viii
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 9-1: Spatial Distribution of the Drill Holes Considered for Estimation by Drilling Year ...
+........................................................................................................................ 9-3
+Figure 9-2: Logarithmic Histogram of the Length of Primary Samples ................................ 9-5
+Figure 9-3: Plan View of Bulk Density Samples from the San Gabriel Project .................... 9-7
+Figure 10-1: Summary of Modal Mineralogy from the QEMSCAN Analysis ........................ 10-2
+Figure 10-2: Definition of Gold Geometallurgical Units (UGMs) .......................................... 10-8
+Figure 10-3: Gold Geometallurgical Model ......................................................................... 10-9
+Figure 10-4: Rational for Silver Domaining ......................................................................... 10-9
+Figure 10-5: Silver Geometallurgical Model...................................................................... 10-10
+Figure 10-6: Gold Head Grade versus Gravity-CIL Leach Gold Recovery ........................ 10-12
+Figure 10-7: Gold Head Grade versus CIL Leach Gold Recovery .................................... 10-13
+Figure 10-8: Gold Grade/Total Organic Carbon versus Gravity-CIL Leach Gold Recovery .......
+.................................................................................................................... 10-13
+Figure 11-1: Isometric View of the Lithological Model ........................................................ 11-3
+Figure 11-2: Breccias Modelled in a Refined Model ........................................................... 11-3
+Figure 11-3: NW-SE Central Section of the San Gabriel Lithology Model .......................... 11-4
+Figure 11-4: NW–SE Section View of the San Gabriel Estimation Domains ....................... 11-5
+Figure 11-5: NW–SE Section View of the San Gabriel Estimation Domains Highlighting the
+Grade Shells 5011 and 7011 from Domains A3 and A4, respectively............. 11-6
+Figure 11-6: Cumulative Probability Curve for the Evaluation of Au (g/t) Capping in Domain
+7011............................................................................................................... 11-8
+Figure 11-7: Modelled Variogram for Au (g/t) in the Domain 5011 .................................... 11-11
+Figure 11-8: Modelled Variogram for Au (g/t) in the Domain in 7011 ................................ 11-12
+Figure 11-9: Swath Plots for Au (g/t) in Domain 5011 ...................................................... 11-19
+Figure 11-10: Swath Plots for Au (g/t) in Domain 7011 ...................................................... 11-20
+Figure 11-11: Comparison of Au (g/t) Estimation versus Composited Data in Domain 5011 .......
+.................................................................................................................... 11-21
+Figure 11-12: Comparison of Au (g/t) Estimation versus Composited Data in Domain 7011 .......
+.................................................................................................................... 11-21
+Figure 11-13: Plan View of the San Gabriel Resource Model, Before (A) and After (B)
+Smoothing.................................................................................................... 11-24
+Figure 12-1: Final Mine Layout – Plan View ....................................................................... 12-5
+Figure 13-1: Spatial Geotechnical Data Coverage and Indication of Rock Mass Ratings in
+Boreholes and Planned Underground Development ...................................... 13-2
+Figure 13-2: RMR Pie Chart ............................................................................................... 13-3
+Figure 13-3: Plan and Cross Section through Block Model ................................................ 13-4
+Figure 13-4: Example 2D Modelling Output of UDF ........................................................... 13-6
+ix
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 13-5: Final Mine Layout - Isometric ....................................................................... 13-11
+Figure 13-6: Final Mine Layout – Looking North ............................................................... 13-12
+Figure 13-7: Scoop Fitted With A Rammer Plate .............................................................. 13-14
+Figure 13-8: Yearly Development Advance ...................................................................... 13-15
+Figure 13-9: Yearly Ore Production .................................................................................. 13-15
+Figure 13-10: Yearly Development Advance ...................................................................... 13-17
+Figure 13-11: Final Stage Ventilation Setup ....................................................................... 13-19
+Figure 14-1: Process Flow Sheet ....................................................................................... 14-2
+Figure 14-2: Overall Plant Site Plan ................................................................................... 14-3
+Figure 15-1: Site Infrastructure ........................................................................................... 15-2
+Figure 15-2: Site Layout of Filtered Tailings Storage Facility ............................................ 15-12
+Figure 15-3: General Arrangement of Filtered Tailings Storage Facility Operation ........... 15-13
+Figure 17-1: Micro-basins and Baseline Surface Water Quality Monitoring Locations ........ 17-2
+Figure 19-1: After-Tax Sensitivity Analysis ......................................................................... 19-6
+Appendix Tables
+Table 27-1: Contamination Evaluation Results per Element ............................................. 27-3
+Table 27-2: Results of the Precision Evaluation for Certimin Laboratory ........................... 27-4
+Table 27-3: Summary of the Values of the SRM Certificates ............................................ 27-5
+Table 27-4: Summary of the Accuracy Evaluation for Certimin Laboratory ....................... 27-6
+Table 27-5: Laboratory Cross-validation Results............................................................... 27-7
+Table 27-6: Bulk Density Database Summary by Laboratory ............................................ 27-7
+Table 28-1: Statistical Summary of the San Gabriel Database .......................................... 28-2
+Table 28-2: Summary of Statistics per Estimation Domain ................................................ 28-3
+Table 28-3: Statistics of Capping Analysis for the Seven Elements by Estimation Domain 28-5
+Table 28-4: Summary of Composite Data Statistics per Estimation Domain ..................... 28-7
+Table 28-5: Restrictions for the Seven Estimated Elements .............................................. 28-9
+Table 28-6: Summary of Estimation Domain Global Bias by Element ............................. 28-11
+Appendix Figures
+Figure 27-1: Mean Differences between RC, RCD, and DH Samples for Domain 5011 ..... 27-2
+Figure 27-2: Mean Differences between RC, RCD, and DH Samples for Domain 7010 ..... 27-2
+Figure 27-3: Mean Differences between RC, RCD, and DH Samples for Domain 7011 ..... 27-2
+x
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+1.0 Executive Summary
+1.1 Summary
+SLR Consulting (Canada) Ltd. (SLR) was retained by Compañía de Minas Buenaventura S.A.A.
+(Buenaventura) to prepare an independent Technical Report Summary (TRS) on the San
+Gabriel Project (San Gabriel, the Property, or the Project), located in General Sánchez Cerro
+Province, Peru. The purpose of this TRS is to support the disclosure of year-end (YE) 2024
+Mineral Resource and Mineral Reserve estimates at the Property. This TRS conforms to United
+States Securities and Exchange Commission’s (SEC) Modernized Property Disclosure
+Requirements for Mining Registrants as described in Subpart 229.1300 of Regulation S-K,
+Disclosure by Registrants Engaged in Mining Operations (S-K 1300) and Item 601 (b)(96)
+Technical Report Summary. SLR’s Qualified Persons (QP) visited the Property on January 20 to
+22, 2025. SRK Consulting (Peru) S.A. (SRK), the QP for geology and Mineral Resources,
+visited the Property on December 16 to 18, 2024.
+Since Buenaventura acquired a 100% interest in the Project in 2014 and reached land
+agreements in 2014 and 2016, various studies have been carried out to support the
+development of San Gabriel as an underground gold project. In 2020, Ausenco Peru S.A.C.
+(Ausenco) carried out a Feasibility Study (FS) integrating all aspects of the Project including the
+underground mine, process plant, and both on-site and off-site infrastructure. Various
+supporting studies were completed on hydrology and hydrogeology, seismicity, and
+infrastructure including power supply, water storage, and waste material storage. Additional FS
+work was completed in 2021, including a new resource and reserve model, an updated mining
+plan, and the optimization of some of the Project's surface infrastructure, and a final FS report
+was issued by Ausenco in February 2022. Ausenco was awarded the engineering, procurement,
+construction and management (EPCM) contract. Construction was at approximately 70%
+completion as of January 2025.
+The Project will consist of an underground mine, a process plant, ancillary buildings, and
+associated infrastructure. The San Gabriel processing plant is designed to treat 1,095 million
+tonnes per annum (Mtpa) of ore from the underground mine to produce gold and silver doré
+bars.
+The report is an update of Buenaventura’s prior Technical Report Summary for the Property,
+with an effective date of December 31, 2021.
+1.1.1 Conclusions
+1.1.1.1 Geology and Mineral Resources
+The SRK QP has the following conclusions for geology and Mineral Resources.
+Sample Preparation, Analyses, and Security
+• SRK conducted a comprehensive review of available quality assurance and quality
+control (QA/QC) data from years 2023 and 2024 and believes that QA/QC procedures
+are consistent with the best practices accepted in the industry. The SRK QP is of the
+opinion that sample preparation, chemical analysis, quality control, and the security
+procedures are sufficient to provide reliable data to support the Mineral Resource and
+Mineral Reserve estimation and considers that quality has been maintained in
+comparison to the results obtained in the FS of the San Gabriel Project.
+1-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+• The insertion rates of control samples appear adequate.
+• There is no evidence of significant contamination for the elements Ag, Au, Cu, Pb, Fe,
+Sb, and S.
+• There is good precision in sampling, sub-sampling, and analytical processes.
+• The bias evaluation results from standard reference materials (SRM) showed that
+analytical accuracy of Certimin laboratory’s evaluation of all seven elements is within
+acceptable limits.
+• The SRK QP considers that the results of quality control evaluation do not represent a
+risk to the Mineral Resource estimation.
+Database Verification
+• SRK found that San Gabriel Project database had only minor findings that correspond
+mainly to historical data.
+• Approximately 30% of the drill holes used in the Mineral Resource estimation do not
+have collar certificates.
+• SRK considers the sample database from the San Gabriel Project to be consistent and
+acceptable for the Mineral Resource estimation.
+Geological Model
+• Buenaventura has developed a lithological model that delimits the Mineral Resource
+model; nevertheless, a strong structural component related to mineralization has not
+been included in the model.
+• The database shared by Buenaventura for the Mineral Resource Audit presents a larger
+number of drill holes in comparison to those included in the lithological database (39 drill
+holes, of which 38 correspond to the 2023-2034 campaign and one associated with drill
+hole CCP11_343 from 2011). These drill holes, although not included in the geological
+model, were used to define estimation domains.
+• An analysis of the grades contained in each high-grade shell, i.e., 5011 and 7011, found
+low-grade samples that represented 40% and 50% of all samples in each shell
+respectively; nevertheless, this is attributable to efforts to obtain continuity across
+domains.
+• The Total Organic Carbon (TOC) domains were developed with the Machine Learning
+Method; the objective was to predict the information in these domains and update as
+well as validate the continuity with information from new diamond drilling campaigns.
+• The lithological model at San Gabriel demonstrates geological continuity and coherence;
+and the events represented show good correlation between information from geological
+logging and the lithological domains developed by Buenaventura.
+Mineral Resource Estimation
+• Buenaventura developed the Mineral Resource estimation of Au, Ag, Fe, Cu, Pb, Sb and
+S, and SRK was responsible for the Mineral Resource estimation audit of these
+elements in the San Gabriel Project. These grades were interpolated into a block model
+using ordinary kriging (OK) and inverse distance (ID) methods. The results were
+1-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+validated visually and through statistical comparisons. The estimation generated was
+consistent with industry standards across categorizations.
+• Samples from diamond drill (DH), reverse circulation (RC), and reverse circulation with
+diamond tail (RCD) drill holes are being used to estimate Mineral Resources;
+nevertheless, DH samples represent 90% of all samples of raw data, which indicates
+that the remainder of samples have no impact on the Mineral Resource estimate. In
+addition to this, Buenaventura conducted a correlation analysis between the RC and
+RCD samples with DH using a 15 m radius, where results of more than 80% correlation
+per domain were obtained.
+• The distribution of density samples is not homogenous in each estimation domain, which
+impedes efforts to estimate density. For this reason, Buenaventura assigns a density
+volume to each domain that is the equivalent of the mean of the density samples after
+having removed samples that were outside of the limits of the Mean ± 2 standard
+deviation (SD).
+Block Model: Resource Category
+• Buenaventura classifies Mineral Resources according to spacing between drill holes,
+number of passes, number of drill holes, and minimum number of drill holes used in the
+block estimation. Additionally, to minimize the “spotted dog” effect, Buenaventura
+develops wireframes to delimit each smoothed classification.
+1.1.1.2 Mining and Mineral Reserves
+The SLR QP has the following conclusions for mining and Mineral Reserves.
+Geotechnical Considerations
+• The underhand drift and fill (UDF) method is the preferred mining approach for the poor-
+quality rock masses (Rock Mass Rating [RMR] < 40) at the San Gabriel Project. Its
+sequential excavation and cemented backfill strategy provide robust support and
+mitigate geotechnical risks associated with structurally and stress-controlled instabilities.
+By incorporating optimized backfill strength, systematic ground support, and real-time
+monitoring, UDF promotes safe and efficient mining under challenging ground
+conditions.
+Mineral Reserves
+• At the effective date of December 31, 2024, total underground San Gabriel Proven and
+Probable Mineral Reserves are estimated to be 15.3 million tonnes (Mt) at average
+grades of 3.71 g/t Au and 6.32 g/t Ag, containing 1.8 million ounces (Moz) of Au and 3.1
+Moz of Ag.
+• Mineral Reserves were estimated within stope and development designs. The SLR QP
+has reviewed the Mineral Reserve estimation methodology and is of the opinion that the
+estimates have been prepared to industry standards.
+• The estimated Mineral Reserves support a life of mine (LOM) of 14.6 years. The mine
+will have a production rate of 3,000 tonnes per day (tpd) increasing to 3,500 tpd in 2034.
+1-3
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Mining
+• The San Gabriel mine will be mined using UDF mining methods and cemented fill will be
+used as backfill.
+• The cemented fill plant will be built on site and is designed to have a capacity 17%
+greater than ore production.
+• All haulage operations will be undertaken by contractors. Buenaventura will assume
+responsibility for mining operations as of 2026.
+• The north zone of the mine has not been sampled for metallurgical test work and
+metallurgical recoveries are based on test work averages completed in the south zone.
+• The LOM plan consists of aggressive development rates between 2026 to 2028. Part of
+the development scheduled in those years can be scheduled later during the LOM.
+• As of December 31, 2024 the detailed engineering progress was at 100% complete,
+construction services and procurement at 100% complete, and mine advance at 33%
+complete, with 2,000 m of ramp development completed from the North portal and 366
+m at the South portal.
+• Construction of the underground mine is progressing as per schedule and on time.
+1.1.1.3 Mineral Processing
+• The status of the Project as of January 2025 is that detailed engineering is 97%
+complete, construction services, 100% complete, procurement is 100% complete, and
+construction progress is 62% complete. This mineral processing information in this TRS
+is based on the FS and some of the information from the detailed engineering stage of
+the Project. The SLR QP notes that the detailed engineering level process design
+criteria, flowsheets, and layouts were purported to be complete but were not made
+available for the writing of this report.
+• The San Gabriel processing plant is designed to treat 1,095 Mtpa (3,000 tpd) of ore from
+the underground mine to produce gold doré bars with silver content. The expected LOM
+for San Gabriel has been estimated at 14 years. The plant comprises primary crushing,
+semi-autogenous grinding (SAG) mill and ball mill grinding, gravity gold recovery (GRG)
+with intensive cyanide leaching, cyclone classification, pre-oxidation using oxygen
+sparging, carbon-in-leach cyanidation (CIL), INCO SO -air cyanide detoxification, Zadra
+2
+carbon elution, regeneration electrowinning and doré casting, tailings thickening and
+filtration, and water treatment. The SLR QP agrees with the process flowsheet selected
+and the level of metallurgical testing performed to support the Project engineering.
+• Ore contains preg-robbing organics requiring the use of CIL. The results of the CIL leach
+tests without gravity recovery ranged from 41.9% to 94.9% with an average gold
+recovery of 86.7% and a 75th percentile gold recovery of 91.4%. It should be noted that
+the gold grade of the CIL set of samples averaged 5.2 g/t Au and the gravity CIL set
+averaged 3.1 g/t Au. TOC averaged 0.68% in the CIL set and 0.54% in the gravity CIL
+set. Design recovery for the gravity-CIL circuit is 86.48%.
+• Gold occurs as native gold and electrum, although in the stockwork type there are
+significant amounts of maldonite (Au Bi). Free gold in the range of 20% to 30% was
+2
+found to occur in the replacement and breccia ore types, indicating the potential for GRG.
+The average sulphur content is 12%, mainly as iron sulphides with only minor cyanide
+soluble copper minerals. There is evidence of organic carbon potentially causing preg-
+1-4
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+robbing. The SLR QP indicates that deleterious elements in the San Gabriel
+mineralization include organic carbon and mercury.
+• Based on the results from Laboratorio Plenge (PlengeLab), using the cyclone underflow
+size distribution, 80% passing (P ) 296 µm, results in a global gravity recovery of 13.7%
+80
+for gold and 1.7% for silver. In all cases, mass recovery was 0.5%.
+• Sedimentation test results for the final tailings thickener indicated an underflow density
+averaging 55% solids and a thickener specific area of 0.22 m2/(t/d), equivalent to a 30 m
+diameter thickener. Rheology variability test work by PlengeLab on the tailings thickener
+underflow slurry indicated the need to reduce the target density from 55% solids to 47%
+(range 45% to 50%) due to high slurry viscosity.
+• Filtration tests resulted in a specific filtration rate of 0.44 m2/(t/h) producing a filter cake
+of 20% moisture, which is higher than the current geotechnical requirement of 14%
+moisture for final disposal in the dry stacked tailings facility, Filtered Tailings Reservoir
+(DRF for its abbreviation in Spanish). The SLR QP understands that additional testing is
+planned to reduce the moisture including surfactants, cake drying, air blowing, and
+viscosity adjustment by varying pH, and that solving this problem is critical for dry
+stacked tailings.
+• Slurry viscosity increases with an increase in pH and percent solids. The milling process
+design considers a near neutral (pH 7) milling process using the pre-leach thickener to
+isolate the milling and CIL circuits.
+• The process water is supplied to the process water pond, from the tailings thickener
+overflow and TSF reclaim water. The treated water from the mine water treatment plant
+feeds the process water tank which distributes the water to different points within the
+process plant.
+1.1.1.4 Infrastructure
+• The site currently has two camps with a total capacity for 1,500 people, which will be
+reduced to approximately 800 during operation. Camp facilities include administrative
+buildings, training rooms, recreation rooms, laundry facilities, a medical centre, and
+kitchen and dining rooms.
+• The property is accessed via the National Road MO-106 and a seven kilometre gravel
+road connects the national road to the site’s main gate.
+• The power supply to the San Gabriel Substation will be via one 50.3 km long
+220 kilovolts (kV) overhead transmission line from the Chilota Substation to the
+220 kV/23 kV San Gabriel Substation.
+• Fresh water will come from two sources: fresh water dam (built across the Quebrada
+Agani) and water inflow from the underground mine. Mine, process, and surface contact
+water will be recycled for plant and mine operations use.
+• The Industrial Waste Mine Water Treatment Plant (PTARI) mine water treatment plant
+has a capacity 60 L/s.
+• The SLR QPs visited the site in January 2025, at which time the surface infrastructure
+construction was approximately 70% complete.
+1-5
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+1.1.1.5 Environmental, Permitting and Social Considerations
+• No known environmental issues that could materially impact the ability to extract the
+Mineral Reserves were identified by SLR from the documentation available for review.
+• Environmental approval was granted for the Environmental Impact Assessment (EIA) for
+the Project in 2017. The authorization for operation from the General Directorate of
+Mining of Perú, and the licences and authorizations from the National Water Authority for
+water use and water discharge for the operations phase of the Project must be obtained
+by Buenaventura before commencement of production.
+• Buenaventura has an Environmental Policy in place that establishes the environmental
+management guidelines and standards for its projects and operations (last reviewed in
+2022).
+• There is an Environmental Management Plan in place, applicable to operations and
+construction activities. It includes an environmental monitoring program encompassing
+soil, air quality, noise, surface water and springs quality, sediments, effluents,
+groundwater, and biodiversity. Bi-annual reports documenting monitoring results for
+water quality, air quality, and ambient noise are submitted to the Peruvian authorities.
+• The SLR QP is not aware of any non-compliance environmental issues raised by the
+Peruvian authorities. Buenaventura stated in the conclusions of the bi-annual monitoring
+reports provided to SLR (corresponding to the first half of 2024) that the monitoring
+results are in compliance with the environmental regulations in force.
+• According to the information reviewed, the site water management system meets the
+typical objectives applicable to mine operations (i.e., implementation of infrastructure for
+management of contact and non-contact water protective of the receiving environment).
+• A Community Relations Plan is in place and was developed as part of the Environmental
+Management Plan.
+• The key social issue associated with the Project is the high expectations from
+communities within the Project’s social area of influence in terms of support and benefits
+to be provided by Buenaventura.
+• Based on the information provided in the reports accessible through the company’s
+website, Buenaventura appears to maintain positive relations with the communities
+located within the area of influence of its mine operations. Based on the documents
+provided by Buenaventura and information gathered during the site visit in January
+2025, the company appears to maintain positive working and commercial relationships
+with the communities within the area of influence of its mine operations. San Gabriel
+prioritizes hiring and buying locally and provides training opportunities to help local
+workforce and businesses remove barriers to employment and procurement.
+• San Gabriel has framework agreements in place with the Santa Cruz de Oyo Oyo,
+Maycunaca and Antajahua rural community and the Corire rural community involving
+monetary contributions, priority hiring, training, scholarships, establishment of a
+development fund to be invested in key priority areas, and support for the establishment
+of community businesses.
+• Buenaventura publicly discloses its sustainability performance through integrated annual
+reports accessible through the company’s website.
+1-6
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+• A conceptual Mine Closure Plan (MCP) has been developed for all the mine components
+within the context of Peruvian legislation.
+1.1.1.6 Capital and Operating Costs and Economics
+• Mining operating costs were estimated for mining operations completed by
+Buenaventura, and development and support operations completed by contractors. The
+SLR QP has reviewed the cost calculations and is of the opinion that the estimates
+include all labour, supplies, consumables, and equipment costs required to sustain the
+underground mining operations.
+• Operating cost estimates for the process plant and associated on-site and off-site
+infrastructure were prepared by Ausenco with input from Buenaventura. Operating costs
+were estimated for labour, power, reagents, water supply and treatment, and
+consumables on an annual basis considering plant flowsheet, process design criteria
+and the mass balance. Power and reagent costs were calculated from equipment lists,
+electrical load lists and the results of metallurgical testing.
+• Current LOM plan operating cost estimates expanded on the FS operating costs for the
+concentrator and ADR plant by increasing in the plant maintenance costs and adding
+operating and maintenance costs for the water treatment plant, PTARI. The FS unit
+process operating cost is US$26.94/t, and the LOM unit process operating cost used in
+the current San Gabriel cash flow is US$36.14/t. The SLR QP considers these operating
+costs to be reasonable.
+• The LOM production schedule in the cash flow model is based on the December 31,
+2024, Mineral Reserves.
+• The economic analysis using the production, revenue, and cost estimates presented in
+this TRS confirms that the outcome is a positive cash flow that supports the statement of
+Mineral Reserves for a 14.2-year mine life. At LOM long term metal prices of
+US$2,172.00/oz Au and US$29.00/oz Ag, the Project’s Base Case undiscounted pre-tax
+net cash flow is approximately US$801 million, and the undiscounted after-tax net cash
+flow is approximately US$474 million. The pre-tax Net Present Value (NPV) at an 8.26%
+discount rate is approximately US$388 million and the after-tax NPV at an 8.26%
+discount rate is approximately US$191 million.
+1.1.2 Recommendations
+1.1.2.1 Geology and Mineral Resources
+The SRK QP has the following recommendations for geology and Mineral Resources.
+Sample Preparation, Analyses, and Security
+1 Insert external control samples in future deliveries, as established in its Quality Control
+Procedure (2022). Sending external control samples to a secondary laboratory must
+include a review of the granulometry in 10% of the samples, as well as the insertion of
+pulp blanks and SRMs in said lots.
+2 Complete frequent reviews of the behaviour of the quality control results and inform the
+laboratory about any problems detected to opportunely establish corrective measures.
+1-7
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Data Verification
+3 Periodically monitor and/or review drill hole recovery results. The SRK QP considers a
+recovery percentage greater than 90% acceptable.
+4 The minimum and maximum drill hole sampling length indicated in the Buenaventura
+Sampling Protocol (2022) should be respected in future drilling campaigns.
+5 In future drilling programs, perform bulk density sampling in all drill holes and areas that
+are important for Mineral Resource estimation.
+6 Complete frequent reviews and validation of the control sample database and check that
+duplicate control samples are correctly associated with their corresponding primary
+sample.
+Geological Model
+7 Generate a structural model for subsequent integration in the geological model to ensure
+a more robust model that provides better understanding on the role of faults and their
+relation to mineralization.
+8 Use the database used to estimate resources in updates of Mineral Resource
+estimations to update the geological model; this will ensure that the registries in the
+database for the estimation match the registries in the geological model.
+9 More support is needed from samples to confirm and define the continuity of
+carbonaceous horizons. In future diamond drilling campaigns, the TOC sampling should
+continue to confirm the geological interpretation.
+Mineral Resource Estimation
+10 Exclude samples from RC and RCD drill holes in future Mineral Resource estimations.
+These samples should be replaced with samples from diamond drill holes to ensure that
+resource estimation is based on a single source of information.
+11 Systematic density sampling programs should cover all domains, appropriately
+distributed along and up the estimation domains.
+12 Use best practices in the industry to develop a density sample procedure for non-
+competent core rock to ensure that representative samples are available for each of the
+Project’s domains.
+13 Implement a reconciliation program that includes the different types of Mineral Resource
+models, reserves, mine plans, and plant results when the operation starts.
+Block Model: Resource Category
+14 Consider risk factors such as QA/QC and density in the classification of Mineral
+Resources.
+15 Compare the tonnages between the initial category and the smoothed category in order
+to validate that the tonnage variation is not greater than 5%. Additionally, it is
+recommended to include some algorithm that can perform the smoothing process
+because the complexity may increase over time.
+1.1.2.2 Mining and Mineral Reserves
+The SLR QP has the following recommendations for mining and Mineral Reserves.
+1-8
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Geotechnical Considerations
+1 Study/Data – Carry out further characterization of the Project site, including additional
+drilling and laboratory tests.
+2 Backfill Quality and Strength - Conduct trials to optimize cemented backfill mix
+(CAF/CRF) and achieve a minimum strength of 2.2 MPa within 7–28 days of curing.
+Ensure proper topping/filling to achieve roof contact.
+3 Excavation Direction - Advance drifts in the SE-NW direction, parallel to the major
+horizontal stress, to minimize deformation and improve support efficiency.
+4 Ground Support - Implement systematic bolting, mesh, and shotcrete based on site-
+specific conditions.
+5 Adjust support design as necessary based on ground performance monitoring.
+6 Geotechnical Monitoring - Use real-time monitoring (e.g., convergence meters, stress
+gauges) to assess drift performance and backfill behaviour.
+7 Mining Sequencing - Maintain controlled sequencing of undercutting operations to limit
+exposure of poor-quality rock and ensure backfill curing time.
+Mining
+8 Complete metallurgical test work in areas with poor or no test work prior to mining those
+areas.
+9 Review the development schedule to reduce the amount of development between 2026
+and 2028.
+10 Consider maintaining some contractor involvement in 2026 particularly with development
+advance.
+11 Add a minimum of 10 days for cemented backfill curing time in the LOM schedule where
+two adjacent drifts will be mined sequentially.
+1.1.2.3 Mineral Processing
+1 The detailed engineering process was reported to be complete, however, the detailed
+engineering design criteria, flowsheets, and layouts were not available for the writing of
+this report. Future reports should include this information.
+2 Conduct additional metallurgical test work in areas lacking test work and in areas
+exhibiting variability in recoveries, such as Estimation Domain A4, and in zones with high
+TOC content. Current domains are defined by the relationship between Au recovery and
+TOC, however, relationships between Au recovery and both head grade and sulphide
+sulphur grade are also significant and should be considered in the modeling. It is
+therefore advisable to develop metallurgical domains to more accurately define
+metallurgical recoveries. At present, recovery estimates are based on estimation
+domains rather than dedicated metallurgical domains, which may not fully capture
+metallurgical variability.
+1.1.2.4 Environmental, Permitting and Social Considerations
+1 Review the company’s Environmental Policy procedures and protocols and update them
+at regular intervals to allow for their proper and timely implementation.
+1-9
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+2 Develop the governance approach and procedures for the Tailings Storage Facility
+(TSF) and other dams of the Project before initiating production. An Engineer of Record
+should be appointed for the TSF. The supporting documents, studies, and analysis
+should be in place, including Operation, Maintenance and Surveillance (OMS) Manual, a
+downstream consequence analysis, Emergency Preparedness and Response Plan,
+Probable Failure Modes Analyses (PFMA), and risk assessment.
+3 The San Gabriel social team should continue working and communicating regularly with
+the other internal departments, such as environment, operations, procurement,
+communications, and institutional relations, on community-related matters, as their
+sphere of influence could impact community relationships. For example, the contracting
+or not of a local business for a specific scope of work, the delay in paying invoices to a
+local business or contractual breaches can negatively impact the relationships with
+communities within the social area of influence.
+4 Revisit and update the Social Management Plan regularly as social risks requiring
+mitigations also change and evolve constantly.
+5 Develop and implement a procedure and a tool to register commitments and track
+progress to ensure fulfillment of the social commitments. San Gabriel has numerous
+social commitments from engagement activities with communities, the EIA, dialogue
+roundtables, framework agreements with communities, and agreements with districts in
+the social area of influence.
+1.1.2.5 Capital and Operating Costs and Economics
+1. Track and collect actual mine operating costs during operations and review cut-off grade
+estimations for future Mineral Reserve estimates.
+2. Developing the capital cost estimate detail to incorporate owner’s costs and contingency
+calculations.
+3. Further develop the Work Breakdown Structure (WBS) to assist with the development of
+the control budget.
+4. Verify capital and operating costs from the completion of process facility construction
+and initial operation of the plant.
+5. Update the metal market overview analysis for gold and silver every two to three years
+as the most recent available study is from CRU Group in Q2 2021
+1.2 Economic Analysis
+The economic analysis contained in this TRS is based on the San Gabriel Project Mineral
+Reserves, economic assumptions, and capital and operating costs provided by Buenaventura
+corporate finance and technical teams and reviewed by SLR. All costs are expressed in Q1
+2025 US dollars. Unless otherwise indicated, all costs in this section are expressed without
+allowance for escalation, currency fluctuation, or interest.
+A summary of the key criteria is provided below.
+1.2.1 Economic Criteria
+1.2.1.1 Physicals
+• Mine Life: 14.2 years (between Q2 2025 and Q1 2039).
+1-10
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+• Underground peak mining rate: 3,452 tpd (between 2034 and 2037)
+• Total Ore Feed to Process: 15,305 kt ore at 3,71 g/t Au and 6.32 g/t Ag
+• Contained Metal
+o Gold: 1,824 koz of Au
+o Silver: 3,111 koz of Ag
+• Average LOM Process Recovery:
+o Gold Recovery: 85.3%
+o Silver Recovery: 45.0%
+• Recovered Metal
+o Gold: 1,555 oz Au
+o Silver: 1,401 koz Ag
+1.2.1.2 Revenue
+• Revenue is estimated based on metal prices provided to SLR by Buenaventura, which
+sourced them from Bloomberg Street Consensus Commodity Price Forecasts from
+January 2025. The Bloomberg metal price forecast is presented in Table 1-1.
+Table 1-1: Economic Analysis Gold and Silver Price Assumptions
+Commodity Unit 2025 2026 2027 2028 2029 and
+Long-Term
+Gold $/oz 2,000 2,539 2,200 2,172 2,172
+Silver $/oz 26.00 32.50 27.50 29.00 29.00
+• Payable metals are estimated at 99.5% for gold and 99.5% for silver. These rates are
+based on other Buenaventura operations.
+• LOM average selling charges of 0.29% of gross revenue (or 6.44 per ounce of gold).
+• Royalty to Gold Fields S.A. (Gold Fields): 1.5% NSR.
+• LOM NSR revenue is US$3,384 million (after Selling Charges and Royalties).
+1.2.1.3 Capital Costs
+• Initial capital, based on the Estimate to Complete as at December 31, 2024 of US$177
+million for year 2025 in the cash flow model.
+• Total LOM sustaining capital costs of US$186 million.
+• Mine closure costs total US$17.0 million over the LOM:
+o Concurrent reclamation between 2025 and 2039 of US$3.0 million.
+o Mine closure costs between 2040 and 2041 of US$13.5 million.
+o Post-closure costs between 2042 and 2046 of US$0.5 million.
+1-11
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+1.2.1.4 Operating Costs
+• Total unit operating costs US$132.14/t ore processed:
+o Underground mining operating costs: US$74.17/t mined.
+o Processing operating costs: US$36.14/t ore processed.
+o Site Services & general and administrative (G&A) costs: US$18.36/t ore processed,
+or US$21 million per year.
+o Build Own Operate and Transfer (BOOT) costs: US$3.46/t ore processed, or US$4
+million per year
+• LOM site operating costs of $2,022 million.
+• Off-site G&A (Corporate Allocation): US$12 million per year over the LOM.
+1.2.1.5 Taxation and Royalties
+• Corporate income tax rate in Peru is 29.50%.
+• Special Mining Tax Contribution (IEM) LOM average rate: 2.6%.
+• Mining Tax Royalty LOM average rate: 4.2%.
+• Employees’ profit sharing participation: 8.0%.
+• Third party Royalty to Gold Fields: 1.5%.
+• SLR has relied on a Buenaventura taxation model for calculation of income taxes
+applicable to the cash flow.
+1.2.2 Cash Flow Analysis
+SLR prepared a LOM unlevered after-tax cash flow model to confirm the economics of the
+Property over the LOM (between 2025 and 2039). Economics have been evaluated using the
+discounted cash flow (DCF) method by considering LOM production on a 100% basis, annual
+processed tonnages, and gold and silver grades. The associated metal recoveries, metal prices,
+operating costs, transportation, treatment and refining charges, initial and sustaining capital
+costs, and reclamation and closure costs, as well as royalties, income tax, and special mining
+tax were also considered in the DCF.
+The economic analysis prepared by SLR considers a base discount date as at January 1, 2025,
+using beginning of year convention discounting.
+The base discount rate for the DCF analysis of San Gabriel was set by Buenaventura’s senior
+management at 8.26% based on their Weighted Average Cost of Capital (WACC) analysis.
+Discounted present values of annual cash flows are summed to arrive at the Project Base Case
+NPV. The Internal Rate of Return (IRR) and payback are also calculated, given San Gabriel is
+a project under construction beginning ROM production in May 2025 and processing plant
+operations in September 2025.
+To support the disclosure of Mineral Reserves, the economic analysis demonstrates that the
+San Gabriel Mineral Reserves are economically viable at LOM long term metal prices for gold at
+US$2,172.00/oz and silver at US$29.00/oz.
+• San Gabriel’s Base Case undiscounted pre-tax net cash flow is approximately US$801
+million, and the undiscounted after-tax net cash flow is approximately US$474 million.
+1-12
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+• The pre-tax NPV at a 8.26% discount rate is approximately US$388 million and the after-
+tax NPV at a 8.26% discount rate is approximately US$191 million.
+• The San Gabriel Project pre-tax IRR is 33,6% and after-tax IRR is 21.8%.
+• The pre-tax payback period is 4.0 years and the after-tax payback period is 5.3 years.
+The SLR QP confirms that SLR has also run the economic analysis using flat reserve metal
+prices, and the analysis demonstrates that San Gabriel’s Mineral Reserves are also
+economically viable at these prices.
+The World Gold Council Adjusted Operating Cost (AOC) after by-product credits for the Project
+is US$1,321/oz Au. The mine life sustaining capital unit cost is US$248/oz Au, for an All-in
+Sustaining Cost (AISC) of US$1,568/oz Au. The average annual gold production during
+operation is 109 koz per year.
+A summary of the LOM after-tax cash flow prepared by SLR is presented in Table 1-2.
+Table 1-2: After-Tax Cash Flow Summary
+Description Units Total LOM
+Production
+LOM years 14.2
+Mill Feed from UG Production '000 tonnes 15,305
+Au grade gr/t 3.71
+Ag Grade gr/t 6.32
+Contained Metal
+Au koz 1,824
+Ag koz 3,111
+Recovered Metal
+Au koz 1,555
+Ag koz 1,401
+Metal Prices
+LOM LT price - Au US$/oz 2,200
+LOM LT price - Ag US$/oz 29.10
+Payable Metal
+Au koz 1,547
+Ag koz 1,394
+Cash Flow
+Gross Revenue US$ million 3,446
+Transport / TC-RC Charges US$ million (10)
+Royalties US$ million (52)
+Net Revenue US$ million 3,384
+Operating Costs
+Underground Mining US$ million (1,135)
+1-13
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Description Units Total LOM
+Processing Plant US$ million (553)
+Support Services/Site G&A US$ million (281)
+BOOT US$ million (53)
+Off-site G&A (Corporate allocation) US$ million (180)
+Operating Margin - EBITDA US$ million 1,182
+Capital Costs
+Initial Capital US$ million (177)
+Sustaining Capital Costs US$ million (186)
+Reclamation & Closure US$ million (17)
+Change Working Capital US$ million -
+Pre-Tax Net Cash Flow US$ million 801
+Taxes - Income Tax US$ million (57)
+Taxes - Workers' Participation US$ million (61)
+Taxes - IEM/GEM US$ million (208)
+After-Tax Cash Flow US$ million 474
+Project Economics
+Pre-Tax
+Pre-tax IRR % 33.6%
+Pre-tax NPV at 8.26% US$ million 388
+Pre-tax payback years 4.0
+After-Tax
+After-tax IRR % 21.8%
+After-Tax NPV at 8.26% US$ million 191
+After-Tax payback years 5.3
+1.2.3 Sensitivity Analysis
+Project risks can be identified in both economic and non-economic terms. Key economic risks
+were examined by running cash flow sensitivities on after-tax NPV at a 8.26% discount rate.
+The following items were examined:
+• Gold and silver price
+• Gold and silver head grade
+• Gold and silver metallurgical recovery
+• Operating costs
+• Capital costs (initial sustaining and closure)
+After-tax sensitivities over the San Gabriel Base Case has been calculated for -20% to +20%
+(for head grade), -5% to +5% (for metallurgical recovery), -20% to +20% (for metal prices), and -
+1-14
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+10% to +15% (for operating costs and capital costs) variations, to determine the most sensitive
+parameter for the Project.
+The sensitivity analysis at San Gabriel shows that the after-tax NPV at an 8.26% base discount
+rate is most sensitive to head grades, then metal prices and metallurgical recoveries, followed
+by operating costs and capital costs. The SLR QP notes that a 10% reduction in head grades
+reduces the after-tax NPV at 8.26% by 68% for the Project Base Case.
+1.3 Technical Summary
+1.3.1 Property Description
+The Project is located in the Ichuña district, General Sánchez Cerro Province, Department of
+Moquegua in southern Peru, approximately 837 km northeast of Lima and 116 km north of
+Moquegua (both in straight lines).
+The main cities around the Project are Arequipa, Moquegua, and Juliaca, from which access is
+via a network of paved and gravel roads. The total distance from Arequipa is 252 km, including
+114 km on paved road from Arequipa to Imata and 138 km on gravel road from Imata to the
+Project site.
+The Project area climate is classified as tundra, presenting rainy semi-frigid weather, with
+limited precipitation during autumn and winter. Atmospheric humidity is classified as wet. This
+climate type occurs in the Andean Region, between 3,500 metres above sea level (MASL) and
+6,000 MASL. For this region, the yearly precipitation averages approximately 700 mm, and the
+yearly temperature average is 7°C with permanent snow in high mountains. The annual average
+precipitation for the Project area is 595 mm, with distinct dry and wet seasons. The wet season
+is between November and March.
+The Project is located entirely within the land, which was acquired from the Santa Cruz de Oyo
+Oyo, Maycunaca and Antajahua community and Corire community.
+1.3.2 Land Tenure
+The Project is located on land 100% owned by Buenaventura. The Property consists of three
+mining concessions and one beneficiation concession. The total area of these three
+concessions is approximately 52,581 ha. The total effective area of the Project is approximately
+53,581 ha. All the mineral concessions are currently in good standing.
+1.3.3 History
+Numerous exploration, environmental and social, and engineering studies have been completed
+at the San Gabriel Project. The majority of historical exploration, including mapping, rock and
+sediment sampling, electromagnetic (EM) and magnetic surveys, and drilling were completed
+over a period from 2003 to 2015. Historically, the Project was named the Chucapaca Project,
+renamed by Buenaventura to San Gabriel in 2014.
+There has not been any formal production to date on the Property.
+1.3.4 Geological Setting, Mineralization, and Deposit
+The stratigraphy at San Gabriel is comprised of various formations in the Yura Group, including
+the Cachicos, Labra, Gramadal, and Hualhuani formations and the Murco Formation. The Yura
+Group hosts the oldest Mesozoic rocks in the region, and contains mainly quartzites, lutites,
+limestone, and continental red sandstone.
+1-15
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+The San Gabriel deposit is hosted in a complex of intrusive volcanic diatremes that cross
+through the sedimentary rocks of the Yura Group. This complex includes phreatomagmatic and
+phreatic breccia, which are related to rhyolitic domes and associated dikes. The geological
+structure of the deposit is dominated by folds with a west-northeast direction and by a system of
+faults that controls the distribution of intrusions.
+Mineralization at San Gabriel comprises two stages, an early stage of Cu-Ag-As and a main
+stage of Au-Cu-(Ag), which is economically significant. Mineralization is associated with a
+magmatic-hydrothermal system with alterations such as sideritization, argillization, and
+silicification.
+1.3.5 Exploration
+Exploration at Chucapaca began in the 18th century with silver extraction and intensified in
+2002 under Buenaventura and Gold Fields, which focused on Canahuire. Geophysical studies
+and drilling were conducted, identifying copper and gold. In 2014, Buenaventura acquired the
+San Gabriel Project and conducted both pre-feasibility and feasibility studies for underground
+mining until 2021. These studies served a basis for project design in the Ausenco 2022 FS.
+The exploration program included rock and soil samples that revealed high levels of metal and
+epithermal anomalies. Seven mineralized targets were identified: the western extension of
+Canahuire, West Canahuire, Katrina, South Katrina, Northeast Katrina, Cerro Chucapaca, and
+Chucapaca.
+In 2023 and 2024, Buenaventura’s drilling campaigns included a total of 38 drill holes and 9,304
+m of drilled area. These recent campaigns generated more support for domain estimation, and a
+TOC analysis defined the carbonaceous horizons. Recovery from these core samples has been
+high, reaching 97.8% in 2023 and 96.1% in 2024, with Au values above 1 part per million (ppm),
+demonstrating a recovery value above 90%.
+1.3.6 Mineral Resource Estimates
+SRK reviewed the integrity of the database for the San Gabriel Project, which was provided by
+Buenaventura. The consolidated data included information on sampling, grades, bulk density,
+and drilling registries. SRK found no significant issues with the database and believes that it is
+consistent and acceptable for Mineral Resource purposes.
+SRK evaluated quality control for the years 2023 and 2024, which included insertion of control
+samples of blanks, duplication and standard, where the acceptable insertion ratio was 17%. No
+significant evidence was found of contamination in the chemical analysis of the samples. The
+precision of the sampling process, preparation and chemical analysis was adequate. The
+accuracy of the chemical analysis process was adequate, with biases below 5%.
+SRK reviewed the mineral resource estimation process at the San Gabriel Project by examining
+the geological database dated August 30, 2024. The methodology to review the estimation
+included a review of the geological model (lithology), verification of the definition of estimation
+domains, and geostatistical analysis. Bulk density was assigned to each lithological domain
+through a statistical analysis. The process to estimate mineral resources conducted by
+Buenaventura covered Au, Ag, Cu, Pb, Fe, Sb and S and respected the limits of the lithological
+model. The estimation methods used and subsequently validated were OK, ID, and nearest
+neighbour (NN). The process to evaluate the validation model included a review of global and
+local biases as well as visual validation by sections and plan views. Finally, the criteria used to
+classify mineral resources was reviewed, based on the following: drill hole spacing, number of
+passes, number of drill holes, and minimum number of samples. Buenaventura used a
+1-16
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+smoothing process in its classification efforts to prevent a “spotted dog” effect. This
+comprehensive focus ensured the reliability of the mineral resource estimate for the San Gabriel
+Project, which was corroborated by SRK.
+Mineral Resources are reported as of December 31, 2024, and detailed in Table 1-3.
+Table 1-3: Summary of Mineral Resources – December 31, 2024
+Zone Category Tonnage Grade Contained Metal
+(kt)
+Au Ag (koz Au) (koz Ag)
+(g/t) (g/t)
+San Measured 661 2.26 4.21 48 89
+Gabriel
+Indicated 7,102 2.37 7.96 540 1,817
+Measured + 7,763 2.36 7.64 588 1,907
+Indicated
+Inferred 7,049 3.23 7.34 733 1,664
+Source: Buenaventura 2024, audited by SRK 2024.
+Notes:
+1. The definitions for Mineral Resources in S-K 1300 were followed for Mineral Resources.
+2. Mineral Resources are exclusive of Mineral Reserves.
+3. Mineral Resources that are not Mineral Reserves do not have demonstrated economic viability.
+4. The reference point for the Mineral Resources estimate is insitu. The database was of August 30, 2024. Therefore, the
+estimation was reported as of December 31, 2024. The Qualified Person Firm responsible for the resource estimate is
+SRK Consulting (Peru) S.A.
+5. Marginal Cut-off Value: US$ 92.14 per tonne.
+6. Metal prices used in the NSR assessment are US$1,900.00/oz Au and US$24.00/oz Ag.
+7. Metallurgical recovery is differentiated by metal and metallurgical class, and ranges between 69.79% and 87.81% for
+gold and between 40.7% and 48.65% for silver.
+8. Extraction, processing and administrative costs used to determine NSR cut-off values were estimated based on
+average operating costs projections for the Project.
+9. Tonnes are rounded to the nearest thousand.
+10. Totals may not add due to rounding.
+The SRK QP is of the opinion that with consideration of the recommendations summarized in
+Sections 1 and 23 of this TRS, any issues relating to all relevant technical and economic factors
+likely to influence the prospect of economic extraction can be resolved with further work.
+1.3.7 Mineral Reserve Estimates
+Table 1-4 shows the San Gabriel Mineral Reserve estimate effective as of December 31, 2024.
+Table 1-4: Summary of Mineral Reserves – December 31, 2024
+Category Tonnage Grade Contained Metal
+(000 t) (g/t Au) (g/t Ag) (000 oz Au) (000 oz Ag)
+Proven 3,166 4.14 3.78 422 385
+Probable 12,139 3.60 6.98 1,405 2,722
+Total Proven + 15,305 3.71 6.32 1,827 3,107
+Probable
+1-17
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Notes:
+1. The definitions for Mineral Reserves in S-K 1300 were followed for Mineral Reserves reporting.
+2. The Mineral Reserve estimate is reported on a 100% ownership basis.
+3. Mineral Reserves represent mill feed material after dilution and mining recovery.
+4. Mineral Reserves are reported within mining shapes above a marginal cut-off value of $92.14/t.
+5. Mineral Reserves are estimated using average long term metal prices of Au: US$1,900.00/oz, and Ag: US$24.00/oz.
+6. Metal NSR factors excluding metallurgical recovery are $60.89/g for gold and $0.77/g for silver.
+7. Metallurgical recoveries are accounted for in the NSR calculations based metallurgical test work and are variable as a
+function of contained organic carbon. LOM average recoveries are 86.2% for Au, and 47.2% for Ag.
+8. Dilution factors were applied to account for backfill dilution. Factors vary based on number of faces in contact with
+backfill. Average dilution is 8.6%.
+9. A mining recovery factor of 100% was applied to Mineral Reserve estimates.
+10. Numbers may not add due to rounding.
+The deposit was divided into domains and an average recovery was assigned to each domain
+using the average of the test work. The SLR QP noted that some areas of the domains were
+not properly sampled for metallurgical testing, particularly the northern part of the mine, which
+accounts for 21% of the total Mineral Reserves. Ore in the northern part of the mine consists of
+only Probable material and the SLR QP has observed that the areas with poor or no test work
+will not be mined until Q2 of 2027. Buenaventura has indicated that they are currently planning
+on collecting more samples and completing more test work to cover the areas with poor/no
+metallurgical test work.
+The SLR QP is not aware of any other risk factors associated with, or changes to, any aspects
+of the modifying factors such as mining, infrastructure, permitting, or other relevant factors that
+could materially affect the Mineral Reserve estimate.
+Mineral Reserves were estimated within stope and development designs. Stopes were
+designed using Deswik Stope Optimizer (DSO). The optimiser was ran using a gold grade
+lower than marginal cut-off to generate a global set of shapes. NSR values were then
+calculated for all resulting shapes, taking into account metallurgical recoveries, modifying
+factors for dilution and mining recovery, and economic value of contained silver.
+Shapes below marginal cut-off were rejected while those between marginal and break-even
+were reviewed against designed development to determine their economic value. Mineral
+Reserves were estimated from the resulting stopes based on diluted grades and extracted
+tonnages.
+1.3.8 Mining Methods
+The UDF method is the preferred mining approach for the poor-quality rock masses (RMR < 40)
+at the Project. Its sequential excavation and cemented backfill strategy provide robust support
+and mitigate geotechnical risks associated with structurally and stress-controlled instabilities. By
+incorporating optimized backfill strength, systematic ground support, and real-time monitoring,
+UDF promotes safe and efficient mining under challenging ground conditions.
+Buenaventura has further evaluated both overhand drift and fill (ODF) and UDF mining methods
+and compared them on the basis of ground support requirements, productivity, and costs. UDF
+was selected as the preferred mining method as if offers higher productivity with larger drift
+sizes, reduced ground support requirement, and better overall factor of safety due to reduced
+exposure to the surrounding rockmass.
+UDF at San Gabriel involves mining the deposit in panels consisting of five to eight sub-levels.
+Each sub-level will be mined by three sequential drifts in a primary-secondary-tertiary fashion.
+The primary drifts will be completely mined and backfilled using cemented backfill prior to
+1-18
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+mining the adjacent secondary drifts, with the process repeating itself for the tertiary drifts.
+Once a sub-level is mined and backfilled, the access to the next level is developed and mined.
+The cemented backfill will be mixed on surface and transported to the underground workings
+using trucks with push plates for horizontal unloading. The placed cemented fill is then pressed
+into the voids using a load haul dump (LHD) fitted with a rammer plate to ensure that the fill is
+compacted into the voids and in contact with the drift roof.
+There are currently two mine portals accessing the mine: the North portal and the South portal.
+At the time of the site visit in January 2025, approximately 800 m of development was
+completed from the North portal and 2,000 m from the South portal.
+1.3.9 Processing and Recovery Methods
+Buenaventura contracted Ausenco to develop an FS and the engineering, procurement and
+construction management (EPCM) for the Project.
+The status of the Project as of January 2025 is that detailed engineering is 97% complete,
+construction services 100% complete, procurement is 100% complete, and construction
+progress is 62% complete. This document is based on the FS stage Process Design Criteria
+and Process Flow Diagrams.
+The San Gabriel processing plant is designed to treat 1,095 Mtpa (3,000 tpd) of ore from the
+underground mine to produce gold doré bars with silver content. The expected LOM for San
+Gabriel has been estimated at 14 years.
+The San Gabriel process plant comprises primary crushing, SAG mill and ball mill grinding,
+gravity gold recovery with intensive cyanide leaching, cyclone classification, pre-oxidation using
+oxygen sparging, CIL, INCO SO -air cyanide detoxification, ZADRA carbon elution, regeneration
+2
+electrowinning and doré casting, tailings thickening and filtration, and water treatment.
+The San Gabriel ore contains preg-robbing organics requiring the use of CIL cyanidation. The
+results of the CIL leach tests without gravity recovery ranged from 41.9% to 94.9% with an
+average gold recovery of 86.7% and a 75th percentile gold recovery of 91.4%. Design recovery
+for the gravity-CIL circuit is 86.5%.
+It should be noted that the gold grade ranged from 1.4 g/t to 15.5 g/t, averaged 5.2 g/t Au with a
+75th percentile grade of 6.47 g/t Au in the CIL samples tested, and ranged from 0.6 g/t to 6.1 g/t,
+averaged 3.1 g/t Au with a 75th percentile grade of 3.94 g/t in the gravity CIL samples tested.
+TOC ranged from 0.1 % TOC to 61.9 %TOC, averaged 0.68% TOC with a 75th percentile grade
+of 0.3 % TOC in the CIL samples tested, and ranged from 0.2 % TOC to 2.0 % TOC, averaged
+0.54% TOC with a 75th percentile grade of 0.8 % TOC in the gravity, CIL samples tested.
+1.3.10 Infrastructure
+Project infrastructure will include:
+• Access roads
+• Power supply and distribution
+• Water supply, recovery, and distribution
+• Fresh water dam
+• Mine water pumping and storage
+• Potable water
+1-19
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+• Fire water
+• Mine water industrial water treatment plants
+• Air and oxygen services
+• Fuel storage and supply
+• Accommodation camp
+• Maintenance workshops, including truck shop, mechanical and electrical workshops
+• Organic material storage
+• Waste material storage
+• Filtered tailing storage facility
+The main access to the Property is via the National Road MO-106. A seven kilometre gravel
+road connects the national road to the site’s main gate. The national road connects the site to
+Puno and Arequipa which are located 117 km and 233 km away, respectively. Personnel
+transfers are done via Puno which has an airport with frequent flights to Lima. Equipment and
+consumables are typically transported from Arequipa.
+The power supply to the San Gabriel Substation will be via one 50.3 km long 220 kV overhead
+transmission line from the Chilota Substation to the 220 kV/23 kV San Gabriel Substation. The
+distribution voltages from the San Gabriel Substation are 23,000 V, 10,000 V, 4,160 V, and
+480V.
+SAG and ball mill power were calculated based on the plant throughput and average ore
+specific energy (ECS). The specific power for the SAG mill - ball mill circuit is 26.54 kWh/t. This
+gives a yearly consumption of 29,060 MWh/y. Non-grinding power was calculated by plant area
+using power factors, operating hours per year, and average demand power taken directly from
+the electrical load list. Total non-grinding power demand id 6,239 kW for annual consumption of
+39,749 MWh/y. Total installed power demand is 10,739 kW and total annual consumption for
+the operation is 69,240 MWh/y.
+Fresh water will come from two sources: fresh water dam and water inflow from the
+underground mine. Mine, process, and surface contact water will be recycled for plant and mine
+operations use. Fresh water is pumped to the fresh water transfer tank, which feeds the process
+plant's fresh/fire water tank and the water is distributed to various points in the process plant.
+The fresh water dam will be built across the Quebrada Agani, which is a valley on the west side
+of the Project. The current dam design includes a bypass system built into the base of the dam
+wall to return water to the stream and maintain its natural flow, minimizing impacts to
+downstream water users. The dam will have a maximum storage capacity of 700,000 m3. The
+dam will collect sufficient water during the rainy months to support operations during the dry
+months. Water from the fresh water dam will be used for potable water use and supplement
+water requirements for mine and process plant operations.
+The mine water treatment plant (PTARI) has a capacity of 60 L/s. Water from the underground
+mine and contact water will be stored within the mine water pond to be fed to the HDS followed
+by ultrafiltration and nanofiltration circuits that will remove most of the impurities to comply with
+environmental permits and governmental standards, for water effluent release into the
+environment.
+Since the Project is currently under construction, the current accommodation consists of two
+camp facilities with a total capacity for 1,500 people. During operation the number of people
+1-20
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+working on site is expected to be approximately 800 (for two shifts). The number of modules will
+be decreased to approximately 440 once the mine fully enters in production, which will be
+sufficient to accommodate the numbers of workers over one rotation. Camp facilities include
+administrative buildings, training rooms, recreation rooms, laundry facilities, a medical centre,
+and kitchen and dining rooms.
+1.3.11 Market Studies
+The principal commodities that will be produced at the Project – gold and silver – are freely
+traded at prices and terms that are widely known so that prospects for sale of any production
+are virtually assured. Gold will represent 99% of San Gabriel’s gross revenue, while silver will
+only contribute to 1% of the revenue.
+Market information for this section comes from the industry scenario analysis prepared by CRU
+Group in Q2 2021 for Buenaventura and S&P Global Market Intelligence’s Commodity Briefing
+Reports from January 2025.
+In summary, S&P forecasts that gold and silver markets in 2025 are poised to remain bullish,
+buoyed by economic and geopolitical uncertainty
+Buenaventura has based its gold and silver price forecast only from Bloomberg’s analysis of
+consensus industry forecasts with LOM long term metal prices for gold at US$2,172.00/oz and
+silver at US$29.00/oz.
+San Gabriel will produce doré bars. The doré refining terms assumptions are based on refining
+terms from other Buenaventura operations. These terms are typical and consistent with
+standard industry practices and similar to contracts for the refining of doré elsewhere.
+In addition to future arrangements with refiners for doré sales, San Gabriel will have numerous
+contracts with suppliers for the majority of the operating activities at the mine site.
+1.3.12 Environmental Studies, Permitting and Plans, Negotiations, or
+Agreements with Local Individuals or Groups
+The Project area is located in the southern Andes of Peru, at an altitude ranging between
+4,450 MASL and 5,000 MASL, in the Pacific Hydrographic Region, within the Tambo River
+watershed.
+Baseline characterization of existing environmental conditions for San Gabriel was carried out
+as part of the environmental studies required for preparation of the Detailed EIA. The Detailed
+EIA was completed for the Project in 2016 and approved on March 31, 2017 by Directional
+Resolution (R.D.) No. 099-2017-MEM/DGAAM. The 2016 EIA identified potential negative
+impacts for most environmental aspects, including: soil, air, noise, water, flora and vegetation,
+and fauna. However, these impacts were not determined to be significant when considering
+planned management and mitigation measures.
+The 2016 EIA includes a set of management plans aimed at impact mitigation, including air
+quality, soil, noise and vibration, water and sediments, biodiversity, conservation of wetlands,
+fauna and flora, solid waste, and social. The Environmental Monitoring Plan includes soil, air
+quality, noise, surface water and springs quality, sediments, effluents, groundwater, and
+biodiversity monitoring.
+The list of environmental permits for San Gabriel and the status is presented in Section 17.3 of
+this TRS.
+1-21
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+The Project’s area of influence comprises rural communities in the Ichuña District, General
+Sánchez Cerro Province in Moquegua. These communities are mainly dedicated to agriculture,
+farming, hunting, and forestry for self-consumption. There are few employment opportunities,
+so community members tend to move to cities like Arequipa or Moquegua, seeking better
+opportunities. While the direct area of influence involves four rural communities (Santa Cruz de
+Oyo Oyo, Maycunaca and Antajahua; Corire; San Juan de Miraflores; and Chucapaca), the
+indirect area of influence includes the Ichuña District.
+The Environmental and Social Management Plan developed for the 2016 EIA includes a plan for
+the mitigation of the social impacts and enhancement of benefits associated with the Project.
+The plan is comprised of a Community Relations Plan, a Social Cooperation Plan, and a Social
+Development Plan.
+San Gabriel has a Permanent Information Office in Ichuña, where communities from the area of
+influence can learn about the Project and raise questions and concerns. SLR understands that
+San Gabriel has implemented a grievance mechanism to receive, assess, and resolve
+grievances and complaints from stakeholders and impacted local communities.
+The most recent MCP prepared for the Project was approved on September 20, 2024. The
+conceptual MCP addresses temporary, progressive, and final closure actions, and post-closure
+inspection and monitoring. It proposes one year of progressive closure, two years of final
+closure, and five years of post-closure. Post-closure monitoring, assumed to extend for five
+years after closure, will include monitoring of physical, geochemical, and hydrological stability,
+as well as environmental and social monitoring. A closure cost estimate was included in the
+MCP. The total financial assurance for progressive closure, final closure, and post-closure is
+calculated by Buenaventura according to the Peruvian regulations.
+1.3.13 Capital and Operating Cost Estimates
+The Project's capital cost estimate review highlights a total initial capital expenditure of $177.43
+million, allocated primarily to infrastructure, equipment, and other development costs in year
+2025. Sustaining capital averages $18 million annually, peaking at $42.75 million in Year 12,
+with a LOM total of $186.46 million to support ongoing operations and infrastructure upgrades.
+The total Project operating costs estimated for mining, processing, G&A and BOOT activities to
+validate the positive cash flow for the Mineral Reserve LOM are summarized in Table 1-5.
+Operating costs total US$2,022 million over the LOM, averaging US$152 million per year
+between 2026 and 2037, all years at full production.
+Table 1-5: LOM Operating Costs Summary
+Cost Component LOM Total Average Annual1 LOM Average
+(US$ millions) (US$ millions) (US$/t milled)
+UG Mining 1,135 84.7 74.17
+Processing 553 41.9 36.14
+G&A / Site Services 281 20.9 18.36
+BOOT 53 4.0 3.46
+Total Site Operating Cost 2,022 151.5 132.14
+Notes:
+1. For fully operational years (2026 – 2037)
+2. Sum of individual values may not match total due to rounding.
+1-22
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+2.0 Introduction
+SLR Consulting (Canada) Ltd. (SLR) was retained by Compañía de Minas Buenaventura S.A.A.
+(Buenaventura) to prepare an independent Technical Report Summary (TRS) on the San
+Gabriel Project (San Gabriel, the Property, or the Project), located in General Sánchez Cerro
+Province, Peru. The purpose of this TRS is to support the disclosure of year-end (YE) 2024
+Mineral Resource and Mineral Reserve estimates at the Property. This TRS conforms to United
+States Securities and Exchange Commission’s (SEC) Modernized Property Disclosure
+Requirements for Mining Registrants as described in Subpart 229.1300 of Regulation S-K,
+Disclosure by Registrants Engaged in Mining Operations (S-K 1300) and Item 601 (b)(96)
+Technical Report Summary.
+The geology and Mineral Resource sections of this TRS were prepared by SRK Consulting
+(Peru) S.A. (SRK).
+Since Buenaventura acquired a 100% interest in the Project in 2014 and reached land
+agreements in 2014 and 2016, various studies have been carried out to support its development
+as an underground gold project with surface processing and infrastructure facilities. In 2020,
+Ausenco Peru S.A.C. (Ausenco) carried out a Feasibility Study (FS) integrating all aspects of the
+Project including the underground mine, process plant, and both on-site and off-site
+infrastructure. Various supporting studies were completed on hydrology and hydrogeology,
+seismicity, and infrastructure including power supply, water storage, and waste material storage.
+Additional FS work was completed in 2021, including a new resource and reserve model, an
+updated mining plan, and the optimization of some of the Project's surface infrastructure, and a
+final FS report was issued in February 2022 (Ausenco 2022).
+The Project will consist of an underground mine, a process plant, ancillary buildings, and
+associated infrastructure. The San Gabriel processing plant is designed to treat 1,095 million
+tonnes per annum (Mtpa) of ore from the underground mine to produce gold and silver doré
+bars.
+2.1 Site Visits
+The SRK geology and Mineral Resource Qualified Person (QP) visited the site on December 16
+to December 18, 2024. During the site visit, they inspected the coreshack. The scope of review
+of the procedures and activities developed and executed by Buenaventura’s personnel included
+the following: registry of geological logging data, sampling, and quality control. Additionally, the
+SRK QP selected and subsequently reviewed some sampling intervals that are important to the
+geological model and Mineral Resource estimation. The SRK QP scheduled a meeting with
+Buenaventura’s geology and exploration teams to review diamond drilling procedures and
+geological interpretation.
+The SRK QP was unable to access the interior of the mine due to an operating incident, which
+impacted safety. Access to the drilling platforms was impeded by climate conditions.
+Consequently, the QP was unable to supervise the progress of diamond drilling activities.
+The SLR mining and Mineral Reserve QP visited the site on January 21 to 23, 2025. During the
+site visit, the QP visited the ramp accesses to the underground mine, and surface infrastructure
+that are currently under construction. The SLR mining engineer QP had discussions with
+Buenaventura mining technical staff to review the Mineral Reserve estimation procedures
+including selection and basis of inputs, life of mine (LOM) production schedule methodology,
+operating costs budgeting, and the general state of operations.
+2-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+The SLR environmental QP visited the site on January 21 to 23, 2025. During the site visit the
+QP visited the surface facilities under construction with a focus on the Tailings Storage Facility
+(TSF) and components of the water management infrastructure such as ponds and channels.
+The QP had discussions with San Gabriel personnel responsible for construction, environmental
+management, and community relations activities.
+Table 2-1 lists the responsibilities of the SLR and SRK QPs for this TRS.
+Table 2-1: Qualified Person Responsibilities
+QP Responsible for
+SLR Consulting (Canada) Ltd. Section 1 (except 1.1.1.1, 1.1.2.1, 1.3.4 to 1.3.6),
+2 to 5, 10, 12 to 21, 22 (except 22.1), 23 (except
+23.1)
+SRK Consulting (Peru) S.A. Sections 1.1.1.1, 1.1.2.1, 1.3.4 to 1.3.6, 6 to 9,
+11, 22.1, and 23.1
+All Sections 24 and 25
+2.2 Sources of Information
+This TRS was prepared by SLR and SRK.
+During the preparation of this TRS, discussions were held with personnel from Buenaventura:
+• Marco Antonio Chavez, Head of Long Term Mine Planning, Buenaventura.
+• Dante Gavidia, Director of Strategic Planning, Buenaventura.
+• Raul Kenny Surichaqui, Planning Engineer, Buenaventura
+• Joffre Escudero, Superintendent Planning Engineer, Buenaventura
+• Hugo Araoz Zevallos. Environmental Management Superintendent, Buenaventura
+• Enver Carhuaz Castro. Head of Community Relations, Buenaventura
+• José Enrique Gutierrez, Director of Modeling and Resources, Buenaventura
+• Octavio Vargas-Machuca, Head of Modeling and Resources, Buenaventura
+• Eliott Hidalgo, Head of Modeling, Buenaventura
+• Jhonatan Mallma, Head of Exploration Database, Buenaventura
+This current TRS updates a TRS on the Property prepared by Ausenco in collaboration with
+SRK Consulting (Peru) S.A. and Agnitia Consulting S.A.C (Agnitia) with an effective date of
+December 31, 2021 (Ausenco 2022).
+The documentation reviewed, and other sources of information, are listed at the end of this TRS
+in Section 24.0 References.
+2-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+2.3 List of Abbreviations
+Units of measurement used in this TRS conform to the metric system. All currency in this TRS is
+US dollars (US$) unless otherwise noted.
+µ micron kW kilowatt
+µg microgram kWh kilowatt-hour
+a annum L litre
+A ampere lb pound
+bbl barrels L/s litres per second
+Btu British thermal units m metre
+C degree Celsius M mega (million); molar
+°
+C$ Canadian dollars m2 square metre
+cal calorie m3 cubic metre
+cfm cubic feet per minute MASL metres above sea level
+cm centimetre m3/h cubic metres per hour
+cm2 square centimetre mi mile
+d day min minute
+dia diameter µm micrometre
+dmt dry metric tonne mm millimetre
+dwt dead-weight ton mph miles per hour
+F degree Fahrenheit Mtpa million tonnes per annum
+°
+ft foot MVA megavolt-amperes
+ft2 square foot MW megawatt
+ft3 cubic foot MWh megawatt-hour
+ft/s foot per second oz Troy ounce (31.1035g)
+g gram oz/st, opt ounce per short ton
+G giga (billion) ppb part per billion
+Gal Imperial gallon ppm part per million
+g/L gram per litre psia pound per square inch absolute
+Gpm Imperial gallons per minute psig pound per square inch gauge
+g/t gram per tonne RL relative elevation
+gr/ft3 grain per cubic foot s second
+gr/m3 grain per cubic metre st short ton
+ha hectare stpa short ton per year
+hp horsepower stpd short ton per day
+hr hour t metric tonne
+Hz hertz tpa metric tonne per year
+in. inch tpd metric tonne per day
+in2 square inch US$ United States dollar
+J joule USg United States gallon
+k kilo (thousand) USgpm US gallon per minute
+kcal kilocalorie V volt
+kg kilogram Vac, Vdc volt AC, volt DC
+km kilometre W watt
+km2 square kilometre wmt wet metric tonne
+km/h kilometre per hour wt% weight percent
+kPa kilopascal yd3 cubic yard
+kVA kilovolt-amperes yr year
+2-3
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+3.0 Property Description
+3.1 Property Location
+The Project is located in the Ichuña district, General Sánchez Cerro Province, Department of
+Moquegua in southern Peru, approximately 837 km northeast of Lima and 116 km north of
+Moquegua (both in straight lines).
+The Project is located entirely within the land, which was acquired from the Santa Cruz de Oyo
+Oyo, Maycunaca and Antajahua community and Corire community.
+The Property is at elevations ranging from 4,450 MASL to 5,000 MASL, with an average of
+4,780 m. The San Gabriel deposit is situated at 332,279.823 mE and 8,208,033.568 mN in UTM
+coordinates (datum WGS84) (Figure 3-1). These coordinates correspond to drill hole (CCP11-
+299) located at the middle of the deposit.
+3-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 3-1: Property Location
+3-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+3.2 Peruvian Mining Law
+3.2.1 Mineral Rights
+The term “mineral rights” refers to mineral concessions and mineral claims. Other rights under
+the General Mining Law, such as beneficiation concessions, mineral transportation concessions,
+and general labour concessions are not considered under said term.
+According to Peruvian General Mining Law (the Law):
+1 Mineral concessions grant their holder the right to explore, develop, and mine metallic or
+non-metallic minerals located within their internal boundaries.
+2 A mineral claim is an application to obtain a mineral concession. Exploration,
+development, and exploitation rights are obtained once the title to the concession has
+been granted, except in those areas that overlap with priority claims or priority mining
+concessions. Upon completion of the title procedure, resolutions awarding title must be
+recorded with the Public Registry to create enforceability against third parties and the
+Peruvian State.
+3 The beneficiation concession grants the right to use physical, chemical, and physical-
+chemical processes to concentrate minerals or purify, smelt, or refine metals.
+4 Mineral rights are separate from surface rights. They are freely transferable.
+5 A mineral concession by itself does not authorize the titleholder to carry out exploration
+or exploitation activities, but rather the titleholder must first:
+a) Obtain approval from the Culture Ministry of the applicable archaeological
+declarations, authorizations, or certificates.
+b) Obtain the environmental certification issued by the competent environmental
+authority, subject to the rules of public participation.
+c) Obtain permission for the use of land (i.e., obtain surface rights) by agreement with
+the owner of the land or the completion of the administrative easement procedure, in
+accordance with the applicable regulation.
+d) Obtain the applicable governmental licences, permits, and authorizations, according
+to the nature and location of the activities to be undertaken.
+e) Carry out consultations with Indigenous Peoples under the Culture Ministry, should
+there be any communities affected by potential exploitation of the mineral
+concession, as per International Labour Organization (ILO) Convention 169.
+6 Mineral rights holders must comply with the payment of an annual fee equal to $3.00/ha,
+on or before June 30 of each year.
+7 Holders of mineral concessions must meet a Minimum Annual Production Target or a
+Minimum Annual Investment before a statutory deadline. When such deadline is not
+met, a penalty must be paid as described below:
+a) Mineral concessions must meet a statutory Minimum Annual Production Target of 1
+Tax Unit (Unidad Impositiva Tributaria, or UIT) per hectare per year for metallic
+concessions, within a statutory term of ten years from the title date. The applicable
+penalty is 2% of the Minimum Annual Production Target per hectare per year as of
+the 11th year until the 15th year. Starting in the 16th year and until the 20th year, the
+applicable penalty is 5% of the Minimum Annual Production Target per year and
+3-3
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+starting in the 21st year until the 30th year, the applicable penalty is 10% of the
+Minimum Annual Production Target per year. After the 30th year, if the Minimum
+Annual Production Target is not met, the mining concession will lapse automatically.
+8 Mineral concessions may not be revoked as long as the titleholder complies with the
+Good Standing Obligations according to which mineral concessions will lapse
+automatically if any of the following events take place.
+a) The annual fee is not paid for two consecutive years.
+b) The applicable penalty is not paid for two consecutive years.
+c) A concession expires if it does not reach the minimum production in Year 30 and
+cannot justify the non-compliance up to five additional years due to reasons of force
+majeure described in the current legislation.
+9 Agreements involving mineral rights (such as an option to acquire a mining lease or the
+transfer of a mineral concession) must be formalized through a deed issued by a public
+notary and must be recorded with the Public Registry to create enforceability against
+third parties and the Peruvian State.
+3.2.2 Beneficiation Concessions
+According to the Law:
+1 The beneficiation concession grants the right to use physical, chemical, and physical-
+chemical processes to concentrate minerals or purify, smelt, or refine metals.
+2 As from the year in which the beneficiation concession was requested, the holder shall
+be obliged to pay the Mineral concession Fee in an annual amount according to its
+installed capacity, as follows:
+i. 350 tpd or less: 0.0014 of one UIT per tpd.
+ii. greater than 350 tpd to 1,000 tpd: 1.00 UIT
+iii. from 1,000 tpd to 5,000 tpd: 1.5 UIT
+iv. for every 5,000 tpd in excess: 2.00 UIT
+v. “tpd” refers to the installed treatment capacity. In the case of expansions, the
+payment that accompanies the application is based on the increase in capacity.
+3.2.3 Surface Rights and Easements
+According to the General Mining Law and related legislation, surface rights are independent of
+mineral rights.
+The Law requires that the holder of a mineral concession either reach an agreement with the
+landowner before starting relevant mining activities (i.e., exploration, exploitation, etc.) or
+complete the administrative easement procedure, in accordance with the applicable regulation.
+Surface property is acquired through
+1 The transfer of ownership by agreement of the parties (derivative title), or
+2 Acquisitive prescription of domain (original title).
+Temporary rights to use and/or enjoy derived powers from a surface property right may be
+obtained through usufruct (a right to temporarily use and derive revenue) and easements.
+3-4
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+3.2.4 Taxation
+Taxation for mining in Peru involves several taxes and a number of additional distributions,
+imposts and fees as described below. All applicable taxes have been considered in the
+evaluation of the San Gabriel Project with some specific applications explained in Section 19,
+Economic Evaluation. Taxes includes:
+• Income Tax
+• Value Added Tax (VAT or IGV)
+• Modified Mining Duty
+• Special Mining Tax
+• Worker’s Profit Sharing
+• Miner’s Retirement Fund
+• OSINERGMIN Fee
+• OEFA Fee
+• Financial Transactions Tax
+• Interest Withholding Tax
+• Dividend Withholding Tax.
+3.3 Land Title and Mineral Rights
+The Project is located on land 100% owned by Buenaventura.
+The Property consists of three mining concessions (Table 3-1) and one beneficiation
+concession as illustrated in Figure 3-2. The total area of the three mining concessions is
+approximately 52,581 ha. The beneficiation concession is located within the Gran San Gabriel
+mining concession and has a total area of 49,580 ha. The total effective area of the Project is
+approximately 53,581 ha. All the mineral concessions are currently in good standing.
+3-5
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Table 3-1: Mining Concessions
+Unique Concession Date of Area Granted District Province Department Effective Area Date Public Registered Type
+Code Name Application (ha) (Ha) Granted Record
+010000322L GRAN 10/08/2021 49,580.779 ICHUÑA General Sanchez Moquegua 53,580.7295 12/02/202 004750-2022- Concession Per
+SAN GABRIEL Cerro 2 INGEMMET/PE/PM Accumulation
+49,580.779 9/16/2024 003709-2024- Reduction Per
+INGEMMET/PE/PM Division
+010000322LA GRAN 10/08/2021 2,000.0000 ICHUÑA/UBINAS/ General Sanchez Moquegua 1,999.9750 9/16/2024 003709-2024- Concession Per
+SAN GABRIEL A YUNGA Cerro INGEMMET/PE/PM Division
+010000322LB GRAN 10/08/2021 1,000.0000 CHOJATA/ICHUÑA General Sanchez Moquegua 1,999.9755 9/16/2024 003709-2024- Concession Per
+SAN GABRIEL B Cerro INGEMMET/PE/PM Division
+3-6
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 3-2: San Gabriel Mineral Tenure
+3-7
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+The company acquired 1,380.15 ha from the Santa Cruz de Oyo Oyo, Maycunaca and
+Antajahua community in 2018 and 778 ha from the Corire community in 2016. The total area
+(2,158 ha) is within the current mining concessions for exploration of 57,600 ha which includes
+the 7,400 ha of the economically administrative unit of the Project as presented in Figure 3-3.
+Figure 3-3: Buenaventura Land and Project Effective Area
+As described above, the Property was purchased from the communities of Santa Cruz de Oyo
+Oyo, Maycunaca and Antajahua and Corire. In Corire's case, there are no current issues. In the
+case of Santa Cruz de Oyo Oyo, Maycunaca and Antajahua, two payments were made, one to
+the former owner of the land (the community) and the other to each of the owners at that time.
+Since then, some former owners have returned and do not wish to leave. To resolve this, a
+"Land Release Plan" has been prepared by Buenaventura.
+The objectives of the Land Release Plan are:
+• Release and secure the areas where the Project and operation components will be built.
+• Obtain the exit of the people who are using Buenaventura’s land, as well as their livestock.
+• Demolish the livestock enclosures and have the animals removed
+• Carry out the process without any major additional social commitments with the
+communities of Santa Cruz de Oyo Oyo, Maycunaca and Antajahua, San Juan de
+Miraflores, and Corire, or the district of Ichuña.
+3-8
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Buenaventura also has framework agreements dating back to 2010 when the Project was under
+Canteras del Hallazgo S.A.C. Those agreements allowed the company to perform activities
+related to the Semi-Detailed Environmental Impact Assessment for exploration activities.
+3.4 Surface Rights
+San Gabriel’s surface rights include a total of 2,158.15 ha. The Project components are located
+on land owned by Buenaventura acquired from private owners . The land includes the lot called
+Parcela A, with an extension of 1380,15 ha; and the lot called Lote C, with an extension of 778
+ha. Parcela A was acquired from the Santa Cruz de Oyo Oyo, Maycunaca and Antajahua rural
+community on November 5, 2014. Lote C was acquired from the Corire rural community on
+October 26, 2016.
+Buenaventura is in land purchase discussions with approximately six landowners for purchase
+of additional surface rights. Acquisition of such surface rights is likely to require compensation
+payment to the landowners for livestock or outbuildings and cabins.
+San Gabriel’s surface rights are sufficient to support the project construction and future mining
+operation.
+3.5 Royalties
+Five royalties are payable on the Gran San Gabriel concession, as presented in Table 3-2. The
+San Gabriel Project is only liable to 1.5% NSR royalty payable to Gold Fields S.A. (Gold Fields),
+as the Project is located within the area of that specific royalty contract.
+Table 3-2: Royalties
+Project/Unit Royalty Type of Term Royalty Comment Public Location
+Payable to Agreement Registered Record
+Record
+San Gabriel IAMGOLD Transfer to BVN N/A 2.0% NSR Currently, these concessions are part 11540572 Arequipa
+(Patahuasi 1 of the Gran San Gabriel concession.
+Patahuasi 2 and
+Pichacani Img 2)
+San Gabriel (Ichuña IAMGOLD Transfer to BVN N/A 1.0%NSR This concession has three distinct
+2img) royalties. Now part of the Gran San
+Gabriel concession.
+Gold Transfer to BVN N/A 2% NSR
+Fields
+Gold Royalty Contract N/A 1.5% NSR
+Fields
+San Gabriel Gold Royalty Contract N/A 1.5% NSR Initially, this royalty was granted to 23
+Fields concessions in the San Gabriel area,
+now included in the Gran San Gabriel
+concession.
+3.6 Required Permits and Status
+Key licences to operate and environmental and other permits relating to the San Gabriel Project
+are discussed in Section 17.3 of this TRS.
+3-9
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+3.7 Other Significant Factors and Risks
+SLR is not aware of any environmental liabilities on the Property. Buenaventura has all required
+permits to conduct the proposed work on the Property. SLR is not aware of any other significant
+factors and risks that may affect access, title, or the right or ability to perform the proposed work
+program on the Property.
+3-10
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+4.0 Accessibility, Climate, Local Resources, Infrastructure
+and Physiography
+4.1 Accessibility
+The main cities around the Project are Arequipa, Moquegua, and Juliaca, from which access is
+via a network of paved and gravel roads (Figure 4-1). The total distance from Arequipa is 252
+km, including 114 km on paved road from Arequipa to Imata and 138 km on gravel road from
+Imata to the Project site. From Moquegua, the route follows a paved road to Titire for 149 km
+and a dirt road from Titire to the Project for 58 km, for a total of 207 km. The shortest route is
+from Juliaca via Puno, Ichuña, and Corire (for a total of 170 km) or Oyo Oyo (a total of 160 km),
+but mostly via gravel roads.
+For freight, the Project can be accessed from Lima, through the Panamericana Sur Road (1S) to
+the city of Nazca, and from there, there are two routes:
+• Eastern road for 34A, which runs through the eastern Arequipa region to San Gabriel.
+This route duration is approximately 23 hours from Lima
+• Continue Panamericana Sur (1S) to Arequipa, and then to San Gabriel using the detour.
+The route duration is approximately 20 hours from Lima.
+The closest airports to the Project are:
+• The Rodríguez Ballon International Airport in the district of Cerro Colorado approximately 12
+km northwest of the Arequipa city centre at an altitude of 2,560 MASL. This airport has
+regular daily flights from Lima with a flight duration of approximately 1 hour 30 minutes, and is
+managed by the consortium Aeropuertos Andinos del Sur.
+• The Manco Cápac International Airport in Juliaca is located at an altitude of 3,825 MASL.
+This airport also has regular daily flights from Lima with a flight duration of approximately
+1 hour 30 minutes, and is managed by the consortium Aeropuertos Andinos del Sur.
+4-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 4-1: Access by Road
+4-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+4.2 Climate
+The Project area climate is classified as tundra, presenting rainy semi-frigid weather, with
+limited precipitation during autumn and winter. Atmospheric humidity is classified as wet.
+This climate type occurs in the Andean Region, between 3,500 MASL and 6,000 MASL. For this
+region, the yearly precipitation averages approximately 700 mm, and the yearly temperature
+average is 7°C (44.6°F) with permanent snow in high mountains.
+The annual average precipitation for the Project area is 595 mm, with distinct dry and wet
+seasons. The wet season is between November and March with the months of October and
+April being transitional, with maximum monthly average precipitation of 154 mm falling in
+January. The dry season is between June and August, and the minimum monthly precipitation is
+3 mm in June and July. May and September are considered transition months (Ausenco 2022).
+Exploration and operations can take place year round.
+4.3 Local Resources
+The San Gabriel Project is located in the Sanchez Cerro Province, in the Department of
+Moquegua with the capital city of Moquegua, approximately 835 km south of Lima on the
+Panamericana Highway. The closest town to the Project is Ichuña, with a population of less than
+1,500 people. The closest communities are Santa Cruz de Oyo Oyo, Maycunaca and
+Antajahua, Corire, and San Juan de Miraflores, which are recognized by the Peruvian State,
+and have boards of directors, whose members are elected every two years. The communal
+boards of directors manage the assets and resources of the communities, preserve the public
+order, and represent the communities against external organizations. The total population of
+these communities is less than 1,000 inhabitants.
+The main economic activities include agriculture, livestock, services, and related jobs:
+• Agriculture is the main way of meeting the nutritional needs of community families and
+includes onion, root plants (olluco), quinoa, potatoes, oca, garlic, etc.. Fishing activities
+are also performed (trout).
+• Livestock includes the breeding of South American camelids (alpacas and llamas),
+cattle, sheep, and smaller animals (chickens and guinea pigs). Various animal by-
+products, such as alpaca fibre, sheep wool, milk, cheese, sheep and alpaca jerky, fresh
+meat, and leather, are consumed by families, sold in the local market or exchanged
+through barter.
+Most of the economically active population is employed in the agriculture sector. A smaller
+proportion of the population work in the commerce and mining industry. Buenaventura has
+developed a plan to enhance employment capabilities and working opportunities for the young
+workforce from the local communities and Ichuña district. During the construction and
+operations phases, technical training programs are proposed to be held on local economic
+activities and available jobs will be posted. The local workforce will have preference in hiring if
+they meet the required profile (Ausenco 2022).
+4.4 Infrastructure
+The Project infrastructure is described in Section 15 of this TRS.
+There are two commercial ports close to the Project, Matarani and Ilo.
+4-3
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+The Matarani port is located in the district of Islay in the Region of Arequipa. Matarani is one of
+three ports on the Peruvian Pacific south coast (the others being Marcona in the Ica Region and Ilo
+in the Moquegua Region). The port is approximately 370 km by road to the Project via Arequipa.
+The port has modern infrastructure, extensive operation areas, adequate equipment. It handles
+many cargo types including general merchandise, solid and liquid bulk, roll-on roll-off cargo,
+containerized cargo, and refrigerated cargo. The port also has the capacity to handle cruise ships
+and other industrial and recreational craft. The port has two cranes, Gottwald Crane model HMK
+280, and Liebher Crane model LHM 400. The port terminal of Matarani is administered by
+TISUR and includes facilities for the reception, storage and dispatch of copper concentrates
+from several mining companies in southern Peru. There are also facilities to receive and unload
+trucks and railcars.
+The Ilo port is located in the Region of Moquegua, managed by ENAPU. The port is
+approximately 330 km by road to the Project. It handles services for solid and liquid bulk, grain,
+minerals, container, and passenger cargo. The wharf has a capacity for 35,000 DWT. The open
+storage area is approximately 38,360 m2, and the roofed storage area is approximately 8,540
+m2.
+The Southern and Southeastern Railway of Peru provides service between the port of Matarani
+and Juliaca, passing through Arequipa, with a total length of 940 km. The track is currently
+operated by the Transandino Railroad concession and trains are operated by Peru Rail, Inca
+Perurail and Andean Railways Corp. The closest passenger station is the Imata bus stop,
+located approximately 150 km by road from the Project.
+4.5 Topography, Elevation and Vegetation
+The Project is located northeast of the Moquegua Region, on the west flank of the Andes west
+range. The following geomorphological units have been identified:
+• Units of fluvial origin: fluvial valley, valley-canyon, river erosion slope
+• Units of fluvioglacial origin: fluvioglacial valley, fluvioglacial erosion hills
+Additionally, according to the classification of the International Geographical Union (IGU), the
+current use of land is as follows:
+• Permanent improved grassland areas
+• Natural grassland areas
+• A hydromorphic land
+• Unused and/or unproductive land
+The Project is located in high Andean summits of the Agani-Ansamani micro basin, formed by
+the watershed of said hydrological unit, with slopes and valleys characterized by a variable
+topography and altitudes up to 4,500 m, reaching 5,000 m in the highest points of the mountain
+range. The deposit is at an elevation of approximately 4,780 MASL.
+4-4
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+5.0 History
+Numerous exploration, environmental and social, and engineering studies have been completed
+at the San Gabriel Project. The majority of historical exploration, including mapping, rock and
+sediment sampling, electromagnetic (EM) and magnetic surveys, and drilling were completed
+over a period from 2003 to 2015. Historically, the Project was named the Chucapaca Project,
+renamed by Buenaventura to San Gabriel in 2014.
+This section is largely based on Ausenco (2022) and references therein.
+5.1 Ownership History
+In 2003, Minera Gold Fields Perú S.A. (Gold Fields) was granted the mining concessions
+Chucapaca, Chucapaca Norte, Orcori, Yaretapmap, and Yaretapampa Sur, located in the
+Chucapaca mountain and surrounding areas. Gold Fields carried out geological exploration,
+including drilling which resulted in 220 rock chips samples, runoff sediment sampling, and
+geological mapping. In 2004, Gold Fields completed a reverse circulation (RC) drilling program
+for a total of 2,500 m.
+In February 2008, Gold Fields granted to Buenaventura the rights to carry out exploration
+activities in the above mining concessions. In January 2008, Buenaventura received the
+approval from the Corire and Santiago de Chucapaca communities to perform exploration
+activities within their property limits. A Semi-detailed Environmental Impact Study (EIA-sd) was
+prepared in 2009.
+In 2009, Buenaventura (49%) and Gold Fields (51%) formed a joint venture company, Canteras
+del Hallazgo S.A.C. (CDH), to proceed with exploration at the Chucapaca exploration project.
+The EIA-sd was modified in 2010 and 2013 under CDH leadership.
+Between March and April 2010, CDH reached framework agreements with the Santa Cruz de
+Oyo Oyo, Maycunaca and Antajahua, Corire, and Santiago de Chucapaca communities to use
+part of their land for activities related to the EIA-sd of the exploration project and subsequent
+modifications (5 year period).
+In 2014, Buenaventura acquired Gold Fields 51% interest in the joint venture company,
+becoming CDH’s sole owner. Conversations with local communities were resumed reaching a
+land acquisition agreement with the Santa Cruz de Oyo Oyo, Maycunaca and Antajahua
+community) in November 2014. In October 2016, a land acquisition agreement was reached
+with the Corire community. These land agreements form the basis for the current San Gabriel
+Project.
+5.2 Exploration and Development History
+Mining in the Chucapaca region dates back to the 18th century (Loayza et al. 2004), with several
+small-scale Ag (-Cu-Zn-Pb) mines. In the 20th century, after the discovery of the Aruntani
+district, exploration for large gold deposits commenced. Most of the gold production in the area
+comes from epithermal precious metal high sulphidation deposits, including Santa Rosa and
+Tucari (65 km southeast of Canahuire, Figure 5-1), which are located in the Aruntani district.
+The earliest reference to formal mining title ownership over Chucapaca was in 1952. At this
+time, Compañía de Minas del Perú, a subsidiary of Hoschchild which was mining at San Antonio
+de Esquilache (Ag-Zn-Pb), controlled approximately 70,000 ha in the region. In a report by
+5-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Werner Joseph (1953), there is reference to a principal target in the region referred to as
+Ichuña, which includes the present day San Gabriel Project. A quote from the report is below:
+“This is a zone about 18 km long and 15 km wide, located at both sides of the San Antonio or
+Ichuña River, 45 km west from Esquilache. This zone is geologically interesting for its extensive
+surface alterations and gossans. There is also a great number of old Spanish workings, and the
+remains of several smelters. These smelters are located in the vicinity of the junction of the
+Crusero and San Antonio Rivers, and near the village Ichuña and near Ichupampa. Slags from
+these smelters, with significantly high grades in lead, are being reworked at present. The more
+important mine workings are the following places: a) Crusani and Sayhuani, b) Quimaschata,
+and c) Chucapaca. All known mine workings have already been reported by others. The veins
+could not be prospected, because the workings are caved or flooded in their majority. However,
+the size and importance of these workings, together with the observed geological features,
+indicate that this region is of considerable interest.”
+5-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 5-1: Regional Geology and Location of High Sulphidation Deposits
+5-3
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+5.2.1 Exploration History
+A summary of the exploration history is presented in Table 5-1.
+Table 5-1: Exploration History of the San Gabriel Project
+Year Operator/Company Work Conducted
+18th Several small-scale Ag (Cu–Zn–Pb) mines.
+Century
+1952 Compañía de Minas Identified a zone of gossans, old workings, and old smelting sites
+del Perú about 18 km x 15 km in an area near the Ichuña village, noting that
+Chucapaca had a significant number of old workings.
+2002 Gold Fields A district-scale evaluation program, identifies the Chucapaca area as
+high-priority target.
+2002– Buenaventura Reconnaissance exploration. Recognized potential for epithermal
+2003 mineralization but did not pursue further work.
+2003– Gold Fields Acquired concessions in the Chucapaca area, completed
+2006 reconnaissance exploration on the Chucapaca volcanic dome for
+epithermal mineralization. Identified the Potosi prospect, but
+assumed that the mineralizing system was base-metal dominant.
+Completed 10 RC drill holes for 2,511 m.
+2007– Buenaventura Entered into a joint venture with Gold Fields; Buenaventura was the
+2008 operator. Identified anomalous copper–gold mineralization at the
+Potosi prospect, subsequently renamed to Canahuire. Ground
+magnetic and dipole-dipole induced polarization (IP) geophysical
+surveys; 28 core holes (7,056 m), including the “discovery hole”.
+2009– Canteras del Hallazgo Gold Fields exercised back-in option. Gold Fields and Buenaventura
+2010 formed joint venture company Canteras del Hallazgo, with Goldfields
+being the operator.
+Completed ground moving loop and fixed loop time-domain EM,
+gravity, magnetic, gradient IP, pole–dipole IP geophysical surveys,
+airborne (helicopter) magnetic and radiometric geophysical survey.
+Completed 39 core holes in May 2009–Jan 2010 (15,234 m); 213
+core and RC holes in June 2010–May 2011 (70,815 m); prepared an
+initial mineral resource estimate and scoping study.
+2011 Canteras del Hallazgo; Feasibility study, assuming open pit mining methods. Open pit found
+Gold Fields as operator to be sub-economic; alternatives including combined open pit and
+underground or underground alone recommended to be evaluated.
+2011– Canteras del Hallazgo; Rock chip and soil sampling, 204 core and RC holes completed from
+2013 Gold Fields as operator June 2011 to September 2012 (33,127 m); mining and geotechnical
+studies.
+2014 Buenaventura Acquired Gold Fields’ 51% interest in joint venture company,
+Canteras del Hallazgo (CDH) so now held 100% interest in CDH,
+giving Buenaventura a 100% interest in the Project. Renamed the
+project to San Gabriel.
+5-4
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+5.3 Past Production
+There has not been any formal production to date on the property.
+5-5
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+6.0 Geological Setting, Mineralization, and Deposit
+6.1 Regional Geological Framework
+In this report, the southern region of Peru is divided into two large physiographic zones with
+distinctive geological characteristics. The Eastern Altiplano, which is located more than 3,500
+MASL and reaches altitudes above 5,000 m in young stratovolcanoes, is covered by a
+sequence of volcanic sediment and Cenozoic lava (Paleogene, Neogene and Quaternary).
+Small blocks of deformed sedimentary rocks from the Mesozoic Era (Triassic, Jurassic and
+Cretaceous) outcrop from this volcanic sequence. It is important to note that the structural block
+of the base of the region of the district of Ichuña is home to the San Gabriel deposit. The
+western flank of the range descends abruptly to the coast. The sedimentary and Mesozoic
+sequences present, mainly from the Jurassic to the Eocene, are covered by deposits of
+Neogene, which were formed by the erosion of the range that was raised. These sequences are
+intruded by the Coastal Batholith, which dates to the Cretaceous and Paleogene periods and
+extends through the western flank of the range. Additionally, the Arequipa block, a crystalline
+base from the Precambrian age, outcrop in the lowest slopes of the range and in the coastal
+region of southern Peru. The regional geology of the area is represented in Figure 6-1.
+Geochemical and isotropic analyses of the volcanic rocks of the Cenozoic Era indicate that this
+ancient crystalline base extends east, underlying the Altiplano (Ausenco 2022).
+6-1
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+Figure 6-1: Simplified Geological Map of Peru
+Source: Buenaventura 2020.
+Note: Approximate location of the Ichuña district is indicated by the red square.
+6-2
+
+=== PÁGINA SIGUIENTE ===
+
+Compañía de Minas Buenaventura S.A.A. | San Gabriel Project April 23, 2025
+S-K 1300 Technical Report Summary SLR Project No.: 233.065320.00001
+6.2 Stratigraphy
+The stratigraphy of San Gabriel is comprised of the Yura Group, Cachicos Formation, Labra
+Formation, Gramal Formation, Hualhuani Formation and the Murco Formation, as shown in
+Figure 6-2 (Ausenco 2022).
+6.2.1 Yura Group
+The region hosts the oldest Mesozoic rocks from the Ichuña triangle, composed primarily by
+sequences of quartzites with intercalations of shale, limestone, continental red sandstone and
+some coal beds (Marocco & Del Pino 1996). This group is sub-divided into the Cachios, Labra,
+Gramadal, and Hualhuani formations.
+• The estimated thickness of the Cachios Formation is 50 m; this area is comprised of
+grey and black shale intercalated with thin levels of grey sandstone, underlying the
+Labra Formation (Lipa, Valdivia, & Carrasco 2001).
+• The Labra Formation consists of grey and black shale with spheroidal nodules that
+alternate with gray sandstone, which present parallel and cross stratification. This
+formation concordantly overlies the Cachios Formation (Lipa, Valdivia, & Carrasco
+2001).
+• The Gramadal Formation consists of massive grey limestones with some levels of
+dolomites and grey-brown sandstone toward the base (Lipa, Valdivia, & Carrasco 2001).
+• The Hualhuani Formation consists of 200 m of white quartz sandstone, which is
+occasionally intercalated with carbonaceous (Lipa, Valdivia, & Carrasco 2001).
+6.2.1.1 Cachios Formation
+This area is comprised of grey and black shale and sandstone. The sandstone levels present
+parallel laminations, and the grey shale is highly fractured. It is assumed to date back to the mid
+to upper Jurassic period (Lipa, Valdivia, & Carrasco 2001).
+6.2.1.2 Labra Formation
+This unit includes non-calcareous rocks: quartz-sandstone, sandstone, siltstone and
+carbonaceous schist stones. The most characteristic feature of this unit are the thin, laminated
+intercalations of black shale/siltstone in sandstone; nevertheless, the variations of facies within
+this unit are complex and metric-scale thicker beds of sandstone or shale are also present. It is
+assumed that this area dates to the upper Jurassic (Lipa, Valdivia, & Carrasco 2001).
+6.2.1.3 Gramadal Formation
+This unit is characterized by 100 m of massive gray micritic limestone, which includes some
+levels of dolomite and sandstone in its base. Studies estimate that this area dates to the upper
+Jurassic – lower Cretaceous (Lipa, Valdivia, & Carrasco 2001). The unit presents a rhythmic
+sequence of calcareous grainstones and mudstones, which intercalate with the clastic horizons
+that are part of the Gramadal unit, which will be described later. Three members can be
+distinguished at San Gabriel:
+• Lower member: This member begins with a bed of schistose sandstone that is
+approximately one metre thick, cemented with calcareous material at the base, and
+followed by a wackestone bed. On top of this, grainstones with bivalves, which are
+6-3

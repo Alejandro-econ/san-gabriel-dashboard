@@ -1,0 +1,12 @@
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xrrl}
+\toprule
+Hipótesis & Prueba & Estadístico & Valor p & Decisión \\
+\midrule
+HG: precio, demanda, TC y riesgo país explican conjuntamente el VAN & F de la regresión de sensibilidad & 5\,290.89 & $<$0.001 & Se rechaza H0 \\
+HE1: el precio del oro es el factor de mayor efecto sobre el VAN & t del coeficiente; mayor $|$coef.$|$ = Precio del oro & 135.13 & $<$0.001 & Se acepta H1 \\
+HE2: la demanda de inversión en oro se asocia positivamente con su precio & z (Newey-West) del coef. de demanda, regresión diaria & 0.0105 & 0.496 & No se acepta H1 \\
+HE3: el tipo de cambio se mueve en sentido contrario al oro (cobertura natural) & Correlación de Pearson (una cola); CV VAN S/ = 0.633 vs US\$ = 0.650 & $-$0.1066 & $<$0.001 & Se acepta H1 \\
+HE4a: el VAN esperado a precios de mercado supera el VAN oficial & t de una muestra (una cola) & 134.67 & $<$0.001 & Se acepta H1 \\
+HE4b: la probabilidad de VAN negativo es menor que 5 \% & Binomial: 90 de 10000 simulaciones con VAN $<$ 0 & 0.0090 & $<$0.001 & Se acepta H1 \\
+\bottomrule
+\end{tabularx}

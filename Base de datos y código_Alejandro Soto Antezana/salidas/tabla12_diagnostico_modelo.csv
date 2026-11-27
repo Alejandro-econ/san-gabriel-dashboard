@@ -1,0 +1,10 @@
+Prueba,Supuesto que revisa,Estadístico,Valor p,Resultado
+Jarque-Bera,Residuos con distribución normal,7237.258470656854,0.0,"No se cumple: colas pesadas (se usa bootstrap, no la normal)"
+Breusch-Pagan,Varianza constante del error,137.5139716311962,1.2985491071251778e-29,No se cumple: heterocedasticidad (errores Newey-West)
+ARCH-LM (5 rezagos),Volatilidad sin rachas,348.7517369130427,3.249723340186362e-73,No se cumple: rachas de volatilidad (errores Newey-West y bloques de 21 días)
+Ljung-Box Q(10),Residuos sin autocorrelación,21.11828466812509,0.02028369177428754,No se cumple: autocorrelación (errores Newey-West)
+RESET de Ramsey,Forma funcional lineal correcta,6.088654803656269,0.013637142133478485,No se cumple: posible no linealidad
+Durbin-Watson,Autocorrelación de primer orden,2.032285942888248,,Se cumple (cercano a 2)
+VIF: Rend. demanda,Sin multicolinealidad,1.0022114608794788,,Se cumple (VIF < 10)
+VIF: Rend. tipo de cambio,Sin multicolinealidad,1.0906140263424153,,Se cumple (VIF < 10)
+VIF: Cambio riesgo país,Sin multicolinealidad,1.0891114416554417,,Se cumple (VIF < 10)

@@ -1,0 +1,15 @@
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xrr>{\raggedright\arraybackslash}X}
+\toprule
+Prueba & Supuesto que revisa & Estadístico & Valor p & Resultado \\
+\midrule
+Jarque-Bera & Residuos con distribución normal & 7\,237.26 & $<$0.001 & No se cumple: colas pesadas (se usa bootstrap, no la normal) \\
+Breusch-Pagan & Varianza constante del error & 137.51 & $<$0.001 & No se cumple: heterocedasticidad (errores Newey-West) \\
+ARCH-LM (5 rezagos) & Volatilidad sin rachas & 348.75 & $<$0.001 & No se cumple: rachas de volatilidad (errores Newey-West y bloques de 21 días) \\
+Ljung-Box Q(10) & Residuos sin autocorrelación & 21.118 & 0.020 & No se cumple: autocorrelación (errores Newey-West) \\
+RESET de Ramsey & Forma funcional lineal correcta & 6.089 & 0.014 & No se cumple: posible no linealidad \\
+Durbin-Watson & Autocorrelación de primer orden & 2.032 &  & Se cumple (cercano a 2) \\
+VIF: Rend. demanda & Sin multicolinealidad & 1.002 &  & Se cumple (VIF $<$ 10) \\
+VIF: Rend. tipo de cambio & Sin multicolinealidad & 1.091 &  & Se cumple (VIF $<$ 10) \\
+VIF: Cambio riesgo país & Sin multicolinealidad & 1.089 &  & Se cumple (VIF $<$ 10) \\
+\bottomrule
+\end{tabularx}
